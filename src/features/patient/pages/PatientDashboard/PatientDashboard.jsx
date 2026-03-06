@@ -69,7 +69,7 @@ const StatCard = ({ label, value, unit, status, isHeartRate, isLow, chartSlot, i
             </div>
             <p className="text-[16px] mt-1">{status}</p>
           </div>
-          <img src='Images/yes.svg' alt="wave" className="absolute -bottom-1 -right-4 w-[65%] h-auto pointer-events-none" />
+          <img src={'/Images/yes.svg'} alt="wave" className="absolute -bottom-1 -right-4 w-[65%] h-auto pointer-events-none" />
         </div>
       </>
     ) : (
