@@ -5,7 +5,7 @@ import logoImg from '../../../public/logo/logo.svg';
 import { HiOutlineMail } from "react-icons/hi";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
-import { SiLinkedin } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa";
 import { RiInstagramLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
@@ -99,7 +99,7 @@ const Footer = () => {
         <div className="flex flex-col max-w-7xl mx-auto px-4  bg-white   md:flex-row justify-between items-end border-t border-gray-100 pt-8 gap-8">
           <div className="flex items-center gap-6">
             <a href="#" className="text-main hover:text-brand-main transition-colors"> <RiInstagramLine alt="PulseX" className="w-6 h-6 object-contain" /></a>
-            <a href="#" className="text-main hover:text-brand-main transition-colors"> <SiLinkedin alt="PulseX" className="w-6 h-6 object-contain" /></a>
+            <a href="#" className="text-main hover:text-brand-main transition-colors"> <FaLinkedin alt="PulseX" className="w-6 h-6 object-contain" /></a>
             <a href="#" className="text-main hover:text-brand-main transition-colors"> <FaFacebookF alt="PulseX" className="w-6 h-6 object-contain" /></a>
             <a href="#" className="text-main hover:text-brand-main transition-colors"> <FaXTwitter alt="PulseX" className="w-6 h-6 object-contain" /></a>
           </div>
