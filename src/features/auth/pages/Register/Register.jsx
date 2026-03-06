@@ -12,7 +12,7 @@ import { RiGroupLine } from "react-icons/ri";
 import { CiCalendar } from "react-icons/ci";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { HiOutlineDocumentText } from "react-icons/hi2";
-import Logo from "/logo/logo.svg";
+import Logo from "../../../../assets/logo/logo.svg";
 
 const Register = () => {
   const navigate = useNavigate();

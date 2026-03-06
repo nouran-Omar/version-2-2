@@ -38,7 +38,7 @@ const PatientSidebar = ({ onClose, onLogout }) => {
       
       {/* ── Logo - تقليل البادينج الرأسي جداً ── */}
       <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-100 shrink-0">
-        <img src="/logo/logo.svg" alt="Logo" className="w-6 h-6 shrink-0" onError={e => e.target.style.display='none'} />
+        <img src="../../../../assets/logo/logo.svg" alt="Logo" className="w-6 h-6 shrink-0" onError={e => e.target.style.display='none'} />
         <span className="text-[13px] font-bold text-black-main-text tracking-tight">
           Pulse<span className="text-[#333CF5]">X</span>
         </span>
