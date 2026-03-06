@@ -16,7 +16,7 @@ import { HiOutlineBeaker } from 'react-icons/hi';
 import { MdOutlineStar, MdOutlineStarBorder } from 'react-icons/md';
 import Heart from '../../../../assets/Images/PatiantHeart.svg'
 import noIcon from "../../../../assets/Images/no.svg";
-import yesIcon from '../../../../assets/Images/yes.svg'
+import yesIcon from '../../../../assets/Images/yes.vg'
 import { LuUtensils, LuActivity, LuMoon, LuGlassWater, LuStethoscope } from 'react-icons/lu';
 
 /* ── Mini chart paths ── */
