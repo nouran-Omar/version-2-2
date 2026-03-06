@@ -15,8 +15,8 @@ import { TbDroplet } from 'react-icons/tb';
 import { HiOutlineBeaker } from 'react-icons/hi';
 import { MdOutlineStar, MdOutlineStarBorder } from 'react-icons/md';
 import Heart from '../../../../assets/Images/PatiantHeart.svg'
-import No from '../../../../assets/Images/no.svg'
-import Yes from '../../../../assets/Images/yes.svg'
+import noIcon from "../../../../assets/Images/no.svg";
+import yesIcon from '../../../../assets/Images/yes.svg'
 import { LuUtensils, LuActivity, LuMoon, LuGlassWater, LuStethoscope } from 'react-icons/lu';
 
 /* ── Mini chart paths ── */
@@ -69,7 +69,7 @@ const StatCard = ({ label, value, unit, status, isHeartRate, isLow, chartSlot, i
             </div>
             <p className="text-[16px] mt-1">{status}</p>
           </div>
-          <img src={Yes} alt="wave" className="absolute -bottom-1 -right-4 w-[65%] h-auto pointer-events-none" />
+          <img src={yesIcon} alt="wave" className="absolute -bottom-1 -right-4 w-[65%] h-auto pointer-events-none" />
         </div>
       </>
     ) : (
@@ -93,7 +93,7 @@ const StatCard = ({ label, value, unit, status, isHeartRate, isLow, chartSlot, i
           </div>
           {chartSlot && (
             <div className="absolute -bottom-6 right-2 w-[60%] h-auto pointer-events-none overflow-visible">
-              <img src={isLow ? No : Yes} alt="wave" className="absolute bottom-5 -right-4 w-full h-auto pointer-events-none" />
+              <img src={isLow ? noIcon  : yesIcon} alt="wave" className="absolute bottom-5 -right-4 w-full h-auto pointer-events-none" />
             </div>
           )}
         </div>
