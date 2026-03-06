@@ -69,7 +69,7 @@ const StatCard = ({ label, value, unit, status, isHeartRate, isLow, chartSlot, i
             </div>
             <p className="text-[16px] mt-1">{status}</p>
           </div>
-          <img src={yesIcon} alt="wave" className="absolute -bottom-1 -right-4 w-[65%] h-auto pointer-events-none" />
+          <img src='Images/yes.svg' alt="wave" className="absolute -bottom-1 -right-4 w-[65%] h-auto pointer-events-none" />
         </div>
       </>
     ) : (
@@ -93,7 +93,7 @@ const StatCard = ({ label, value, unit, status, isHeartRate, isLow, chartSlot, i
           </div>
           {chartSlot && (
             <div className="absolute -bottom-6 right-2 w-[60%] h-auto pointer-events-none overflow-visible">
-              <img src={isLow ? noIcon  : yesIcon} alt="wave" className="absolute bottom-5 -right-4 w-full h-auto pointer-events-none" />
+              <img src={isLow ? "/Images/no.svg" : "/Images/yes.svg"} alt="wave" className="absolute bottom-5 -right-4 w-full h-auto pointer-events-none" />
             </div>
           )}
         </div>
