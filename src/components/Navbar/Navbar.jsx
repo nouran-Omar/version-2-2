@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { HiBars3, HiXMark, HiOutlineMoon } from "react-icons/hi2";
-import logoImg from '../../../public/logo/logo.svg';
+import logoImg from '../../assets/logo/logo.svg';
 import { IoArrowForward } from "react-icons/io5";
 import Button from './../../Button/Button';
 import {  FaArrowRight } from 'react-icons/fa';

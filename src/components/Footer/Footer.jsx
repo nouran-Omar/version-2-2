@@ -1,13 +1,14 @@
 import React from 'react';
 import Container from '../Container/Container';
 import { FaRocket, FaArrowRight } from 'react-icons/fa';
-import logoImg from '../../../public/logo/logo.svg';
+
 import { HiOutlineMail } from "react-icons/hi";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { RiInstagramLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
+import logoImg from '../../assets/logo/logo.svg';
 
 const Footer = () => {
   return (<>
