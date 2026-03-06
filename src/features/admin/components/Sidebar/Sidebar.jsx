@@ -10,7 +10,7 @@ import { LuLayoutDashboard } from 'react-icons/lu';
 import { FaUserDoctor, FaBookOpen } from 'react-icons/fa6';
 import { CiFlag1 } from 'react-icons/ci';
 
-const logo = '../../../../assets/logo/logo.svg';
+import logo from '../../../../assets/logo/logo.svg';
 
 const MENU_ITEMS = [
   { name: 'Dashboard',          path: 'dashboard',           icon: <LuLayoutDashboard /> },
