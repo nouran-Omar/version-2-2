@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+@import "tailwindcss";
+@import "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+
+body {
+  background-color: #fafafa;
+  font-family: "Inter", sans-serif;
+}
+
+* {
+  font-family: "Inter", sans-serif;
+}
+@import "tailwindcss";
+
+@theme {
+  /* أنميشن الدخول ناعم جداً */
+  --animate-fade-left: fade-left 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-fade-right: fade-right 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  /* أنميشن القلب (توسيع وتصغير هادئ) */
+  --animate-heart-soft: heart-soft 4s ease-in-out infinite;
+
+  /* أنميشن الطفو للأيقونات والكروت */
+  --animate-float-slow: float-slow 6s ease-in-out infinite;
+
+  @keyframes fade-left {
+    from {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-right {
+    from {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes heart-soft {
+    0%,
+    100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 10px rgba(51, 60, 245, 0.1));
+    }
+    50% {
+      transform: scale(1.04);
+      filter: drop-shadow(0 0 30px rgba(51, 60, 245, 0.15));
+    }
+  }
+
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  /* الخطوط */
+  --font-poppins: "Poppins", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --default-font-family: "Inter", sans-serif;
+
+  /* الدرجات الزرقاء (الأساسية للمشروع) */
+  --color-brand-main: #333cf5;
+  --color-brand-secnd: #0913c3;
+  --color-brand-dark: #070e92;
+
+  --color-black-main-text: #010218;
+  /* درجات الأخضر (Success / Positive) */
+  --color-success-light: #00c853;
+  --color-success-main: #13a956;
+  --color-success-dark: #00953a;
+
+  /* درجات الأحمر (Danger / Errors) */
+  --color-error: #dc2626;
+
+  /* درجات الرمادي والشفافية */
+  --color-gray-text-dim: #6b7280;
+  --color-gray-text-dim2: #757575;
+  --color-black-hover: #0102184d;
+
+  /* تعريف الأنميشين كـ Variables */
+  /* --animation-heartbeat: heartbeat 3s ease-in-out infinite;
+  --animation-pulse-slow: pulse-slow 4s ease-in-out infinite;
+  --animation-fade-left: fade-left 0.8s ease-out forwards;
+  --animation-fade-right: fade-right 0.8s ease-out forwards; */
+  /* 
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+
+  @keyframes fade-left {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fade-right {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+  } */
+}
+
+/* Utilities مخصصة للكروت العائمة لتقليل زحمة الكود */
+@utility floating-card {
+  @apply absolute bg-white p-4 rounded-2xl shadow-xl flex flex-col items-center z-20 border border-gray-50 transition-all duration-500 hover:scale-105;
+}
+
+/* لإضافة تأخير مختلف لكل أيقونة لتبدو طبيعية */
+@utility delay-1 {
+  animation-delay: 0.5s;
+}
+@utility delay-2 {
+  animation-delay: 1.5s;
+}
+@utility delay-3 {
+  animation-delay: 2.5s;
+}
+
+@keyframes drawECG {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
