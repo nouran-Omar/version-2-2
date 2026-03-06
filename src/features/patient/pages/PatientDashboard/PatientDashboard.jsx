@@ -15,8 +15,8 @@ import { TbDroplet } from 'react-icons/tb';
 import { HiOutlineBeaker } from 'react-icons/hi';
 import { MdOutlineStar, MdOutlineStarBorder } from 'react-icons/md';
 import Heart from '../../../../assets/Images/PatiantHeart.svg'
-import No from '../../../../assets/Images/NO.svg'
-import Yes from '../../../../assets/Images/YES.svg'
+import No from '../../../../assets/Images/no.svg'
+import Yes from '../../../../assets/Images/yes.svg'
 import { LuUtensils, LuActivity, LuMoon, LuGlassWater, LuStethoscope } from 'react-icons/lu';
 
 /* ── Mini chart paths ── */
