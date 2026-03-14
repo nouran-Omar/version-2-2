@@ -33,24 +33,24 @@ const PatientStories = () => {
 
   return (
  <>
- <section className='p-5 '>
-   <header className="flex flex-col gap-2 pb-4 border-b border-gray-100 mb-8">
+ <section className='p-[24px]'>
+   <header className="flex flex-col  pb-4  mb-8">
   
   {/* السطر الأول: الأيقونة + العنوان */}
   <div className="flex items-center gap-1">
     {/* حاوية الأيقونة - استخدمنا اللون الأسود كما في كودك الأصلي */}
-    <div className="w-10 h-10 flex items-center justify-center rounded-full  text-white text-[20px] shrink-0">
+    <div className="w-10 h-10 flex items-center justify-center rounded-full  text-white text-[24px] shrink-0">
       <RiChatAiFill className='text-black-main-text' />
     </div>
 
     {/* العنوان H1 */}
-    <h1 className="text-[18px] font-bold text-black-main-text">
+    <h1 className="text-[24px] font-bold text-black-main-text">
       Stories
     </h1>
   </div>
 
   {/* السطر الثاني: الوصف ينزل تحتهم */}
-  <p className="text-[12px] text-gray-500 leading-relaxed max-w-2xl">
+  <p className="text-[18px] text-[#757575] ml-2 max-w-2xl">
     Read and share inspiring patient journeys.
   </p>
   
@@ -67,16 +67,16 @@ const PatientStories = () => {
             <div className="flex items-center gap-4 mb-6">
               <img src={story.img} alt={story.author} className="w-12 h-12 rounded-full object-cover" />
               <div>
-                <h4 className="text-[14px] font-semibold text-black-main-text">{story.author}</h4>
-                <span className="text-[12px] text-gray-400">{story.date}</span>
+                <h4 className="text-[16px] font-semibold text-black-main-text">{story.author}</h4>
+                <span className="text-[14px] text-gray-400">{story.date}</span>
               </div>
             </div>
 
             {/* Title */}
-            <h3 className="text-[16px] font-bold text-black-main-text leading-snug mb-3">{story.title}</h3>
+            <h3 className="text-[20px] font-bold text-black-main-text leading-snug mb-3">{story.title}</h3>
 
             {/* Excerpt */}
-            <p className="text-[13px] text-gray-500 leading-relaxed mb-6 line-clamp-3">
+            <p className="text-[16px] text-gray-500 leading-relaxed mb-6 line-clamp-3">
               "Last year, my heart health was at a critical point. Thanks to the right care and community support, I transformed my life..."
             </p>
 
@@ -86,7 +86,7 @@ const PatientStories = () => {
                 {story.tags.map(tag => (
                   <span
                     key={tag}
-                    className={`px-4 py-1 rounded-full text-[11px] font-medium ${
+                    className={`px-4 py-1 rounded-full text-[14px] font-medium ${
                       tag === 'Lifestyle' ? 'bg-orange-100 text-orange-600' : 'bg-blue-50 text-brand-main'
                     }`}
                   >
@@ -95,7 +95,7 @@ const PatientStories = () => {
                 ))}
               </div>
               <button
-                className="flex items-center gap-2 text-[12px] font-semibold text-brand-main hover:gap-3 transition-all"
+                className="flex items-center cursor-pointer gap-2 text-[12px] font-semibold text-brand-main hover:gap-3 transition-all"
                 onClick={() => navigate(`/patient/stories/${story.id}`)}
               >
                 Read Story <HiOutlineArrowRight />
@@ -140,7 +140,7 @@ const PatientStories = () => {
         </div>
 
         <button
-          className="absolute right-0 flex items-center gap-2 px-7 py-3.5 rounded-[24px] text-white text-[13px] font-semibold shadow-[0_4px_12px_rgba(51,60,245,0.2)]"
+          className="absolute right-0 cursor-pointer flex items-center gap-2 px-7 py-3.5 rounded-[24px] text-white text-[13px] font-semibold shadow-[0_4px_12px_rgba(51,60,245,0.2)]"
           style={{ background: 'linear-gradient(90deg, #333CF5 0%, #ED0006 100%)' }}
           onClick={() => navigate('/patient/write-story')}
         >

@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import PatientSidebar from '../PatientSidebar/PatientSidebar';
 import PatientHeader from '../PatientHeader/PatientHeader';
 import PatientChatbot from '../PatientChatbot/PatientChatbot';
 import ConfirmModal from '../../../admin/components/ConfirmModal/ConfirmModal';
 import { HiBars3, HiXMark } from 'react-icons/hi2';
 
+const HIDE_CHATBOT_ROUTES = [
+  '/patient/messages',
+  '/patient/payments',
+];
+
 const PatientMainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const showChatbot = !HIDE_CHATBOT_ROUTES.some(route => pathname.startsWith(route));
 
   const handleConfirmLogout = () => {
     setIsLogoutModalOpen(false);
@@ -73,7 +81,7 @@ const PatientMainLayout = () => {
         </main>
       </div>
 
-      <PatientChatbot />
+      {showChatbot && <PatientChatbot />}
 
       <ConfirmModal
         isOpen={isLogoutModalOpen}
