@@ -368,7 +368,7 @@ const PatientPrescriptions = () => {
           </div>
           <button
             onClick={() => setFilterOpen((o) => !o)}
-            className="flex items-center gap-2 bg-brand-main text-white font-semibold text-[13px] px-4 py-[10px] rounded-xl cursor-pointer border-none shadow-[0_4px_14px_rgba(51,60,245,0.3)] transition-transform active:scale-95"
+            className="flex items-center gap-2 bg-brand-main text-white font-semibold text-[14px] px-4 py-[10px] rounded-xl cursor-pointer border-none shadow-[0_4px_14px_rgba(51,60,245,0.3)] transition-transform active:scale-95"
           >
             <LuFilter className="text-[15px]" />
             Filter
@@ -382,7 +382,7 @@ const PatientPrescriptions = () => {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`px-4 py-[7px] rounded-xl text-[13px] font-semibold cursor-pointer border-none transition-all duration-300 ${getActiveTabClass(f)}`}
+                className={`px-4 py-[7px] rounded-xl text-[14px] font-semibold cursor-pointer border-none transition-all duration-300 ${getActiveTabClass(f)}`}
               >
                 {f}
               </button>
@@ -392,7 +392,7 @@ const PatientPrescriptions = () => {
       </div>
 
       {/* ── Count ── */}
-      <p className="text-[13px] text-[#4A5565] font-medium mb-4">
+      <p className="text-[16px] text-[#4A5565] font-medium mb-4">
         Showing <span className="font-bold text-black-main-text">{filtered.length}</span> prescription{filtered.length !== 1 ? 's' : ''}
       </p>
 
@@ -460,13 +460,13 @@ const PrescriptionCard = ({ item, index, visible, onView }) => {
 
   return (
     <div
-      className="bg-white  rounded-3xl overflow-hidden shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-transform duration-300 hover:-translate-y-1"
       style={{
         opacity:    visible ? 1 : 0,
         transform:  visible ? 'translateY(0) scale(1)' : 'translateY(28px) scale(0.97)',
         transition: `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`,
       }}
     >
+    <div className="bg-white rounded-3xl overflow-hidden shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-transform duration-300 hover:-translate-y-1">
       {/* header */}
 <div className={`px-5 py-4 flex items-start justify-between ${isActive ? 'bg-[#F0FDF4]' : 'bg-[#F9FAFB]'}`}>
   
@@ -495,7 +495,7 @@ const PrescriptionCard = ({ item, index, visible, onView }) => {
   </div>
 
   {/* الجزء الأيمن: حالة الروشتة فقط */}
-  <span className={`px-3 py-[3px] rounded-full text-[12px]font-bold shrink-0 ${isActive ? 'bg-[#00C950] text-white' : 'bg-[#99A1AF] text-white'}`}>
+  <span className={`px-3 py-[3px] rounded-full text-[12px] font-bold shrink-0 ${isActive ? 'bg-[#00C950] text-white' : 'bg-[#99A1AF] text-white'}`}>
     {item.status}
   </span>
   
@@ -516,7 +516,7 @@ const PrescriptionCard = ({ item, index, visible, onView }) => {
         <div className="flex gap-3 mt-4">
           <button
             onClick={onView}
-            className="flex-1 flex cursor-pointer items-center justify-center gap-2 bg-brand-main text-white font-semibold text-[13px] py-[10px] rounded-xl cursor-pointer border-none transition-opacity hover:opacity-90"
+            className="flex-1 flex cursor-pointer items-center justify-center gap-2 bg-brand-main text-white font-semibold text-[14px] py-[10px] rounded-xl cursor-pointer border-none transition-opacity hover:opacity-90"
           >
             <LuEye className="text-[14px]" /> View
           </button>
@@ -532,6 +532,7 @@ const PrescriptionCard = ({ item, index, visible, onView }) => {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 };
