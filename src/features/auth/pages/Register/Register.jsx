@@ -80,15 +80,15 @@ const Register = () => {
       </nav>
 
       <div className="max-w-[1200px] mx-auto py-10 px-4 flex flex-col items-center">
-        <header className="text-center mb-8 max-w-2xl">
+        <header className="text-center mb-20 max-w-2xl">
           <h1 className="text-2xl md:text-[30px] font-bold text-black-main-text mb-3">Create Your Patient Account</h1>
-          <p className="text-gray-500 text-[13px] w-96 text-center leading-relaxed">Join thousands of patients who trust MedConnect Portal for their healthcare needs. Your journey to better health starts here.</p>
+          <p className=" text-gray-text-dim2 text-[16px] text-center leading-relaxed">Join thousands of patients who trust MedConnect Portal for their healthcare needs. Your journey to better health starts here.</p>
         </header>
 
         <div className="bg-white p-6 md:p-10 rounded-[28px] shadow-[0px_10px_60px_rgba(0,0,0,0.03)] w-full max-w-[780px] border border-gray-50">
           <div className="text-center mb-7">
             <h3 className="font-bold text-[18px] text-black-main-text">Personal Information</h3>
-            <p className="text-gray-500 text-[12px] mt-2">Please provide your basic contact information</p>
+            <p className=" text-gray-text-dim2 text-[12px] mt-2">Please provide your basic contact information</p>
           </div>
 
           <form onSubmit={formik.handleSubmit}>
@@ -211,7 +211,7 @@ const Register = () => {
               {formik.touched.acceptTerms && formik.errors.acceptTerms}
             </div>
 
-            <button type="submit" className="bg-brand-main hover:bg-[#252CBF] text-white font-bold py-4 px-20 rounded-full shadow-lg transition-all active:scale-95 block mx-auto mt-10">
+            <button type="submit" className="bg-brand-main cursor-pointer hover:bg-[#252CBF] text-white font-bold py-4 px-20 rounded-full shadow-lg transition-all active:scale-95 block mx-auto mt-10">
               Create Account
             </button>
           </form>

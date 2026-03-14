@@ -78,25 +78,25 @@ const PatientQRCode = () => {
   };
 
   return (
-    <section className="flex flex-col gap-6 p-5 ">
+    <section className="flex flex-col gap-6 p-[24px] ">
       {/* Header */}
- <header className="flex flex-col gap-2 pb-4 border-b border-gray-100 mb-6">
+ <header className="flex flex-col pb-4  mb-6">
   
   {/* السطر الأول: الأيقونة + العنوان */}
   <div className="flex items-center gap-1">
     {/* حاوية الأيقونة - باللون الأزرق المريح */}
-    <div className="w-10 h-10 flex items-center justify-center rounded-xltext-black-main-text text-[20px] shrink-0">
+    <div className="w-10 h-10 flex items-center justify-center rounded-xltext-black-main-text text-[24px] shrink-0">
       <LuQrCode />
     </div>
 
     {/* العنوان H1 جنب الأيقونة */}
-    <h1 className="text-[18px] font-bold text-black-main-text">
+    <h1 className="text-[24px] font-bold text-black-main-text">
       Your Personal QR Code
     </h1>
   </div>
 
   {/* السطر الثاني: الوصف تحتهم */}
-  <p className="text-[12px] text-gray-500 leading-relaxed max-w-2xl">
+  <p className="text-[18px] text-[#757575] leading-relaxed max-w-2xl ml-2">
     Access all your medical records instantly by scanning this code.
   </p>
   
@@ -104,9 +104,9 @@ const PatientQRCode = () => {
 
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 mb-20 px-10 lg:grid-cols-2 gap-6">
         {/* QR Card */}
-        <div className="bg-white rounded-[22px] border border-gray-100 shadow-sm p-6 flex flex-col items-center gap-5">
+        <div className="bg-white w-[350px]  rounded-[22px] border border-gray-100 shadow-sm p-6 flex flex-col items-center gap-5">
           <div ref={qrRef} className="p-4 bg-gray-50 rounded-[16px] border border-gray-100">
             <QRCodeSVG
               value={`https://pulsex-app.com/records/${userData.name}`}
@@ -118,18 +118,18 @@ const PatientQRCode = () => {
           </div>
 
           <div className="flex flex-col gap-2 w-full">
-            <div className="flex items-center gap-2 text-[13px] text-black-main-text">
+            <div className="flex items-center gap-2 text-[20px] text-black-main-text">
               <LuCalendarDays className="text-brand-main" />
               <span>Generated on: {userData.generatedDate}</span>
             </div>
-            <div className="flex items-center gap-2 text-[13px] text-black-main-text">
+            <div className="flex items-center gap-2 text-[20px] text-black-main-text">
               <RiNumbersLine className="text-brand-main" />
               <span>Total Files: {userData.totalFiles}</span>
             </div>
           </div>
 
           <button
-            className="w-full bg-brand-main hover:bg-[#2830d4] text-white font-bold rounded-full py-2.5 text-[13px] transition-colors"
+            className="w-full bg-brand-main cursor-pointer hover:bg-[#2830d4] text-white font-bold rounded-full py-2.5 m-2 text-[13px] transition-colors"
             onClick={downloadPDF}
           >
             Download PDF
@@ -137,13 +137,13 @@ const PatientQRCode = () => {
         </div>
 
         {/* Details Column */}
-        <div className="flex flex-col gap-4">
+        <div className="flex w-[350px] flex-col gap-4">
           {/* What's inside */}
-          <div className="bg-white rounded-[22px] border border-gray-100 shadow-sm p-5">
-            <h3 className="text-[14px] font-bold text-black-main-text mb-3">What's inside your QR Code?</h3>
+          <div className="bg-white  w-[320px] rounded-[22px] border border-gray-100 shadow-sm p-5">
+            <h3 className="text-[20px] font-bold text-black-main-text mb-3">What's inside your QR Code?</h3>
             <ul className="flex flex-col gap-2">
               {['Blood Test Results', 'Radiology Scans', 'Medication Reports'].map((item) => (
-                <li key={item} className="flex items-center gap-2 text-[13px] text-[#010218B2]">
+                <li key={item} className="flex items-center gap-2 text-[16px] text-[#010218B2]">
                   <RiCheckFill className="text-[#00BC86] text-base shrink-0" />
                   {item}
                 </li>
@@ -152,13 +152,13 @@ const PatientQRCode = () => {
           </div>
 
           {/* Tip Box */}
-          <div className="border border-blue-100 rounded-[18px] p-4 flex flex-col gap-2"
+          <div className="border border-blue-100 w-[350px] rounded-[18px] p-4 flex flex-col gap-3"
           
           style={{background: 'linear-gradient(180deg, var(--Blue-1, #333CF5) 0%, var(--Blue-3, #070E92) 100%)'}}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <HiOutlineLightBulb className="text-[#FFC500] text-lg" />
-              <span className="text-[13px] font-bold text-white">Tip:</span>
+              <span className="text-[14px] font-bold text-white">Tip:</span>
             </div>
             <p className="text-[12px] text-[#FFFFFFCC] leading-relaxed">
               Show this QR code to your doctor during appointments — it gives instant access to all your records securely.

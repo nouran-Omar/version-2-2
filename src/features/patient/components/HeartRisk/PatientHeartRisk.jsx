@@ -63,7 +63,7 @@ const UploadCard = ({ title, desc, Icon, onUpload }) => {
             <p className="text-xs font-semibold text-black-main-text truncate">{file.name}</p>
             <p className="text-[10px] text-[#757575]">{(file.size / 1024).toFixed(2)} KB</p>
           </div>
-          <button onClick={() => setFile(null)} className="text-gray-400 hover:text-red-500 transition">
+          <button onClick={() => setFile(null)} className="text-gray-400 cursor-pointer hover:text-red-500 transition">
             <HiOutlineXMark className="text-base" />
           </button>
         </div>
@@ -72,7 +72,7 @@ const UploadCard = ({ title, desc, Icon, onUpload }) => {
       <button
         disabled={!file}
         onClick={() => file && onUpload(file)}
-        className={`w-full py-2.5 rounded-xl text-sm font-semibold transition
+        className={`w-full py-2.5 cursor-pointer rounded-xl text-sm font-semibold transition
           ${file
             ? 'bg-brand-main text-white hover:bg-[#2730d4] shadow-sm'
             : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
@@ -137,7 +137,7 @@ const CriticalAlert = ({ onFindDoctors }) => (
     </p>
     <button
       onClick={onFindDoctors}
-      className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-main text-white text-sm font-semibold hover:bg-[#2730d4] transition mt-1"
+      className="flex items-center gap-2 px-5 py-2.5 cursor-pointer rounded-full bg-brand-main text-white text-sm font-semibold hover:bg-[#2730d4] transition mt-1"
     >
       Find Doctors <IoSearchOutline className="text-base" />
     </button>

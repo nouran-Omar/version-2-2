@@ -113,7 +113,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={formik.isSubmitting}
-              className="w-full bg-brand-main hover:bg-brand-dark text-white font-semibold py-3.5 rounded-full flex items-center justify-center gap-2 transition-all shadow-md active:scale-[0.98] disabled:bg-gray-300"
+              className="w-full cursor-pointer bg-brand-main hover:bg-brand-dark text-white font-semibold py-3.5 rounded-full flex items-center justify-center gap-2 transition-all shadow-md active:scale-[0.98] disabled:bg-gray-300"
             >
               {formik.isSubmitting ? "Loading..." : (
                 <>Continue to Dashboard <TbLogin2 size={20} /></>

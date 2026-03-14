@@ -33,8 +33,8 @@ const PatientStories = () => {
 
   return (
  <>
- <section className='p-5 '>
-   <header className="flex flex-col gap-2 pb-4 border-b border-gray-100 mb-8">
+ <section className='p-[24px] '>
+   <header className="flex flex-col  pb-4 mb-8">
   
   {/* السطر الأول: الأيقونة + العنوان */}
   <div className="flex items-center gap-1">
@@ -44,13 +44,13 @@ const PatientStories = () => {
     </div>
 
     {/* العنوان H1 */}
-    <h1 className="text-[18px] font-bold text-black-main-text">
+    <h1 className="text-[24px] font-bold text-black-main-text">
       Stories
     </h1>
   </div>
 
   {/* السطر الثاني: الوصف ينزل تحتهم */}
-  <p className="text-[12px] text-gray-500 leading-relaxed max-w-2xl">
+  <p className="text-[18px] text-[#757575] max-w-2xl ml-2">
     Read and share inspiring patient journeys.
   </p>
   
@@ -95,7 +95,7 @@ const PatientStories = () => {
                 ))}
               </div>
               <button
-                className="flex items-center gap-2 text-[12px] font-semibold text-brand-main hover:gap-3 transition-all"
+                className="flex items-center cursor-pointer gap-2 text-[12px] font-semibold text-brand-main hover:gap-3 transition-all"
                 onClick={() => navigate(`/patient/stories/${story.id}`)}
               >
                 Read Story <HiOutlineArrowRight />
@@ -109,7 +109,7 @@ const PatientStories = () => {
       <div className="relative mt-12 flex justify-center items-center py-5">
         <div className="flex items-center gap-2">
           <button
-            className="w-11 h-11 rounded-full border border-gray-200 bg-white flex items-center justify-center transition-colors hover:border-brand-main disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-11 h-11 rounded-full border border-gray-200 bg-white flex items-center justify-center transition-colors cursor-pointer hover:border-brand-main disabled:opacity-40 disabled:cursor-not-allowed"
             onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
@@ -131,7 +131,7 @@ const PatientStories = () => {
           ))}
 
           <button
-            className="w-11 h-11 rounded-full border border-gray-200 bg-white flex items-center justify-center transition-colors hover:border-brand-main disabled:opacity-40 disabled:cursor-not-allowed"
+            className="w-11 h-11 rounded-full border border-gray-200 bg-white flex items-center justify-center transition-colors cursor-pointer hover:border-brand-main disabled:opacity-40 disabled:cursor-not-allowed"
             onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
           >
@@ -140,7 +140,7 @@ const PatientStories = () => {
         </div>
 
         <button
-          className="absolute right-0 flex items-center gap-2 px-7 py-3.5 rounded-[24px] text-white text-[13px] font-semibold shadow-[0_4px_12px_rgba(51,60,245,0.2)]"
+          className="absolute right-0 cursor-pointer flex items-center gap-2 px-7 py-3.5 rounded-[24px] text-white text-[13px] font-semibold shadow-[0_4px_12px_rgba(51,60,245,0.2)]"
           style={{ background: 'linear-gradient(90deg, #333CF5 0%, #ED0006 100%)' }}
           onClick={() => navigate('/patient/write-story')}
         >
