@@ -1,13 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { jsPDF } from 'jspdf';
 import { LuQrCode, LuCalendarDays } from 'react-icons/lu';
-import { HiOutlineCheckCircle, HiOutlineLightBulb } from 'react-icons/hi2';
-import { RiNumbersLine } from 'react-icons/ri';
-import {RiCheckFill } from 'react-icons/ri';
+import { HiOutlineLightBulb } from 'react-icons/hi2';
+import { RiNumbersLine, RiCheckFill } from 'react-icons/ri';
 
 const PatientQRCode = () => {
   const qrRef = useRef(null);
+  const [qrSize, setQrSize] = useState(200);
 
   const [userData] = useState({
     name: 'Nouran Omar',
@@ -18,6 +18,27 @@ const PatientQRCode = () => {
       'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=500',
     ],
   });
+
+  useEffect(() => {
+    const updateQrSize = () => {
+      if (window.innerWidth < 380) {
+        setQrSize(145);
+        return;
+      }
+      if (window.innerWidth < 640) {
+        setQrSize(170);
+        return;
+      }
+      setQrSize(200);
+    };
+
+    updateQrSize();
+    window.addEventListener('resize', updateQrSize);
+
+    return () => {
+      window.removeEventListener('resize', updateQrSize);
+    };
+  }, []);
 
   const downloadPDF = async () => {
     const doc = new jsPDF();
@@ -78,25 +99,25 @@ const PatientQRCode = () => {
   };
 
   return (
-    <section className="flex flex-col gap-6 p-5 ">
+    <section className="flex flex-col gap-5 sm:gap-6 p-4 sm:p-5 md:p-6">
       {/* Header */}
- <header className="flex flex-col gap-2 pb-4 border-b border-gray-100 mb-6">
+ <header className="flex flex-col gap-2 pb-4 border-b border-gray-100 mb-4 sm:mb-6">
   
   {/* السطر الأول: الأيقونة + العنوان */}
-  <div className="flex items-center gap-1">
+  <div className="flex items-center gap-2">
     {/* حاوية الأيقونة - باللون الأزرق المريح */}
-    <div className="w-10 h-10 flex items-center justify-center rounded-xltext-black-main-text text-[20px] shrink-0">
+    <div className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl text-black-main-text text-[20px] shrink-0">
       <LuQrCode />
     </div>
 
     {/* العنوان H1 جنب الأيقونة */}
-    <h1 className="text-[18px] font-bold text-black-main-text">
+    <h1 className="text-[16px] sm:text-[18px] font-bold text-black-main-text leading-tight">
       Your Personal QR Code
     </h1>
   </div>
 
   {/* السطر الثاني: الوصف تحتهم */}
-  <p className="text-[12px] text-gray-500 leading-relaxed max-w-2xl">
+  <p className="text-[12px] sm:text-[13px] text-gray-500 leading-relaxed max-w-2xl">
     Access all your medical records instantly by scanning this code.
   </p>
   
@@ -104,13 +125,13 @@ const PatientQRCode = () => {
 
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* QR Card */}
-        <div className="bg-white rounded-[22px] border border-gray-100 shadow-sm p-6 flex flex-col items-center gap-5">
-          <div ref={qrRef} className="p-4 bg-gray-50 rounded-[16px] border border-gray-100">
+        <div className="bg-white rounded-[22px] border border-gray-100 shadow-sm p-4 sm:p-6 flex flex-col items-center gap-4 sm:gap-5">
+          <div ref={qrRef} className="w-full max-w-65 aspect-square p-3 sm:p-4 bg-gray-50 rounded-2xl border border-gray-100 flex items-center justify-center">
             <QRCodeSVG
               value={`https://pulsex-app.com/records/${userData.name}`}
-              size={200}
+              size={qrSize}
               bgColor="#ffffff"
               fgColor="#010218"
               level="H"
@@ -139,7 +160,7 @@ const PatientQRCode = () => {
         {/* Details Column */}
         <div className="flex flex-col gap-4">
           {/* What's inside */}
-          <div className="bg-white rounded-[22px] border border-gray-100 shadow-sm p-5">
+          <div className="bg-white rounded-[22px] border border-gray-100 shadow-sm p-4 sm:p-5">
             <h3 className="text-[14px] font-bold text-black-main-text mb-3">What's inside your QR Code?</h3>
             <ul className="flex flex-col gap-2">
               {['Blood Test Results', 'Radiology Scans', 'Medication Reports'].map((item) => (
@@ -161,7 +182,7 @@ const PatientQRCode = () => {
               <span className="text-[13px] font-bold text-white">Tip:</span>
             </div>
             <p className="text-[12px] text-[#FFFFFFCC] leading-relaxed">
-              Show this QR code to your doctor during appointments — it gives instant access to all your records securely.
+              Show this QR code to your doctor during appointments, it gives instant access to all your records securely.
             </p>
           </div>
         </div>
