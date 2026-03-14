@@ -9,12 +9,12 @@ const PatientAIAlert = () => {
           <HiOutlineLightningBolt className="text-amber-600 text-lg" />
         </div>
         <div className="flex flex-col gap-1">
-          <h3 className="text-[14px] font-bold text-black-main-text">AI Detection Alert</h3>
-          <p className="text-[12px] text-gray-700">Our AI detected a high probability of heart-related issues based on your responses.</p>
+          <h3 className="text-[24px] font-bold text-black-main-text">AI Detection Alert</h3>
+          <p className="text-[16px] text-[#364153]">Our AI detected a high probability of heart-related issues based on your responses.</p>
         </div>
       </div>
       <div className="bg-white/60 rounded-xl p-3">
-        <p className="text-[11px] text-gray-600">
+        <p className="text-[16px] text-[#4A5565]">
           *Higher accuracy required. Complete your full profile in the Heart Risk Assessment section for deeper medical insights.
         </p>
       </div>

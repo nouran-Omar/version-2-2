@@ -48,21 +48,21 @@ const DoctorCard = ({ doctor }) => {
         className="w-20 h-20 rounded-full object-cover border-4 border-white shadow"
         onError={(e) => { e.target.src = `https://ui-avatars.com/api/?name=${doctor.name}&background=E8EAF6&color=333CF5`; }}
       />
-      <h3 className="text-sm font-bold text-black-main-text mt-1">{doctor.name}</h3>
-      <div className="flex items-center gap-1 text-xs text-[#757575]">
+      <h3 className="text-[20px] font-bold text-black-main-text mt-1">{doctor.name}</h3>
+      <div className="flex items-center gap-1 text-[14px] text-[#757575]">
         <HiOutlineLocationMarker className="text-[#757575]" /> {doctor.loc}
       </div>
       <div className="flex items-center gap-1.5 ">
         <Stars className='text-[#FACC15]' rate={doctor.rate} />
-        <span className="text-xs text-[#757575]">({doctor.reviews} reviews)</span>
+        <span className="text-[14px] text-[#757575]">({doctor.reviews} reviews)</span>
       </div>
       <p className="text-sm text-gray-600 mt-1">
-        <span className="text-lg font-bold text-black-main-text">${doctor.price}</span>
-        <span className="text-[#757575]"> / session</span>
+        <span className="text-[24px] font-bold text-black-main-text">${doctor.price}</span>
+        <span className="text-[#757575] text-[14px]"> / session</span>
       </p>
       <button
         onClick={() => navigate(`/patient/doctor-profile/${doctor.id}`)}
-        className="w-full mt-2 py-2.5 rounded-xl bg-brand-main text-white text-sm font-semibold hover:bg-[#2730d4] transition"
+        className="w-full m-4 cursor-pointer  py-2.5 rounded-full bg-brand-main text-white text-sm font-semibold hover:bg-[#2730d4] transition"
       >
         Book Now
       </button>
@@ -99,59 +99,65 @@ const PatientDoctorList = () => {
   const pageNums = Array.from({ length: totalPages }, (_, i) => i + 1).slice(0, 4);
 
   return (
-    <div className="min-h-screen sm:p-5 lg:p-5">
+    <div className="min-h-screen sm:p-[24px] lg:p-[24px]">
 
       {/* ── Header ── */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-1">
           <FaUserDoctor className="text-xl text-black-main-text" />
-          <h1 className="text-xl font-bold text-black-main-text">Doctor List</h1>
+          <h1 className="text-[24px] font-bold text-black-main-text">Doctor List</h1>
         </div>
-        <p className="text-sm text-[#757575]">Find and connect with heart specialists easily.</p>
+        <p className="text-[18px] text-[#757575]">Find and connect with heart specialists easily.</p>
       </div>
 
       {/* ── Stats Bar ── */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-4 mb-6 flex flex-wrap items-center gap-6 sm:gap-10">
-        <div className="flex items-center gap-4 ml-3">
-          <div className="w-15 h-15 p-2 rounded-full  flex items-center justify-center"
-          style={{background: 'linear-gradient(201deg, #D3FFE7 0%, #EFFFF6 100%)'}}
-          >
-            <HiUsers className="text-[#00AC4F] text-2xl" />
-          </div>
-          <div>
-            <p className="text-xs text-[#ACACAC]">Total Doctors</p>
-            <p className="text-2xl font-bold text-brand-main">{ALL_DOCTORS.length}</p>
-          </div>
-        </div>
+<div className="bg-white rounded-2xl border border-gray-100 shadow-sm px-3 py-7 mt-[55px] mb-[40px] ml-2 mr-2 flex flex-wrap items-center justify-evenly gap-y-6">
+  
+  {/* العنصر الأول */}
+  <div className="flex items-center gap-4">
+    <div className="w-18 h-18 rounded-full flex items-center justify-center shrink-0"
+         style={{background: 'linear-gradient(201deg, #D3FFE7 0%, #EFFFF6 100%)'}}>
+      <HiUsers className="text-[#00AC4F] text-[32px]" />
+    </div>
+    <div>
+      <p className="text-[14px] text-[#ACACAC]">Total Doctors</p>
+      <p className="text-[32px] font-bold text-brand-main">{ALL_DOCTORS.length}</p>
+    </div>
+  </div>
 
-        <div className="w-px h-10 bg-gray-100 hidden sm:block" />
+  {/* الفاصل الأول */}
 
-        <div className="flex items-center gap-4 ml-3">
-          <div className="w-15 h-15 p-2 rounded-full  flex items-center justify-center"
-          style={{background: 'linear-gradient(201deg, #D3FFE7 0%, #EFFFF6 100%)'}}
-          > <MdStars className="text-[#00AC4F] text-2xl" />
-          </div>
-          <div>
-            <p className="text-xs text-[#ACACAC]">Top Rated Specialist</p>
-            <p className="text-2xl font-bold text-[#FACC15]">89%</p>
-          </div>
-        </div>
 
-        <div className="w-px h-10 bg-gray-100 hidden sm:block" />
-  <div className="flex items-center gap-4 ml-3">
-          <div className="w-15 h-15 p-2 rounded-full  flex items-center justify-center"
-          style={{background: 'linear-gradient(201deg, #D3FFE7 0%, #EFFFF6 100%)'}}
-          > <MdMonitor className="text-[#00AC4F] text-2xl" />
-          </div>
-          <div>
-            <p className="text-xs text-[#ACACAC]">Active Now</p>
-            <p className="text-2xl font-bold text-[#7939FF]">32</p>
-          </div>
-        </div>
-      </div>
+  {/* العنصر الثاني */}
+  <div className="flex items-center gap-4">
+    <div className="w-18 h-18 rounded-full flex items-center justify-center shrink-0"
+         style={{background: 'linear-gradient(201deg, #D3FFE7 0%, #EFFFF6 100%)'}}>
+      <MdStars className="text-[#00AC4F] text-[32px]" />
+    </div>
+    <div>
+      <p className="text-[14px] text-[#ACACAC]">Top Rated Specialist</p>
+      <p className="text-[32px] font-bold text-[#FACC15]">89%</p>
+    </div>
+  </div>
+
+
+
+  {/* العنصر الثالث */}
+  <div className="flex items-center gap-4">
+    <div className="w-18 h-18 rounded-full flex items-center justify-center shrink-0"
+         style={{background: 'linear-gradient(201deg, #D3FFE7 0%, #EFFFF6 100%)'}}>
+      <MdMonitor className="text-[#00AC4F] text-[32px]" />
+    </div>
+    <div>
+      <p className="text-[14px] text-[#ACACAC]">Active Now</p>
+      <p className="text-[32px] font-bold text-[#7939FF]">32</p>
+    </div>
+  </div>
+
+</div>
 
 {/* ── Filter & Search Bar ── */}
-<div className="flex flex-wrap items-center gap-2 mb-6 bg-[#F1F2F5] p-3 lg:p-5 rounded-lg">
+<div className="flex flex-wrap items-center gap-6 mb-6 bg-[#F1F2F5] p-3 lg:p-5 rounded-lg">
   {/* Rating */}
   <div className="flex items-center gap-1.5 text-xs lg:text-sm text-black-main-text">
     <span className="font-medium whitespace-nowrap">Rating:</span>
@@ -189,7 +195,7 @@ const PatientDoctorList = () => {
   </div>
 
   {/* Search */}
-  <div className="flex items-center gap-1.5 border border-gray-200 rounded-xl px-2 py-1 lg:px-3 lg:py-1.5 bg-white ml-auto w-full sm:w-auto">
+  <div className="flex items-center gap-2 border border-gray-200 rounded-full px-2 py-1 lg:px-3 lg:py-1.5 bg-white ml-auto w-full sm:w-auto">
     <HiSearch className="text-gray-400 text-sm lg:text-base shrink-0" />
     <input
       type="text" value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }}

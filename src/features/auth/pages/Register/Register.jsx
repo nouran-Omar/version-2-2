@@ -82,7 +82,7 @@ const Register = () => {
       <div className="max-w-[1200px] mx-auto py-10 px-4 flex flex-col items-center">
         <header className="text-center mb-8 max-w-2xl">
           <h1 className="text-2xl md:text-[30px] font-bold text-black-main-text mb-3">Create Your Patient Account</h1>
-          <p className="text-gray-500 text-[13px] leading-relaxed">Join thousands of patients who trust PulseX Portal for their healthcare needs.</p>
+          <p className="text-gray-500 text-[13px] w-96 text-center leading-relaxed">Join thousands of patients who trust MedConnect Portal for their healthcare needs. Your journey to better health starts here.</p>
         </header>
 
         <div className="bg-white p-6 md:p-10 rounded-[28px] shadow-[0px_10px_60px_rgba(0,0,0,0.03)] w-full max-w-[780px] border border-gray-50">
@@ -101,7 +101,7 @@ const Register = () => {
                 { label: 'Phone Number', name: 'phone', placeholder: '+20 1000000000' }
               ].map((f) => (
                 <div key={f.name}>
-                  <label className="block text-[12px] font-bold mb-2.5 tracking-wider text-black-main-text uppercase">
+                  <label className="block text-[12px] font-bold mb-2.5 tracking-wider text-black-main-text ">
                     {f.label} <span className="text-red-400">*</span>
                   </label>
                   <input
@@ -118,7 +118,7 @@ const Register = () => {
 
               {/* Date of Birth */}
               <div>
-                <label className="block text-[12px] font-bold mb-2.5 tracking-wider text-black-main-text uppercase">
+                <label className="block text-[12px] font-bold mb-2.5 tracking-wider text-black-main-text ">
                   Date of Birth <span className="text-red-400">*</span>
                 </label>
                 <div className="relative w-full">
@@ -163,7 +163,7 @@ const Register = () => {
 
             {/* Gender */}
             <div className="mt-8">
-              <label className="block text-[12px] font-bold mb-3 tracking-wider text-black-main-text uppercase">
+              <label className="block text-[12px] font-bold mb-3 tracking-wider text-black-main-text ">
                 Gender <span className="text-red-500">*</span>
               </label>
               <div className="flex gap-5">

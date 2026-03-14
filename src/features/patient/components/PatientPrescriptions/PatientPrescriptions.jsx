@@ -330,7 +330,7 @@ const PatientPrescriptions = () => {
 
   return (
     <div
-      className="min-h-screen p-5   font-[Inter,sans-serif]"
+      className="min-h-screen p-[24px]   "
       style={{
         opacity:    visible ? 1 : 0,
         transform:  visible ? 'translateY(0)' : 'translateY(18px)',
@@ -341,8 +341,8 @@ const PatientPrescriptions = () => {
       <div className="flex items-center gap-3 mb-6">
        
         <div>
-          <h1 className="text-[20px] font-bold text-black-main-text m-0 leading-tight flex items-center "> <LuClipboardList className="text-[30px] text-black-main-text mr-2" />Prescription History</h1>
-          <p className="text-[13px] text-gray-text-dim2 mt-[2px] m-0">View and manage all your medical prescriptions</p>
+          <h1 className="text-[24px] font-bold text-black-main-text m-0 leading-tight flex items-center "> <LuClipboardList className="text-[30px] text-black-main-text mr-2" />Prescription History</h1>
+          <p className="text-[18px] text-gray-text-dim2 mt-[2px] m-0">View and manage all your medical prescriptions</p>
         </div>
       </div>
 
@@ -429,8 +429,8 @@ const StatCard = ({ label, value, accent,text ,delay, visible }) => (
       transition:      `opacity 0.45s ease ${delay}ms, transform 0.45s ease ${delay}ms`,
     }}
   >
-    <p className="text-[13px] text-[#4A5565] mb-2 m-0">{label}</p>
-    <h3 className="text-[32px] font-extrabold m-0 leading-none"
+    <p className="text-[14px] text-[#4A5565] mb-2 m-0">{label}</p>
+    <h3 className="text-[30px] font-extrabold m-0 leading-none"
     
       style={{
       color: text}}
@@ -479,23 +479,23 @@ const PrescriptionCard = ({ item, index, visible, onView }) => {
         <FaRegUserCircle />
       </div>
       <div>
-        <h4 className="text-[15px] font-bold text-black-main-text m-0 leading-tight">{item.doc}</h4>
+        <h4 className="text-[16px] font-bold text-black-main-text m-0 leading-tight">{item.doc}</h4>
         <p className="text-[12px] text-[#4A5565] m-0 flex items-center gap-1 mt-[2px]">
-          <span className="text-[11px]">⚕</span> {item.spec}
+        
         </p>
       </div>
     </div>
 
     {/* صف التاريخ: يظهر الآن تحت الدكتور مباشرة داخل الخلفية الملونة */}
-    <div className="flex items-center gap-2 text-[12px] text-[#4A5565] ml-1">
+    <div className="flex items-center gap-2 text-[14px] text-[#4A5565] ml-1">
       <HiOutlineCalendar className="text-[14px] shrink-0 text-[#4A5565]" />
-      <span>Issued: <b className="text-black-main-text">{item.date}</b></span>
+      <span>Issued: <span className="text-[#4A5565]">{item.date}</span></span>
     </div>
     
   </div>
 
   {/* الجزء الأيمن: حالة الروشتة فقط */}
-  <span className={`px-3 py-[3px] rounded-full text-[11px] font-bold shrink-0 ${isActive ? 'bg-[#00C950] text-white' : 'bg-[#99A1AF] text-white'}`}>
+  <span className={`px-3 py-[3px] rounded-full text-[12px]font-bold shrink-0 ${isActive ? 'bg-[#00C950] text-white' : 'bg-[#99A1AF] text-white'}`}>
     {item.status}
   </span>
   
@@ -504,7 +504,7 @@ const PrescriptionCard = ({ item, index, visible, onView }) => {
       {/* body */}
       <div className="px-5 py-4">
 
-        <div className="flex justify-between text-[13px] mb-2">
+        <div className="flex justify-between text-[14px] mb-2">
           <span className="text-[#4A5565]">Medications</span>
           <strong className="text-black-main-text">{medsCount} item{medsCount !== 1 ? 's' : ''}</strong>
         </div>
@@ -516,17 +516,17 @@ const PrescriptionCard = ({ item, index, visible, onView }) => {
         <div className="flex gap-3 mt-4">
           <button
             onClick={onView}
-            className="flex-1 flex items-center justify-center gap-2 bg-brand-main text-white font-semibold text-[13px] py-[10px] rounded-xl cursor-pointer border-none transition-opacity hover:opacity-90"
+            className="flex-1 flex cursor-pointer items-center justify-center gap-2 bg-brand-main text-white font-semibold text-[13px] py-[10px] rounded-xl cursor-pointer border-none transition-opacity hover:opacity-90"
           >
-            <LuEye className="text-[15px]" /> View
+            <LuEye className="text-[14px]" /> View
           </button>
           <button
             onClick={handleDownload}
             disabled={loading}
-            className="w-11 h-10 flex items-center justify-center bg-white border border-[#e5e7eb] rounded-xl text-[#364153] text-[18px] cursor-pointer transition-colors hover:bg-[#f9fafb] hover:text-brand-main"
+            className="w-11 h-10 flex cursor-pointer items-center justify-center bg-white border border-[#e5e7eb] rounded-xl text-[#364153] text-[18px] cursor-pointer transition-colors hover:bg-[#f9fafb] hover:text-brand-main"
           >
             {loading
-              ? <div className="w-5 h-5 border-2 border-brand-main border-t-transparent rounded-full animate-spin" />
+              ? <div className="w-5 h-5  border-2 border-brand-main border-t-transparent rounded-full animate-spin" />
               : <LuDownload />
             }
           </button>

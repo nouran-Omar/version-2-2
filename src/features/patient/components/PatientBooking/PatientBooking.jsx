@@ -122,11 +122,11 @@ const PatientBooking = () => {
               {/* Calendar */}
               <div className="flex-1">
                 {/* Month header */}
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center cursor-pointer justify-between mb-4">
                   <button className="w-7 h-7 rounded-full bg-[#3C46F614] flex items-center justify-center hover:bg-gray-200 transition">
                     <HiChevronLeft className="text-[#BDC6C6] text-sm" />
                   </button>
-                  <span className="text-sm font-semibold text-black-main-text">October 2025</span>
+                  <span className="text-sm font-semibold cursor-pointer text-black-main-text">October 2025</span>
                   <button className="w-7 h-7 rounded-full bg-brand-main flex items-center justify-center hover:bg-[#2730d4] transition">
                     <HiChevronRight className="text-white text-sm" />
                   </button>
@@ -153,7 +153,7 @@ const PatientBooking = () => {
                         key={day}
                         onClick={() => { if (isAvail) { setSelectedDate(day); setSelectedTime(null); } }}
                         disabled={!isAvail}
-                        className={`mx-auto w-8 h-8 rounded-full  text-xs font-medium flex items-center justify-center transition
+                        className={`mx-auto w-8 h-8 cursor-pointer rounded-full  text-xs font-medium flex items-center justify-center transition
                           ${isSelected
                             ? 'bg-brand-main text-white shadow'
                             : isToday && !isSelected
@@ -183,12 +183,12 @@ const PatientBooking = () => {
                     <button
                       key={t}
                       onClick={() => setSelectedTime(t)}
-                      className={`flex items-center gap-2 border border-[#333CF54D] rounded-full px-3 py-2.5 text-sm transition
+                      className={`flex items-center gap-2 border cursor-pointer border-[#333CF54D] rounded-full px-3 py-2.5 text-sm transition
                         ${selectedTime === t
                           ? 'border-brand-main bg-[#EEF0FF] text-brand-main font-semibold'
                           : 'border-[#333CF54D] text-[#0102188e] hover:border-brand-main hover:text-brand-main'}`}
                     >
-                      <div className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center shrink-0
+                      <div className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center cursor-pointer shrink-0
                         ${selectedTime === t ? 'border-brand-main' : 'border-gray-300'}`}>
                         {selectedTime === t && <div className="w-1.5 h-1.5 rounded-full bg-brand-main" />}
                       </div>
@@ -205,7 +205,7 @@ const PatientBooking = () => {
       {/* ── Confirm Button ── */}
       <button
         onClick={handleConfirm}
-        className="bg-brand-main text-white font-semibold text-sm px-12 py-3 rounded-full hover:bg-[#2730d4] transition shadow-md"
+        className="bg-brand-main cursor-pointer text-white font-semibold text-sm px-12 py-3 rounded-full hover:bg-[#2730d4] transition shadow-md"
       >
         Confirm Appointment
       </button>

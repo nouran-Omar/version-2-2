@@ -23,10 +23,12 @@ export const registerSchema = Yup.object().shape({
     .email(errorMsg("Invalid email address"))
     .required(errorMsg("Email is required")),
   
-  phone: Yup.string()
-    .matches(/^01[0125][0-9]{8}$/, errorMsg("Invalid Egyptian phone number"))
-    .required(errorMsg("Phone number is required")),
-  
+phone: Yup.string()
+    .required(errorMsg("Phone number is required"))
+    .matches(/^01[0125][0-9]{8}$/, {
+      message: errorMsg("Invalid Egyptian phone number"),
+      excludeEmptyString: true
+    }),
   dateOfBirth: Yup.date()
     .nullable()
     .required(errorMsg("Date of birth is required"))

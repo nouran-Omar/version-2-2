@@ -142,12 +142,12 @@ const PatientDashboard = () => {
   const v = patient.vitals;
 
   return (
-    <section className="flex flex-col gap-6 p-4 md:p-6 bg-[#FAFBFF] min-h-screen">
+    <section className="flex flex-col rounded-full  font-Roboto gap-6 p-[24px] md:p-[24px] bg-[#FAFBFF] min-h-screen">
       
       {/* Welcome Header */}
       <div className="mb-2">
-        <h2 className="text-2xl font-bold text-black-main-text leading-tight">Welcome Back, {patient.name} 👋</h2>
-        <p className="text-sm text-gray-500">Here's an overview of your current heart health status.</p>
+        <h2 className="text-[24px] font-bold font-Roboto text-black-main-text leading-tight">Welcome Back, {patient.name} 👋</h2>
+        <p className="text-[18px] text-[#757575] font-Roboto ">Here's an overview of your current heart health status.</p>
       </div>
 
       {/* ROW 1: 4 Stat Cards */}

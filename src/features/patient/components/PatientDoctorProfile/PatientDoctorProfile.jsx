@@ -73,7 +73,7 @@ const PatientDoctorProfile = () => {
         <div className="flex flex-col gap-2.5 w-full sm:w-auto shrink-0">
           <button
             onClick={() => navigate(`/patient/booking/${id}`)}
-            className="bg-white text-brand-main font-semibold text-sm px-6 py-2.5 rounded-xl hover:bg-blue-50 transition w-full sm:w-44"
+            className="bg-white cursor-pointer text-brand-main font-semibold text-sm px-6 py-2.5 rounded-xl hover:bg-blue-50 transition w-full sm:w-44"
           >
             Book Appointment
           </button>

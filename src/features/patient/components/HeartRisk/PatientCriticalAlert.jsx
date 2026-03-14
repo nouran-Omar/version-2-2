@@ -6,7 +6,7 @@ const PatientCriticalAlert = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white rounded-[22px] border border-red-100 shadow-sm p-6 flex flex-col items-center text-center gap-4">
+    <div className="w-16 bg-white rounded-[22px] border border-red-100 shadow-sm p-6 flex flex-col items-center text-center gap-4">
       <div className="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center">
         <HiOutlineXCircle className="text-[#E7000B] text-4xl" />
       </div>

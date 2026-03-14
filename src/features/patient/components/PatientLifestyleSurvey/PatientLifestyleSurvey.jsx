@@ -10,10 +10,10 @@ import PatientNextStep from '../PatientNextStep/PatientNextStep';
 // أضفنا className كـ prop للتحكم في المساحة من الخارج
 const QuestionSection = ({ icon, label, question, options, selected, onSelect, className = "flex-1" }) => (
   <div className={className}>
-    <div className="flex items-center gap-2.5 text-black-main-text text-[18px] font-['Roboto'] font-semibold tracking-[0.18px] break-words mb-1.5">
+    <div className="flex items-center gap-2.5 text-black-main-text text-[18px] font-['Roboto'] font-semibold   mb-1.5">
       {icon} {label}
     </div>
-    <p className="text-[13px] text-black-main-text/80 mb-3">{question}</p>
+    <p className="text-[16px] text-black-main-text/80 mb-3 ml-6">{question}</p>
     <div className="flex flex-wrap gap-3">
       {options.map(opt => {
         const active = selected === opt;
@@ -65,14 +65,14 @@ const PatientLifestyleSurvey = () => {
   };
 
   return (
-    <div className="min-h-screen p-5 bg-white rounded-full">
+    <div className="min-h-screen p-[24px] bg-white rounded-full">
 
       {/* Header */}
       <header className="flex items-center gap-4 mb-2 rounded-full">
         <HiOutlineClipboardDocumentList className="text-[32px] text-black-main-text shrink-0" />
         <h2 className="text-black-main-text text-[24px] font-['Roboto'] font-semibold tracking-[0.01em] break-words">Health Lifestyle Survey</h2>
       </header>
-      <p className="text-[14px] text-gray-500 mb-10">
+      <p className="text-[18px] text-gray-500 mb-10">
         Answer these quick questions about your daily habits to help our AI analyze your heart health baseline.
       </p>
 
@@ -151,9 +151,9 @@ const PatientLifestyleSurvey = () => {
         </div>
 
         {/* Submit */}
-        <div className="flex justify-center pt-4 pb-8">
+        <div className="flex justify-center pt-4 pb-8 mt-20">
           <button
-            className="px-14 py-3.5 rounded-[28px] bg-brand-main hover:bg-[#2830d4] text-white text-[15px] font-semibold shadow-[0_4px_12px_rgba(51,60,245,0.25)] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(51,60,245,0.35)] transition-all cursor-pointer"
+            className="px-14 py-3.5 rounded-[28px] bg-brand-main hover:bg-[#2830d4] text-white text-[14px] font-semibold shadow-[0_4px_12px_rgba(51,60,245,0.25)] hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(51,60,245,0.35)] transition-all cursor-pointer"
             onClick={handleSubmit}
           >
             View Results
@@ -165,12 +165,12 @@ const PatientLifestyleSurvey = () => {
       {showResults && (
     <div className="mt-16 flex flex-col items-center justify-center w-full space-y-12">
   {/* العنصر الأول */}
-  <div className="w-full flex justify-center">
+  <div className="w-full p-5 flex justify-center">
     <PatientAIAlert />
   </div>
 
   {/* العنصر الثاني */}
-  <div className="w-full flex justify-center">
+  <div className="w-full p-5 flex justify-center">
     <PatientNextStep />
   </div>
 </div>
