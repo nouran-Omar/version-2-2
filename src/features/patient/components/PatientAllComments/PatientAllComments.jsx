@@ -92,7 +92,7 @@ const ReportModal = ({ onClose, onSubmit }) => {
             <label className="text-xs font-semibold text-black-main-text mb-1 block">Category</label>
             <select value={cat} onChange={(e) => setCat(e.target.value)}
               className="w-full px-3 py-2.5 rounded-xl border border-gray-200 bg-[#F6F7F8] text-sm outline-none focus:border-brand-main">
-              <option value="" />
+              <option value="Select a category">Select a category</option>
               {REPORT_CATS.map((c) => <option key={c}>{c}</option>)}
             </select>
           </div>
@@ -187,7 +187,7 @@ const PatientAllComments = () => {
         {/* ── Back ── */}
         <button
           onClick={() => navigate(`/patient/stories/${id}`)}
-          className="flex items-center gap-1 text-sm text-gray-500 hover:text-brand-main transition w-fit"
+          className="flex items-center gap-1 text-sm text-gray-500 cursor-pointer hover:text-brand-main transition w-fit"
         >
           <HiOutlineChevronLeft /> Back to Story
         </button>
@@ -196,14 +196,14 @@ const PatientAllComments = () => {
         <div className="bg-white rounded-2xl p-5">
           <div className="flex items-center gap-2 mb-1">
             <HiOutlineChatBubbleLeftRight className="text-xl text-black-main-text" />
-            <h1 className="text-xl font-bold text-black-main-text">All Comments</h1>
+            <h1 className="text-2xl font-bold text-black-main-text">All Comments</h1>
           </div>
-          <p className="text-sm text-[#757575]">{comments.length} comments on "{storyTitle}"</p>
+          <p className="text-lg text-[#757575]">{comments.length} comments on "{storyTitle}"</p>
         </div>
 
         {/* ── Add Comment ── */}
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-          <h2 className="text-sm font-bold text-black-main-text mb-3">Add a Comment</h2>
+          <h2 className="text-lg font-bold text-black-main-text mb-3">Add a Comment</h2>
           <div className="flex items-start gap-3">
             <Avatar img="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100" initials="Y" size="w-10 h-10" />
             <textarea
@@ -214,7 +214,7 @@ const PatientAllComments = () => {
           </div>
           <div className="flex justify-end mt-3">
             <button onClick={handlePostComment}
-              className="flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-brand-main text-white text-sm font-semibold hover:bg-[#2730d4] transition">
+              className="flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-brand-main text-white text-[16px] font-semibold hover:bg-[#2730d4] transition">
               <IoSendSharp /> Post Comment
             </button>
           </div>
@@ -233,10 +233,10 @@ const PatientAllComments = () => {
                   <Avatar img={c.avatar} initials={c.initials} size="w-11 h-11" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between flex-wrap gap-1">
-                      <p className="text-sm font-semibold text-black-main-text">{c.user}</p>
+                      <p className="text-[16px] font-semibold text-black-main-text">{c.user}</p>
                       <p className="text-xs text-[#6A7282]">{c.time}</p>
                     </div>
-                    <p className="text-sm text-[#364153] mt-1 leading-relaxed">{c.text}</p>
+                    <p className="text-[16px] text-[#364153] mt-1 leading-relaxed">{c.text}</p>
 
                     {/* Actions */}
                     <div className="flex items-center gap-4 mt-3 flex-wrap">

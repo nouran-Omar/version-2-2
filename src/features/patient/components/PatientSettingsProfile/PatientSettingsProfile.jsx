@@ -16,21 +16,13 @@ import ConfirmModal from '../../../admin/components/ConfirmModal/ConfirmModal';
 import Toast from '../../../../components/Toast/Toast';
 import usePatientData from '../../../../PatientHooks/usePatientData';
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   Password requirements helper
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function checkReqs(val) {
   return {
     length: val.length >= 8,
     mixed: /[a-z]/.test(val) && /[A-Z]/.test(val),
     number: /\d/.test(val),
   };
-}
-
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   Mock published stories
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-const MOCK_STORIES = [
+}const MOCK_STORIES = [
   {
     id: 1,
     title: 'Nutrition Changes That Transformed My Health',
@@ -54,10 +46,6 @@ const MOCK_STORIES = [
     image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=300&q=80',
   },
 ];
-
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   Main Component
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 export default function PatientSettingsProfile() {
   const { patient } = usePatientData();
   const navigate = useNavigate();
@@ -147,23 +135,23 @@ export default function PatientSettingsProfile() {
         type="success"
         onClose={() => setToast(t => ({ ...t, visible: false }))}
       />
-<header className="flex flex-col gap-2 pb-4 border-b border-gray-100">
+<header className="flex flex-col  pb-4 ">
   
   {/* السطر الأول: الأيقونة + العنوان */}
   <div className="flex items-center gap-1">
     {/* حاوية الأيقونة */}
-    <div className="w-10 h-10 flex items-center text-black-main-text justify-center text-[25px] shrink-0">
+    <div className="w-10 h-10 flex items-center text-black-main-text justify-center text-[24px] shrink-0">
       <HiOutlineCog6Tooth />
     </div>
 
     {/* العنوان H1 */}
-    <h1 className="text-[18px] font-bold text-black-main-text">
+    <h1 className="text-[24px] font-bold text-black-main-text">
       Settings & Profile
     </h1>
   </div>
 
   {/* السطر الثاني: الوصف (ينزل تحتهم) */}
-  <p className="text-[12px] text-gray-500 leading-relaxed">
+  <p className="text-[18px] ml-2 text-[#757575] ">
     Manage your personal details, health data, and account preferences.
   </p>
   
@@ -179,7 +167,7 @@ export default function PatientSettingsProfile() {
           style={{ background: 'linear-gradient(to right,#EFF6FF,#EEF2FF)' }}
         >
           <LuUser size={18} className="text-[#155DFC]" />
-          <span className="text-[#101828] text-[14px] font-bold">Personal Information</span>
+          <span className="text-[#101828] text-[18px] font-bold">Personal Information</span>
         </div>
 
         <div className="p-6">
@@ -245,25 +233,25 @@ export default function PatientSettingsProfile() {
           style={{ background: 'linear-gradient(to right,#FAF5FF,#FDF2F8)' }}
         >
           <FaHeartPulse size={18} className="text-[#9810FA]" />
-          <span className="text-black-main-text text-[14px] font-bold">Health Information</span>
+          <span className="text-black-main-text text-[18px] font-bold">Health Information</span>
         </div>
 
         <div className="p-6">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5">
             {healthCards.map((c) => (
-              <div key={c.label} className="bg-[#f9fafb] rounded-xl p-4 border border-gray-100">
-                <div className="flex items-center gap-1.5 text-[#4B5563] text-xs mb-1.5">
-                  <span className="text-[13px]">{c.icon}</span>
+              <div key={c.label} className="bg-[#f9fafb] p-5">
+                <div className="flex items-center gap-1.5 text-[#4B5563] text-[14px] mb-1.5">
+                  <span className="text-[14px]">{c.icon}</span>
                   {c.label}
                 </div>
-                <p className="text-black-main-text font-extrabold text-lg leading-tight">{c.value}</p>
+                <p className="text-black-main-text font-extrabold text-[24px] leading-tight">{c.value}</p>
               </div>
             ))}
           </div>
 
           <button
             onClick={() => navigate('/patient/update-health')}
-            className="border border-brand-main text-brand-main hover:bg-[#EEF2FF] transition-colors px-6 py-2.5 rounded-full text-sm font-bold"
+            className="border border-brand-main cursor-pointer text-brand-main hover:bg-[#EEF2FF] transition-colors px-6 py-2.5 rounded-full text-[16px] font-bold"
           >
             Update Health Data
           </button>
@@ -280,7 +268,7 @@ export default function PatientSettingsProfile() {
         >
           <div className="flex items-center gap-2">
             <LuBookOpen size={18} className="text-[#00A63E]" />
-            <span className="text-[#101828] text-[14px] font-bold">My Published Stories</span>
+            <span className="text-[#101828] text-[18px] font-bold">My Published Stories</span>
           </div>
           <span className="text-xs font-bold text-[#008236] bg-[#DCFCE7] px-3 py-1 rounded-full">
             {stories.length} Published
@@ -312,7 +300,7 @@ export default function PatientSettingsProfile() {
                   {/* info */}
                   <div className="flex-1 min-w-0">
                     <h3
-                      className="font-bold text-black-main-text text-sm sm:text-base cursor-pointer hover:text-brand-main transition-colors line-clamp-1"
+                      className="font-bold text-black-main-text text-[18px] sm:text-base cursor-pointer hover:text-brand-main transition-colors line-clamp-1"
                       onClick={() => navigate(`/patient/stories/${story.id}`)}
                     >
                       {story.title}
@@ -323,17 +311,17 @@ export default function PatientSettingsProfile() {
                       {story.tags.map(tag => (
                         <span
                           key={tag}
-                          className="text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-[#DBEAFE] text-[#155DFC] border border-blue-100"
+                          className="text-[12px] font-semibold px-2.5 py-0.5 rounded-full bg-[#DBEAFE] text-[#155DFC] border border-blue-100"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <p className="text-xs text-[#4A5565] line-clamp-2 mb-2">{story.excerpt}</p>
+                    <p className="text-[14px] text-[#4A5565] line-clamp-2 mb-2">{story.excerpt}</p>
 
                     {/* stats */}
-                    <div className="flex flex-wrap items-center gap-3 text-[11px] text-[#4A5565]">
+                    <div className="flex flex-wrap items-center gap-3 text-[14px] text-[#4A5565]">
                       <span className="flex items-center gap-1">
                         <LuCalendarDays size={12} /> {story.date}
                       </span>
@@ -352,7 +340,7 @@ export default function PatientSettingsProfile() {
                   {/* delete btn */}
                   <button
                     onClick={() => setDeleteTarget(story.id)}
-                    className="text-[#E7000B] hover:text-red-600 hover:bg-red-50 p-2 rounded-xl transition-all h-fit mt-1 shrink-0"
+                    className="text-[#E7000B] cursor-pointer hover:text-red-600 hover:bg-red-50 p-2 rounded-xl transition-all h-fit mt-1 shrink-0"
                     title="Delete story"
                   >
                     <LuTrash2 size={16} />
@@ -366,7 +354,7 @@ export default function PatientSettingsProfile() {
           <div className="flex justify-center mt-6">
             <button
               onClick={() => navigate('/patient/write-story')}
-              className="bg-brand-main hover:bg-blue-700 text-white px-8 py-3 rounded-full font-bold flex items-center gap-2 transition-colors text-sm"
+              className="bg-brand-main cursor-pointer hover:bg-blue-700 text-white px-8 py-3 rounded-full font-bold flex items-center gap-2 transition-colors text-sm"
             >
               + Write Story
             </button>
@@ -383,7 +371,7 @@ export default function PatientSettingsProfile() {
           style={{ background: 'linear-gradient(to right,#FFF7ED,#FEF2F2)' }}
         >
           <HiOutlineCog6Tooth size={18} className="text-[#f97316]" />
-          <span className="text-[#101828] text-[14px] font-bold">Account Settings</span>
+          <span className="text-[#101828] text-[18px] font-bold">Account Settings</span>
         </div>
 
         <div className="divide-y divide-gray-50">
@@ -516,23 +504,19 @@ export default function PatientSettingsProfile() {
     </div>
   );
 }
-
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   Sub-components
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function InputField({ label, icon, value, onChange, required }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-[12px] font-semibold text-[#364153]">
+      <label className="text-[16px] font-semibold  text-[#364153]">
         {label}{required && <span className="text-red-500 ml-0.5">*</span>}
       </label>
       <div className="flex items-center bg-[#f9fafb] border border-gray-200 rounded-xl px-3.5 py-2.5 gap-2.5 focus-within:border-[#155DFC] transition-colors">
-        <span className="text-gray-400 shrink-0 text-[14px]">{icon}</span>
+        <span className="text-gray-400 shrink-0 text-[18px]">{icon}</span>
         <input
           type="text"
           value={value}
           onChange={e => onChange(e.target.value)}
-          className="bg-transparent outline-none w-full text-[13px] text-black-main-text"
+          className="bg-transparent  outline-none w-full text-[18px] text-black-main-text"
         />
       </div>
     </div>
@@ -542,7 +526,7 @@ function InputField({ label, icon, value, onChange, required }) {
 function PasswordField({ label, placeholder, value, show, onToggle, onChange }) {
   return (
     <div className="mb-4">
-      <label className="text-[12px] font-semibold text-[#364153] mb-1.5 block">{label}</label>
+      <label className="text-[16px]  text-[#364153] mb-1.5 block">{label}</label>
       <div className="flex items-center bg-white border border-gray-200 rounded-xl px-3.5 py-2.5 gap-2.5 focus-within:border-[#155DFC] transition-colors">
         <LuLock size={14} className="text-gray-400 shrink-0" />
         <input
@@ -550,7 +534,7 @@ function PasswordField({ label, placeholder, value, show, onToggle, onChange }) 
           placeholder={placeholder}
           value={value}
           onChange={e => onChange(e.target.value)}
-          className="outline-none w-full text-[13px] text-black-main-text bg-transparent"
+          className="outline-none w-full text-[16px] text-black-main-text bg-transparent"
         />
         <button type="button" onClick={onToggle} className="text-gray-400 hover:text-gray-600 transition-colors shrink-0">
           {show ? <LuEyeOff size={14} /> : <LuEye size={14} />}
@@ -575,8 +559,8 @@ function SettingRow({ icon, title, desc, action }) {
       <div className="flex items-center gap-3">
         <span className="text-gray-400 text-lg shrink-0">{icon}</span>
         <div>
-          <h4 className="font-bold text-[13px] text-black-main-text">{title}</h4>
-          <p className="text-gray-400 text-[11px] mt-0.5">{desc}</p>
+          <h4 className="font-bold text-[14px] text-black-main-text">{title}</h4>
+          <p className="text-gray-400 text-[12px] mt-0.5">{desc}</p>
         </div>
       </div>
       {action}

@@ -30,7 +30,7 @@ const FEATURES_DATA = [
     updates: "Real-time",
     icon: <HiOutlineHeart />,
     image: RiskScore,
-    activeColor: "#2564EB" // لون القلب
+    activeColor: "#2564EB" 
   },
   {
     id: 1,
@@ -41,7 +41,7 @@ const FEATURES_DATA = [
     updates: "24/7 Safe",
     icon: <HiOutlineQrCode />,
     image: QRCodes,
-    activeColor: "#E94242" // لون الـ QR
+    activeColor: "#E94242" 
   },
   {
     id: 2,
@@ -52,7 +52,7 @@ const FEATURES_DATA = [
     updates: "Smart",
     icon: <HiOutlineBell />,
     image: Medication,
-    activeColor: "#D0791D" // لون التذكير
+    activeColor: "#D0791D" 
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ const FEATURES_DATA = [
     updates: "Cloud Sync",
     icon: <HiOutlineDocumentText />,
     image: Records,
-    activeColor: "#0891B2" // لون السجلات
+    activeColor: "#0891B2" 
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ const FEATURES_DATA = [
     updates: "Direct Chat",
     icon: <LuVideo />,
     image: DoctorFollowups,
-    activeColor: "#13D486" // لون الفيديو
+    activeColor: "#13D486" 
   }
 ];
 
@@ -101,15 +101,15 @@ const Features = () => {
           </p>
         </motion.div>
 
-        {/* الكارد الرئيسي */}
+        {/* الكارد الرئيسي - تمت إضافة pb-20 لترك مساحة للتابات بالأسفل */}
         <motion.div
-          className="bg-white rounded-[48px] relative min-h-[480px]"
+          className="bg-white rounded-[48px] relative shadow-sm border border-gray-50 overflow-hidden"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, delay: 0.15 }}
         >
-          <div className="grid lg:grid-cols-2 gap-10 items-center p-8 md:p-16">
+          <div className="grid lg:grid-cols-2 gap-10 items-center p-8 md:p-16 pb-24 md:pb-28">
             
             {/* المحتوى النصي (يسار) */}
             <div className="flex flex-col">
@@ -122,9 +122,8 @@ const Features = () => {
                   transition={{ duration: 0.4 }}
                 >
                   <div className="flex items-center gap-4 mb-6">
-                    {/* تحديث الأيقونة بجانب العنوان لتأخذ نفس لون الأكتيف */}
                     <div 
-                      className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center text-2xl shadow-sm"
+                      className="w-12 h-12 rounded-full bg-white border border-gray-100 flex items-center justify-center text-2xl shadow-sm transition-colors duration-500"
                       style={{ color: current.activeColor, borderColor: `${current.activeColor}33` }}
                     >
                       {current.icon}
@@ -136,7 +135,7 @@ const Features = () => {
                     {current.description}
                   </p>
 
-                  <div className="flex gap-12 mb-5">
+                  <div className="flex gap-12 mb-8">
                     <div className="flex flex-col">
                       <span className="text-2xl font-bold text-black-main-text">{current.accuracy}</span>
                       <span className="text-[12px] font-medium text-gray-text-dim2 tracking-wide">Accuracy</span>
@@ -155,9 +154,9 @@ const Features = () => {
                   <div className="w-full max-w-[400px]">
                     <div className="flex justify-between text-[11px] text-black-main-text mb-2 tracking-wider">
                       <span>Feature {activeTab + 1} of 5</span>
-                      <span>{(activeTab + 1) * 20}%</span>
+                      <span style={{color: current.activeColor, fontWeight: 'bold'}}>{(activeTab + 1) * 20}%</span>
                     </div>
-                    <div className="h-1 w-full bg-gray-100 rounded-full overflow-hidden">
+                    <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
                       <motion.div 
                         className="h-full rounded-full"
                         style={{ backgroundColor: current.activeColor }}
@@ -171,59 +170,63 @@ const Features = () => {
               </AnimatePresence>
             </div>
 
-    {/* الجزء البصري (يمين) */}
-    {/* الجزء البصري (يمين) */}
-<div className="relative w-full overflow-hidden rounded-[5px] bg-[#f8fafc] shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),_0_10px_10px_-5px_rgba(0,0,0,0.04)]" style={{ aspectRatio: '16/10' }}>
-  <img 
-    src={current.image} 
-    alt={current.title}
-    className="w-full h-full object-cover block transition-transform duration-700"
-  />  
+            {/* الجزء البصري (يمين) */}
+            <div className="relative w-full overflow-hidden rounded-[24px] bg-[#f8fafc] shadow-md" style={{ aspectRatio: '16/10' }}>
+              <AnimatePresence mode="wait">
+                <motion.img 
+                  key={activeTab}
+                  src={current.image} 
+                  alt={current.title}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full h-full object-cover block"
+                />  
+              </AnimatePresence>
 
-  {/* الأيقونة العلوية - حركة خفيفة للأعلى والأسفل */}
-  <motion.div 
-    className="absolute top-1 right-1 w-10 h-10 flex items-center justify-center z-20"
-    style={{ color: current.activeColor }}
-    animate={{ y: [0, -8, 0] }}
-    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-  >
-    <RiPulseFill />
-  </motion.div>
+              <motion.div 
+                className="absolute top-3 right-3 w-10 h-10 flex items-center justify-center z-20 bg-white/80 backdrop-blur-sm rounded-full shadow-sm"
+                style={{ color: current.activeColor }}
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <RiPulseFill className="text-xl" />
+              </motion.div>
 
-  {/* الأيقونة السفلية */}
-  <motion.div 
-    className="absolute bottom-1 left-1 w-10 h-10 flex items-center justify-center text-[#F59E0B] z-20"
-    animate={{ y: [0, 8, 0] }}
-    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-  >
-    <LuSparkles />
-  </motion.div>
-</div>
+              <motion.div 
+                className="absolute bottom-3 left-3 w-10 h-10 flex items-center justify-center text-[#F59E0B] z-20 bg-white/80 backdrop-blur-sm rounded-full shadow-sm"
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              >
+                <LuSparkles className="text-xl" />
+              </motion.div>
+            </div>
           </div>
 
-          {/* التابات العائمة بالأسفل */}
-      {/* التابات العائمة بالأسفل */}
-<div className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-40">
-  <div className="flex items-center gap-4 px-5 py-3">
-    {FEATURES_DATA.map((feat, index) => {
-      const isActive = activeTab === index;
-      return (
-        <button
-          key={index}
-          onClick={() => setActiveTab(index)}
-          className="w-12 h-12 rounded-full flex border border-gray-300 items-center justify-center text-xl transition-all duration-300"
-          style={{
-            backgroundColor: isActive ? feat.activeColor : "white",
-            color: isActive ? "white" : "#1F293780",
-            borderColor: isActive ? feat.activeColor : "#E5E7EB",
-          }}
-        >
-          {feat.icon}
-        </button>
-      );
-    })}
-  </div>
-</div>
+          {/* ── التابات الآن "داخل" الديف الأبيض في الأسفل تماماً ── */}
+          <div className="absolute bottom-8 left-0 w-full flex justify-center z-30">
+            <div className=" p-4 flex items-center gap-4">
+              {FEATURES_DATA.map((feat, index) => {
+                const isActive = activeTab === index;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => setActiveTab(index)}
+                    className="w-12 h-12 cursor-pointer rounded-full flex items-center justify-center text-xl transition-all duration-300 shadow-sm"
+                    style={{
+                      backgroundColor: isActive ? feat.activeColor : "white",
+                      color: isActive ? "white" : "#94A3B8",
+                      border: isActive ? `1px solid ${feat.activeColor}` : "1px solid #E5E7EB",
+                    }}
+                  >
+                    {feat.icon}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
         </motion.div>
       </Container>
     </section>

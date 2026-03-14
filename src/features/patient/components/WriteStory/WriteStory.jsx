@@ -5,13 +5,25 @@ import Toast from '../../../../components/Toast/Toast';
 
 const CATEGORIES = ['Lifestyle', 'Health', 'Challenges', 'Recovery'];
 
-/* Chip colours matching design: Lifestyle = orange, Health = blue, rest = outline */
 const chipStyle = (cat, selected) => {
+  // في حالة كان الـ Chip مختار (Selected)
   if (selected) {
-    if (cat === 'Lifestyle') return 'bg-[#FFA940] text-white border-[#FFA940]';
-    return 'bg-brand-main text-white border-brand-main';
+    switch (cat) {
+      case 'Lifestyle':
+        return 'bg-[#FFA940] text-white border-[#FFA940] shadow-sm';
+      case 'Health':
+        return 'bg-[#155DFC] text-white border-[#155DFC] shadow-sm';
+      case 'Challenges':
+        return 'bg-[#7939FF] text-white border-[#7939FF] shadow-sm';
+      case 'Recovery':
+        return 'bg-[#00AC4F] text-white border-[#00AC4F] shadow-sm';
+      default:
+        return 'bg-brand-main text-white border-brand-main shadow-sm';
+    }
   }
-  return 'bg-white text-black-main-text border-gray-300 hover:border-brand-main hover:text-brand-main';
+
+  // في حالة عدم الاختيار (Default State)
+  return 'bg-white text-black-main-text border-[#E5E7EB] hover:border-brand-main hover:text-brand-main transition-all duration-200';
 };
 
 const WriteStory = () => {
@@ -134,19 +146,19 @@ const WriteStory = () => {
 
         {/* ── Header ── */}
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-2 ">
             <HiOutlinePencilAlt className="text-black-main-text text-xl" />
-            <h1 className="text-xl font-bold text-black-main-text">Write Story</h1>
+            <h1 className="text-[24px] font-bold text-black-main-text">Write Story</h1>
           </div>
-          <p className="text-sm text-[#757575]">Share your personal health journey to inspire others.</p>
+          <p className="text-[18px] text-[#757575]">Share your personal health journey to inspire others.</p>
         </div>
 
         {/* ── Divider ── */}
-        <hr className="border-gray-100" />
+        {/* <hr className="border-gray-100" /> */}
 
         {/* ── Story Title ── */}
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold text-black-main-text">
+          <label className="text-lg font-semibold text-black-main-text">
             Story Title <span className="text-[#E7000B]">*</span>
           </label>
           <input
@@ -154,7 +166,7 @@ const WriteStory = () => {
             value={title}
             onChange={(e) => { setTitle(e.target.value); setErrors((er) => ({ ...er, title: '' })); }}
             placeholder="Give your story a compelling title..."
-            className={`w-full px-4 py-3 rounded-xl border  text-sm outline-none transition
+            className={`w-full px-4 py-3 rounded-xl border  text-lg outline-none transition
               ${errors.title ? 'border-[#E7000B]' : 'border-[#E5E7EB]  focus:border-brand-main'}`}
           />
           {errors.title && <p className="text-xs text-[#E7000B]">{errors.title}</p>}
@@ -162,7 +174,7 @@ const WriteStory = () => {
 
         {/* ── Story Categories ── */}
         <div className="flex flex-col gap-3">
-          <label className="text-sm font-semibold text-black-main-text">Story Categories</label>
+          <label className="text-lg font-semibold text-black-main-text">Story Categories</label>
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map((cat) => {
               const sel = selectedCats.includes(cat);
@@ -187,7 +199,7 @@ const WriteStory = () => {
 
         {/* ── Cover Image ── */}
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold text-black-main-text">
+          <label className="text-lg font-semibold text-black-main-text">
             Cover Image <span className="text-gray-400 font-normal">(Optional)</span>
           </label>
           <div
@@ -209,7 +221,7 @@ const WriteStory = () => {
                 <div className="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center shadow-sm">
                   <HiOutlineCloudUpload className="text-xl text-gray-500" />
                 </div>
-                <p className="text-sm font-semibold text-black-main-text">Drag and drop your image here</p>
+                <p className="text-lg font-semibold text-black-main-text">Drag and drop your image here</p>
                 <p className="text-xs text-gray-400">or click to browse files</p>
                 <p className="text-xs text-gray-300 mt-1">Supported formats: JPG, PNG, GIF (Max 5MB)</p>
               </div>
@@ -242,13 +254,13 @@ const WriteStory = () => {
         <div className="flex justify-end gap-3 pt-2">
           <button
             onClick={() => navigate('/patient/stories')}
-            className="px-7 py-2.5 rounded-full border border-gray-300 text-sm font-semibold text-black-main-text bg-white hover:bg-gray-50 transition"
+            className="px-7 py-2.5 rounded-full  cursor-pointer border border-gray-300 text-sm font-semibold text-black-main-text bg-white hover:bg-gray-50 transition"
           >
             Cancel
           </button>
           <button
             onClick={handlePublish}
-            className="px-7 py-2.5 rounded-full bg-brand-main text-white text-sm font-semibold hover:bg-[#2730d4] transition shadow-sm"
+            className="px-7 py-2.5 rounded-full cursor-pointer bg-brand-main text-white text-sm font-semibold hover:bg-[#2730d4] transition shadow-sm"
           >
             Publish Story
           </button>
