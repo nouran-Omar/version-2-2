@@ -21,7 +21,7 @@ const data = [
 const PatientWeeklyChart = () => {
   return (
     /* تم تغيير max-w-2xl إلى max-w-md لتصغير العرض الإجمالي */
-    <div className="w-full max-w-2xl bg-white rounded-[24px] md:rounded-[32px] border border-gray-100 shadow-sm p-4 md:p-6 font-sans">
+    <div className="w-full max-w-2xl   md:rounded-[32px] md:p-6 ">
       
       {/* Header */}
       <div className="flex items-start justify-between mb-4 md:mb-6">

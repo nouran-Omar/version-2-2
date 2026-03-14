@@ -167,6 +167,7 @@ export default function PatientSettingsProfile() {
           style={{ background: 'linear-gradient(to right,#EFF6FF,#EEF2FF)' }}
         >
           <LuUser size={18} className="text-[#155DFC]" />
+
           <span className="text-[#101828] text-[18px] font-bold">Personal Information</span>
         </div>
 

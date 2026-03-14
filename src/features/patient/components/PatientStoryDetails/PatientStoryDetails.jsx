@@ -84,7 +84,7 @@ const ReportModal = ({ title, onClose, onSubmit }) => {
               value={cat} onChange={(e) => setCat(e.target.value)}
               className="w-full px-3 py-2.5 rounded-xl border border-gray-200 bg-[#F6F7F8] text-sm outline-none focus:border-brand-main"
             >
-              <option value="" />
+              <option value="select category">Select Category</option>
               {REPORT_CATS.map((c) => <option key={c}>{c}</option>)}
             </select>
           </div>
