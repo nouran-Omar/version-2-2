@@ -143,7 +143,7 @@ export default function PatientUpdateHealth() {
   };
 
   return (
-    <div className="flex flex-col gap-6 font-['Inter',sans-serif] p-5">
+    <div className="flex flex-col gap-6 font-roboto p-5">
 
       {/* Toast */}
       <Toast

@@ -84,10 +84,10 @@ const PatientChatbot = () => {
 
                 {/* Info */}
                 <div className="flex flex-col">
-                    <span className="text-white text-base font-medium font-['Roboto'] leading-6">PulseX Assistant</span>
+                    <span className="text-white text-base font-medium font-roboto leading-6">PulseX Assistant</span>
                     <div className="flex items-center gap-1">
                         <div className="w-2 h-2 bg-cyan-300 rounded-full animate-pulse" />
-                        <span className="text-white/90 text-sm font-['Roboto']">Online</span>
+                        <span className="text-white/90 text-sm font-roboto">Online</span>
                     </div>
                 </div>
 
@@ -109,7 +109,7 @@ const PatientChatbot = () => {
               className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
             >
               <div
-                className={`max-w-[80%] px-4 py-3 text-base font-['Roboto'] leading-6 shadow-sm ${
+                className={`max-w-[80%] px-4 py-3 text-base font-roboto leading-6 shadow-sm ${
                   msg.role === 'user'
                     ? 'bg-blue-600 text-white rounded-t-2xl rounded-bl-2xl rounded-br-md'
                     : 'bg-cyan-50 text-black-main-text rounded-t-2xl rounded-br-2xl rounded-bl-md'

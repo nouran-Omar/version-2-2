@@ -80,7 +80,7 @@ const ReplyModal = ({ target, onClose, onSend }) => {
     <div className="fixed inset-0 bg-black-main-text/45 flex items-center justify-center z-[1000] p-4 animate-[fadeIn_0.15s_ease]" onClick={onClose}>
       <div className="bg-white rounded-[20px] w-full max-w-[440px] shadow-[0_25px_60px_rgba(0,0,0,0.18)] overflow-hidden animate-[slideUp_0.2s_ease]" onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between px-5 py-4 bg-gradient-to-br from-[#155DFC] to-[#4A7FFF]">
-          <span className="text-[14px] font-bold text-white font-['Roboto']">Reply to {target.name || target.title}</span>
+          <span className="text-[14px] font-bold text-white font-roboto">Reply to {target.name || target.title}</span>
           <button className="bg-white/20 rounded-lg w-7 h-7 flex items-center justify-center text-white cursor-pointer hover:bg-white/35 transition-colors" onClick={onClose}><HiXMark /></button>
         </div>
         
@@ -88,19 +88,19 @@ const ReplyModal = ({ target, onClose, onSend }) => {
           <div className="flex items-center gap-[10px] px-5 pt-4">
             <img src={target.avatar} alt="" className="w-[38px] h-[38px] rounded-full object-cover border-2 border-gray-200 shrink-0" />
             <div>
-              <div className="text-[13px] font-bold text-black-main-text font-['Roboto']">{target.name}</div>
-              <div className="text-[11px] text-[#9ca3af] font-['Roboto']">{target.role}</div>
+              <div className="text-[13px] font-bold text-black-main-text font-roboto">{target.name}</div>
+              <div className="text-[11px] text-[#9ca3af] font-roboto">{target.role}</div>
             </div>
           </div>
         )}
 
         <div className="mx-5 mt-3 p-3 bg-[#f8fafc] border-l-[3px] border-[#155DFC] rounded-r-lg">
-          <span className="block text-[10px] font-bold text-[#9ca3af] uppercase mb-1 font-['Roboto']">Original:</span>
-          <span className="text-[12px] text-[#4b5563] leading-relaxed font-['Roboto']">{target.text || target.desc}</span>
+          <span className="block text-[10px] font-bold text-[#9ca3af] uppercase mb-1 font-roboto">Original:</span>
+          <span className="text-[12px] text-[#4b5563] leading-relaxed font-roboto">{target.text || target.desc}</span>
         </div>
 
         <textarea
-          className="block w-full mt-3 px-5 py-3 border-none border-t border-gray-100 resize-none text-[13px] font-['Roboto'] text-black-main-text outline-none placeholder:text-[#9ca3af]"
+          className="block w-full mt-3 px-5 py-3 border-none border-t border-gray-100 resize-none text-[13px] font-roboto text-black-main-text outline-none placeholder:text-[#9ca3af]"
           placeholder="Write your reply..."
           value={text}
           onChange={e => setText(e.target.value)}
@@ -109,9 +109,9 @@ const ReplyModal = ({ target, onClose, onSend }) => {
         />
 
         <div className="flex items-center justify-end gap-[10px] px-5 py-4 border-t border-gray-100">
-          <button className="bg-none border-[1.5px] border-gray-200 rounded-[20px] px-[18px] py-[7px] text-[12px] font-semibold text-[#6b7280] cursor-pointer hover:border-gray-400 font-['Roboto'] transition-colors" onClick={onClose}>Cancel</button>
+          <button className="bg-none border-[1.5px] border-gray-200 rounded-[20px] px-[18px] py-[7px] text-[12px] font-semibold text-[#6b7280] cursor-pointer hover:border-gray-400 font-roboto transition-colors" onClick={onClose}>Cancel</button>
           <button
-            className="flex items-center gap-1.5 bg-[#333CF5] border-none rounded-[20px] px-5 py-[7px] text-[12px] font-bold text-white cursor-pointer shadow-[0_4px_12px_rgba(51,60,245,0.25)] hover:bg-[#2430e0] hover:-translate-y-px transition-all disabled:opacity-45 disabled:cursor-not-allowed font-['Roboto']"
+            className="flex items-center gap-1.5 bg-[#333CF5] border-none rounded-[20px] px-5 py-[7px] text-[12px] font-bold text-white cursor-pointer shadow-[0_4px_12px_rgba(51,60,245,0.25)] hover:bg-[#2430e0] hover:-translate-y-px transition-all disabled:opacity-45 disabled:cursor-not-allowed font-roboto"
             onClick={() => { if (text.trim()) { onSend(text); onClose(); } }}
             disabled={!text.trim()}
           >
@@ -171,11 +171,11 @@ const PatientHeader = () => {
         <div className="flex items-center gap-[10px] shrink-0">
           <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-[10px]  ">
             <LuCalendarDays className="text-[15px] text-[#155dfc] shrink-0" />
-            <span className="text-[13px] font-bold text-black-main-text whitespace-nowrap font-['Roboto']">{formatDate(now)}</span>
+            <span className="text-[13px] font-bold text-black-main-text whitespace-nowrap font-roboto">{formatDate(now)}</span>
           </div>
           <div className="hidden min-[480px]:flex items-center gap-2 px-3.5 py-1.5 rounded-[10px] bg-white ">
             <LuClock className="text-[15px] text-[#00a63e] shrink-0" />
-            <span className="text-[13px] font-bold text-black-main-text whitespace-nowrap font-['Roboto']">{formatTime(now)}</span>
+            <span className="text-[13px] font-bold text-black-main-text whitespace-nowrap font-roboto">{formatTime(now)}</span>
           </div>
         </div>
 
@@ -190,7 +190,7 @@ const PatientHeader = () => {
             >
               <HiOutlineEnvelope className={`text-[18px] transition-colors group-hover:text-[#155DFC] ${msgOpen ? 'text-white!' : 'text-[#6b7280]'}`} />
               {unreadMsg > 0 && (
-                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-[#00C950] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white font-['Roboto']">
+                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-[#00C950] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white font-roboto">
                   {unreadMsg}
                 </span>
               )}
@@ -200,8 +200,8 @@ const PatientHeader = () => {
               <div className="absolute top-[calc(100%+10px)] right-0 w-[290px] sm:w-[360px] bg-white rounded-[20px] border border-gray-200 shadow-[0_20px_50px_rgba(0,0,0,0.13)] overflow-hidden z-[300] animate-[fadeDown_0.18s_ease]">
                 <div className="flex items-center justify-between px-[18px] py-4 bg-gradient-to-br from-[#16a34a] to-[#22c55e]">
                   <div>
-                    <div className="text-[15px] font-bold text-white font-['Roboto']">Messages</div>
-                    <div className="text-[11px] text-white/75 mt-0.5 font-['Roboto']">{unreadMsg} unread messages</div>
+                    <div className="text-[15px] font-bold text-white font-roboto">Messages</div>
+                    <div className="text-[11px] text-white/75 mt-0.5 font-roboto">{unreadMsg} unread messages</div>
                   </div>
                   <button className="bg-white/20 rounded-lg w-7 h-7 flex items-center justify-center text-white cursor-pointer hover:bg-white/35 transition-colors" onClick={() => setMsgOpen(false)}><HiXMark /></button>
                 </div>
@@ -215,19 +215,19 @@ const PatientHeader = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between mb-0.5">
-                          <span className="text-[13px] font-bold text-black-main-text font-['Roboto'] truncate">{msg.name}</span>
+                          <span className="text-[13px] font-bold text-black-main-text font-roboto truncate">{msg.name}</span>
                           <div className="flex items-center gap-1.5">
-                            <span className="text-[10px] text-[#9ca3af] font-['Roboto']">{msg.time}</span>
-                            {msg.unread > 0 && <span className="min-w-[18px] h-[18px] px-1 bg-[#22c55e] text-white text-[10px] font-bold rounded-full flex items-center justify-center font-['Roboto']">{msg.unread}</span>}
+                            <span className="text-[10px] text-[#9ca3af] font-roboto">{msg.time}</span>
+                            {msg.unread > 0 && <span className="min-w-[18px] h-[18px] px-1 bg-[#22c55e] text-white text-[10px] font-bold rounded-full flex items-center justify-center font-roboto">{msg.unread}</span>}
                           </div>
                         </div>
-                        <span className="block text-[11px] text-[#9ca3af] mb-1 font-['Roboto']">{msg.role}</span>
-                        <p className="text-[12px] text-[#6b7280] leading-[1.4] font-['Roboto'] line-clamp-2">{msg.text}</p>
+                        <span className="block text-[11px] text-[#9ca3af] mb-1 font-roboto">{msg.role}</span>
+                        <p className="text-[12px] text-[#6b7280] leading-[1.4] font-roboto line-clamp-2">{msg.text}</p>
                         <div className="flex gap-2.5 mt-1.5">
-                          <button className="flex items-center gap-1 text-[11px] font-semibold text-[#22c55e] cursor-pointer hover:underline font-['Roboto']" onClick={() => { setReplyTarget(msg); setMsgOpen(false); }}>
+                          <button className="flex items-center gap-1 text-[11px] font-semibold text-[#22c55e] cursor-pointer hover:underline font-roboto" onClick={() => { setReplyTarget(msg); setMsgOpen(false); }}>
                             <MdOutlineReply /> Reply
                           </button>
-                          <button className="flex items-center gap-1 text-[11px] font-semibold text-[#ef4444] cursor-pointer hover:underline font-['Roboto']" onClick={() => deleteMsg(msg.id)}>
+                          <button className="flex items-center gap-1 text-[11px] font-semibold text-[#ef4444] cursor-pointer hover:underline font-roboto" onClick={() => deleteMsg(msg.id)}>
                             <MdOutlineDelete /> Delete
                           </button>
                         </div>
@@ -247,7 +247,7 @@ const PatientHeader = () => {
             >
               <HiOutlineBell className={`text-[18px] transition-colors group-hover:text-[#155DFC] ${notifOpen ? 'text-[#6b7280]!' : 'text-[#6b7280]'}`} />
               {unreadNotif > 0 && (
-                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-[#FB2C36] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white font-['Roboto']">
+                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-[#FB2C36] text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white font-roboto">
                   {unreadNotif}
                 </span>
               )}
@@ -257,11 +257,11 @@ const PatientHeader = () => {
               <div className="absolute top-[calc(100%+10px)] right-0 w-[290px] sm:w-[360px] bg-white rounded-[20px] border border-gray-200 shadow-[0_20px_50px_rgba(0,0,0,0.13)] overflow-hidden z-[300] animate-[fadeDown_0.18s_ease]">
                 <div className="flex items-center justify-between px-[18px] py-4 bg-gradient-to-br from-[#155dfc] to-[#4a7fff]">
                   <div>
-                    <div className="text-[15px] font-bold text-white font-['Roboto']">Notifications</div>
-                    <div className="text-[11px] text-white/75 mt-0.5 font-['Roboto']">{unreadNotif} unread notifications</div>
+                    <div className="text-[15px] font-bold text-white font-roboto">Notifications</div>
+                    <div className="text-[11px] text-white/75 mt-0.5 font-roboto">{unreadNotif} unread notifications</div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <button className="bg-transparent border-none text-white/90 text-[11px] font-semibold cursor-pointer underline font-['Roboto']" onClick={markAllRead}>
+                    <button className="bg-transparent border-none text-white/90 text-[11px] font-semibold cursor-pointer underline font-roboto" onClick={markAllRead}>
                       <HiOutlineCheck className="inline mr-1" /> Mark all
                     </button>
                     <button className="bg-white/20 rounded-lg w-7 h-7 flex items-center justify-center text-white cursor-pointer hover:bg-white/35 transition-colors" onClick={() => setNotifOpen(false)}><HiXMark /></button>
@@ -275,23 +275,23 @@ const PatientHeader = () => {
                         <span className="text-[15px]">{n.icon}</span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-[13px] font-bold text-black-main-text mb-0.5 font-['Roboto']">{n.title}</div>
-                        <div className="text-[12px] text-[#6b7280] leading-[1.4] font-['Roboto']">{n.desc}</div>
+                        <div className="text-[13px] font-bold text-black-main-text mb-0.5 font-roboto">{n.title}</div>
+                        <div className="text-[12px] text-[#6b7280] leading-[1.4] font-roboto">{n.desc}</div>
                         {n.tag && (
-                          <span className="inline-block mt-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full border-[1.5px] bg-[#fef2f2] font-['Roboto']" style={{ color: n.tagColor, borderColor: n.tagColor }}>
+                          <span className="inline-block mt-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full border-[1.5px] bg-[#fef2f2] font-roboto" style={{ color: n.tagColor, borderColor: n.tagColor }}>
                              ⚠️ {n.tag}
                           </span>
                         )}
                         <div className="flex items-center justify-between mt-2">
-                          <span className="text-[10px] text-[#9ca3af] font-['Roboto']">{n.time}</span>
+                          <span className="text-[10px] text-[#9ca3af] font-roboto">{n.time}</span>
                           <div className="flex gap-2">
                             {(n.type === 'message' || n.type === 'alert') && (
-                              <button className="text-[#155dfc] text-[11px] font-semibold cursor-pointer hover:underline font-['Roboto'] flex items-center gap-0.5" onClick={() => { setReplyTarget({ name: n.title, desc: n.desc, avatar: null }); setNotifOpen(false); }}>
+                              <button className="text-[#155dfc] text-[11px] font-semibold cursor-pointer hover:underline font-roboto flex items-center gap-0.5" onClick={() => { setReplyTarget({ name: n.title, desc: n.desc, avatar: null }); setNotifOpen(false); }}>
                                 <MdOutlineReply /> Reply
                               </button>
                             )}
-                            {n.unread && <button className="text-[#155dfc] text-[11px] font-semibold cursor-pointer hover:underline font-['Roboto']" onClick={() => markOneRead(n.id)}>Mark read</button>}
-                            <button className="text-[#ef4444] text-[11px] font-semibold cursor-pointer hover:underline font-['Roboto']" onClick={() => deleteNotif(n.id)}>Delete</button>
+                            {n.unread && <button className="text-[#155dfc] text-[11px] font-semibold cursor-pointer hover:underline font-roboto" onClick={() => markOneRead(n.id)}>Mark read</button>}
+                            <button className="text-[#ef4444] text-[11px] font-semibold cursor-pointer hover:underline font-roboto" onClick={() => deleteNotif(n.id)}>Delete</button>
                           </div>
                         </div>
                       </div>
@@ -307,8 +307,8 @@ const PatientHeader = () => {
           <div className="flex items-center gap-[10px] pl-3.5  cursor-pointer group">
             <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Avatar" className="w-10 h-10 rounded-full object-cover border-2 border-[#e0eaff]  " />
             <div className="hidden md:flex flex-col">
-              <span className="text-[13px] font-bold text-black-main-text whitespace-nowrap font-inter ">Mohamed Salem</span>
-              <span className="text-[10px]  text-[#6b7280] uppercase tracking-wider font-inter">Patient </span>
+              <span className="text-[13px] font-bold text-black-main-text whitespace-nowrap font-roboto ">Mohamed Salem</span>
+              <span className="text-[10px]  text-[#6b7280] uppercase tracking-wider font-roboto">Patient </span>
             </div>
           </div>
 

@@ -10,7 +10,7 @@ import PatientNextStep from '../PatientNextStep/PatientNextStep';
 // أضفنا className كـ prop للتحكم في المساحة من الخارج
 const QuestionSection = ({ icon, label, question, options, selected, onSelect, className = "flex-1" }) => (
   <div className={className}>
-    <div className="flex items-center gap-2.5 text-black-main-text text-[18px] font-['Roboto'] font-semibold   mb-1.5">
+    <div className="flex items-center gap-2.5 text-black-main-text text-[18px] font-roboto font-semibold   mb-1.5">
       {icon} {label}
     </div>
     <p className="text-[16px] text-black-main-text/80 mb-3 ml-6">{question}</p>
@@ -70,7 +70,7 @@ const PatientLifestyleSurvey = () => {
       {/* Header */}
       <header className="flex items-center gap-4 mb-2 rounded-full">
         <HiOutlineClipboardDocumentList className="text-[32px] text-black-main-text shrink-0" />
-        <h2 className="text-black-main-text text-[24px] font-['Roboto'] font-semibold tracking-[0.01em] break-words">Health Lifestyle Survey</h2>
+        <h2 className="text-black-main-text text-[24px] font-roboto font-semibold tracking-[0.01em] break-words">Health Lifestyle Survey</h2>
       </header>
       <p className="text-[18px] text-gray-500 mb-10">
         Answer these quick questions about your daily habits to help our AI analyze your heart health baseline.

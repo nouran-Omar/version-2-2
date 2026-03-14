@@ -5,7 +5,7 @@ import NotFoundimg from '../../../../assets/Images/Notfound.png';
 
 const NotFound = () => {
   return (
-    <div className="fixed inset-0 min-h-screen w-full bg-white flex items-center justify-center font-inter z-[9999]">
+    <div className="fixed inset-0 min-h-screen w-full bg-white flex items-center justify-center font-roboto z-[9999]">
       <div className="text-center px-6">
       <div className="relative mb-10 flex justify-center items-center">
          <img 

@@ -48,8 +48,8 @@ const StatCard = ({ label, value, icon: Icon, iconBg, iconColor }) => (
       <Icon className={`text-2xl ${iconColor}`} />
     </div>
     <div>
-      <p className="text-white/80 text-xs font-medium font-['inter']">{label}</p>
-      <p className="text-white text-2xl font-bold font-['inter']">{value.toLocaleString()}</p>
+      <p className="text-white/80 text-xs font-medium font-roboto">{label}</p>
+      <p className="text-white text-2xl font-bold font-roboto">{value.toLocaleString()}</p>
     </div>
   </div>
 );
@@ -62,7 +62,7 @@ export default function AdminDashboard() {
   const [patients] = useState(MOCK_PATIENTS);
 
   return (
-    <div className="p-6 space-y-6 font-['inter'] bg-gray-50 min-h-full">
+    <div className="p-6 space-y-6 font-roboto bg-gray-50 min-h-full">
 
       {/* ══ Hero Banner ════════════════════════════════════════ */}
       <div className="relative bg-linear-to-r from-blue-600 to-purple-600 rounded-3xl p-8 overflow-hidden">
@@ -74,21 +74,21 @@ export default function AdminDashboard() {
         {/* المحتوى العلوي: عنوان + أزرار */}
         <div className="relative flex flex-wrap items-start justify-between gap-6 mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-white font-['inter'] mb-1">Welcome Back 👋</h1>
-            <p className="text-white/70 text-sm font-['inter']">
+            <h1 className="text-3xl font-bold text-white font-roboto mb-1">Welcome Back 👋</h1>
+            <p className="text-white/70 text-sm font-roboto">
               Here's what's happening in your system today
             </p>
           </div>
           <div className="flex gap-3">
             <button
               onClick={() => navigate('/admin/AddDoctorBtn')}
-              className="px-5 py-2.5 bg-white text-blue-600 font-semibold text-sm rounded-xl hover:bg-blue-50 transition-colors shadow-md font-['inter']"
+              className="px-5 py-2.5 bg-white text-blue-600 font-semibold text-sm rounded-xl hover:bg-blue-50 transition-colors shadow-md font-roboto"
             >
               + Add Doctor
             </button>
             <button
               onClick={() => navigate('/admin/AddPatientBtn')}
-              className="px-5 py-2.5 bg-[#0913C3] text-white font-semibold text-sm rounded-xl hover:bg-brand-main transition-colors shadow-md font-['inter']"
+              className="px-5 py-2.5 bg-[#0913C3] text-white font-semibold text-sm rounded-xl hover:bg-brand-main transition-colors shadow-md font-roboto"
             >
               + Add Patient
             </button>
@@ -136,11 +136,11 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
             <div className="flex items-center gap-2">
               <FaUserMd className="text-brand-main text-lg" />
-              <h2 className="text-base font-bold text-black-main-text font-['inter']">Recent Doctors</h2>
+              <h2 className="text-base font-bold text-black-main-text font-roboto">Recent Doctors</h2>
             </div>
             <button
               onClick={() => navigate('/admin/doctor-management')}
-              className="text-sm text-brand-main font-semibold hover:underline font-['inter']"
+              className="text-sm text-brand-main font-semibold hover:underline font-roboto"
             >
               View All
             </button>
@@ -156,12 +156,12 @@ export default function AdminDashboard() {
                   >
                     <Avatar name={doc.name} src={doc.avatar} />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-black-main-text font-['inter'] truncate">{doc.name}</p>
-                      <p className="text-xs text-gray-500 font-['inter'] truncate">{doc.email}</p>
+                      <p className="text-sm font-semibold text-black-main-text font-roboto truncate">{doc.name}</p>
+                      <p className="text-xs text-gray-500 font-roboto truncate">{doc.email}</p>
                     </div>
                     <button
                       onClick={() => navigate(`/admin/edit-doctor/${doc.id}`)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-brand-main border border-brand-main/30 rounded-lg hover:bg-blue-50 transition-colors font-['inter'] shrink-0"
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-brand-main border border-brand-main/30 rounded-lg hover:bg-blue-50 transition-colors font-roboto shrink-0"
                     >
                       <HiOutlinePencilSquare className="text-sm" />
                       Edit
@@ -175,13 +175,13 @@ export default function AdminDashboard() {
                 <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <FaUserMd className="text-3xl text-blue-300" />
                 </div>
-                <p className="text-base font-bold text-black-main-text font-['inter'] mb-1">No Doctors Added Yet</p>
-                <p className="text-sm text-gray-400 font-['inter'] mb-5">
+                <p className="text-base font-bold text-black-main-text font-roboto mb-1">No Doctors Added Yet</p>
+                <p className="text-sm text-gray-400 font-roboto mb-5">
                   Start by adding your first doctor to the system
                 </p>
                 <button
                   onClick={() => navigate('/admin/AddDoctorBtn')}
-                  className="px-6 py-2.5 bg-brand-main text-white text-sm font-semibold rounded-3xl hover:bg-[#0913C3] transition-colors font-['inter']"
+                  className="px-6 py-2.5 bg-brand-main text-white text-sm font-semibold rounded-3xl hover:bg-[#0913C3] transition-colors font-roboto"
                 >
                   Add First Doctor
                 </button>
@@ -195,11 +195,11 @@ export default function AdminDashboard() {
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
             <div className="flex items-center gap-2">
               <HiOutlineUserCircle className="text-green-600 text-xl" />
-              <h2 className="text-base font-bold text-black-main-text font-['inter']">Recent Patients</h2>
+              <h2 className="text-base font-bold text-black-main-text font-roboto">Recent Patients</h2>
             </div>
             <button
               onClick={() => navigate('/admin/patient-management')}
-              className="text-sm text-brand-main font-semibold hover:underline font-['inter']"
+              className="text-sm text-brand-main font-semibold hover:underline font-roboto"
             >
               View All
             </button>
@@ -215,12 +215,12 @@ export default function AdminDashboard() {
                   >
                     <Avatar name={pat.name} src={pat.avatar} />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-black-main-text font-['inter'] truncate">{pat.name}</p>
-                      <p className="text-xs text-gray-500 font-['inter'] truncate">{pat.email}</p>
+                      <p className="text-sm font-semibold text-black-main-text font-roboto truncate">{pat.name}</p>
+                      <p className="text-xs text-gray-500 font-roboto truncate">{pat.email}</p>
                     </div>
                     <button
                       onClick={() => navigate(`/admin/edit-patient/${pat.id}`)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-green-600 border border-green-200 rounded-lg hover:bg-green-50 transition-colors font-['inter'] shrink-0"
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-green-600 border border-green-200 rounded-lg hover:bg-green-50 transition-colors font-roboto shrink-0"
                     >
                       <HiOutlinePencilSquare className="text-sm" />
                       Edit
@@ -234,13 +234,13 @@ export default function AdminDashboard() {
                 <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <HiOutlineUserGroup className="text-3xl text-green-300" />
                 </div>
-                <p className="text-base font-bold text-black-main-text font-['inter'] mb-1">No Patients Registered</p>
-                <p className="text-sm text-gray-400 font-['inter'] mb-5">
+                <p className="text-base font-bold text-black-main-text font-roboto mb-1">No Patients Registered</p>
+                <p className="text-sm text-gray-400 font-roboto mb-5">
                   No patients have been registered in the system yet
                 </p>
                 <button
                   onClick={() => navigate('/admin/AddPatientBtn')}
-                  className="px-6 py-2.5 bg-green-600 text-white text-sm font-semibold rounded-3xl hover:bg-green-700 transition-colors font-['inter']"
+                  className="px-6 py-2.5 bg-green-600 text-white text-sm font-semibold rounded-3xl hover:bg-green-700 transition-colors font-roboto"
                 >
                   Add First Patient
                 </button>

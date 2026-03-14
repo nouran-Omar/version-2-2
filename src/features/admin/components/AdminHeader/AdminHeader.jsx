@@ -102,7 +102,7 @@ const AdminHeader = () => {
 
   return (
     <div
-      className="flex items-center justify-between w-full h-full font-['inter']"
+      className="flex items-center justify-between w-full h-full font-roboto"
       ref={notifRef}
     >
       {/* ── Left: Date + Time ── */}
@@ -161,7 +161,7 @@ const AdminHeader = () => {
               {/* Header (blue) */}
               <div className="px-5 py-4 bg-brand-main">
                 <div className="flex justify-between items-center mb-1">
-                  <h3 className="text-white text-lg font-bold font-['inter'] leading-7">
+                  <h3 className="text-white text-lg font-bold font-roboto leading-7">
                     Notifications
                   </h3>
                   <button
@@ -172,13 +172,13 @@ const AdminHeader = () => {
                   </button>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-blue-100 text-sm font-['inter']">
+                  <span className="text-blue-100 text-sm font-roboto">
                     {unreadCount} unread notification{unreadCount !== 1 ? 's' : ''}
                   </span>
                   {unreadCount > 0 && (
                     <button
                       onClick={markAllRead}
-                      className="flex items-center gap-1 text-white text-sm font-['inter'] underline hover:text-blue-100 transition-colors"
+                      className="flex items-center gap-1 text-white text-sm font-roboto underline hover:text-blue-100 transition-colors"
                     >
                       <HiOutlineCheckCircle className="text-base" />
                       Mark all as read
@@ -200,32 +200,32 @@ const AdminHeader = () => {
 
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
-                          <h4 className="text-sm font-bold text-black-main-text font-['inter'] leading-5">
+                          <h4 className="text-sm font-bold text-black-main-text font-roboto leading-5">
                             {n.title}
                           </h4>
                           {!n.isRead && (
                             <span className="w-2 h-2 bg-blue-600 rounded-full mt-1.5 shrink-0" />
                           )}
                         </div>
-                        <p className="text-sm text-gray-700 font-['inter'] leading-5 mt-0.5 line-clamp-2">
+                        <p className="text-sm text-gray-700 font-roboto leading-5 mt-0.5 line-clamp-2">
                           {n.description}
                         </p>
                         <div className="flex items-center justify-between mt-2">
-                          <span className="text-xs text-gray-400 font-['inter'] leading-4">
+                          <span className="text-xs text-gray-400 font-roboto leading-4">
                             {n.timeAgo}
                           </span>
                           <div className="flex items-center gap-3">
                             {!n.isRead && (
                               <button
                                 onClick={() => markRead(n.id)}
-                                className="text-xs text-blue-600 font-['inter'] font-medium hover:underline"
+                                className="text-xs text-blue-600 font-roboto font-medium hover:underline"
                               >
                                 Mark read
                               </button>
                             )}
                             <button
                               onClick={() => deleteNotif(n.id)}
-                              className="text-xs text-red-600 font-['inter'] font-medium hover:underline flex items-center gap-0.5"
+                              className="text-xs text-red-600 font-roboto font-medium hover:underline flex items-center gap-0.5"
                             >
                               <HiOutlineTrash className="text-sm" />
                               Delete
@@ -238,7 +238,7 @@ const AdminHeader = () => {
                 ) : (
                   <div className="py-12 text-center">
                     <HiOutlineBell className="text-4xl text-gray-200 mx-auto mb-3" />
-                    <p className="text-sm text-gray-400 font-['inter']">No notifications</p>
+                    <p className="text-sm text-gray-400 font-roboto">No notifications</p>
                   </div>
                 )}
               </div>
@@ -263,8 +263,8 @@ const AdminHeader = () => {
             </div>
           )}
           <div className="hidden md:block">
-            <p className="text-sm font-bold text-black-main-text font-['inter']">{adminData.name}</p>
-            <p className="text-[11px] font-semibold text-gray-400 font-['inter']">{adminData.role}</p>
+            <p className="text-sm font-bold text-black-main-text font-roboto">{adminData.name}</p>
+            <p className="text-[11px] font-semibold text-gray-400 font-roboto">{adminData.role}</p>
           </div>
         </div>
       </div>

@@ -71,7 +71,7 @@ const Register = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#F6F7F8] pb-20">
+    <div className="min-h-screen bg-[#F6F7F8] pb-20 font-inter">
       <nav className="h-16 bg-white border-b border-gray-100 flex items-center px-10 sticky top-0 z-50">
         <div className="flex items-center gap-2 font-bold text-xl text-black-main-text">
           <img src={Logo} alt="PulseX" className="w-8 h-8" />

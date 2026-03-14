@@ -80,11 +80,11 @@ const StatCard = ({ label, value, unit, status, isHeartRate, isLow, chartSlot, i
         <div className="flex items-end justify-between relative">
           <div className="z-10">
             <div className="flex items-baseline gap-1">
-              <span className="leading-none text-base font-bold font-['Poppins'] text-black-main-text">{value}</span>
-              <span className="text-sm font-normal font-['Poppins'] text-[#757575]">{unit}</span>
+              <span className="leading-none text-base font-bold font-roboto text-black-main-text">{value}</span>
+              <span className="text-sm font-normal font-roboto text-[#757575]">{unit}</span>
             </div>
             <div className="mt-2">
-              <span className="text-xs font-normal font-['Roboto'] px-3 py-1 rounded-full inline-block"
+              <span className="text-xs font-normal font-roboto px-3 py-1 rounded-full inline-block"
                 style={{ color: isLow ? '#6D0C0C' : '#0C6D31', background: isLow ? '#F7E8E8' : '#E8F7EE' }}>
                 {status}
               </span>
@@ -142,12 +142,12 @@ const PatientDashboard = () => {
   const v = patient.vitals;
 
   return (
-    <section className="flex flex-col rounded-full  font-Roboto gap-6 p-[24px] md:p-[24px] bg-[#FAFBFF] min-h-screen">
+    <section className="flex flex-col rounded-full  font-roboto gap-6 p-[24px] md:p-[24px] bg-[#FAFBFF] min-h-screen">
       
       {/* Welcome Header */}
       <div className="mb-2">
-        <h2 className="text-[24px] font-bold font-Roboto text-black-main-text leading-tight">Welcome Back, {patient.name} 👋</h2>
-        <p className="text-[18px] text-[#757575] font-Roboto ">Here's an overview of your current heart health status.</p>
+        <h2 className="text-[24px] font-bold font-roboto text-black-main-text leading-tight">Welcome Back, {patient.name} 👋</h2>
+        <p className="text-[18px] text-[#757575] font-roboto ">Here's an overview of your current heart health status.</p>
       </div>
 
       {/* ROW 1: 4 Stat Cards */}
@@ -342,7 +342,7 @@ const PatientDashboard = () => {
   
   {/* Header: Title + Link */}
   <div className="flex items-center justify-between border-b border-gray-50 pb-3">
-    <h3 className="text-black-main-text text-[14px] font-semibold font-['Roboto'] tracking-tight">
+    <h3 className="text-black-main-text text-[14px] font-semibold font-roboto tracking-tight">
       Upcoming Appointments
     </h3>
     <button 

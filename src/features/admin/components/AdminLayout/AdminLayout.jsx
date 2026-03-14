@@ -19,7 +19,7 @@ const AdminLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F6F7F8] font-['Inter'] p-4 lg:p-8 flex gap-4 lg:gap-8 relative box-border items-stretch">
+    <div className="min-h-screen bg-[#F6F7F8] font-roboto p-4 lg:p-8 flex gap-4 lg:gap-8 relative box-border items-stretch">
 
       {/* ── Mobile Overlay ── */}
       {sidebarOpen && (

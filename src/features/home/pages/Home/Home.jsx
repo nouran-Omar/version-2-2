@@ -7,7 +7,7 @@ import About from '../../components/JourneyTimeline/JourneyTimeline';
 
 const Home = () => {
   return (
-    <main className="overflow-hidden bg-[#FAFAFA]">
+    <main className="overflow-hidden bg-[#FAFAFA] font-inter">
       <Hero />
       <Doctors />
       <Features />
