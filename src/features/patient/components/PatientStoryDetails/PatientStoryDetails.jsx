@@ -165,24 +165,25 @@ const PatientStoryDetails = () => {
         />
       )}
 
-      <div className="w-full flex flex-col gap-5 p-5">
+      <div className="w-full flex flex-col gap-5 p-[24px]">
         {/* ── Page Header ── */}
-        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-          <div className="flex items-center gap-2 mb-1">
+            <div>   <div className="flex items-center gap-2 mb-1">
             <TbBook className="text-xl text-black-main-text" />
             <h1 className="text-lg font-bold text-black-main-text">Patient Story Details</h1>
           </div>
           <p className="text-sm text-[#757575]">Read full patient journey and shared experiences.</p>
-
+</div> 
+        <div className="bg-white rounded-2xl p-5 mx-5 border border-gray-100 shadow-sm">
+  
           <div className="mt-4 flex items-start gap-4">
             <Avatar img={story.authorImg} initials={story.author[0]} size="w-14 h-14" />
             <div>
-              <p className="font-semibold text-black-main-text">{story.author}</p>
-              <p className="text-xs text-[#6B7280]">Shared publicly to inspire other patients</p>
-              <p className="text-xs text-[#4B5563] mt-0.5">{story.date}</p>
+              <p className="font-semibold text-xl text-black-main-text">{story.author}</p>
+              <p className="text-sm text-[#6B7280]">Shared publicly to inspire other patients</p>
+              <p className="text-sm text-[#4B5563] mt-0.5">{story.date}</p>
               <div className="flex flex-wrap gap-2 mt-2">
                 {story.categories.map((c) => (
-                  <span key={c} className={`px-3 py-1 rounded-full text-xs font-medium border ${tagCls(c)}`}>
+                  <span key={c} className={`px-3 py-1 rounded-full text-sm font-medium border ${tagCls(c)}`}>
                     {c} <span className="ml-0.5">✓</span>
                   </span>
                 ))}
@@ -193,8 +194,8 @@ const PatientStoryDetails = () => {
 
         {/* ── Story Article ── */}
         <div className="bg-white rounded-2xl p-5 sm:p-7 border border-gray-100 shadow-sm">
-          <h2 className="text-xl sm:text-2xl font-bold text-black-main-text mb-5">{story.title}</h2>
-          <div className="flex flex-col gap-4 text-sm text-[#374151] leading-relaxed">
+          <h2 className="text-3xl sm:text-2xl font-bold text-black-main-text mb-5">{story.title}</h2>
+          <div className="flex flex-col gap-4 text-[16px] text-[#374151] leading-relaxed">
             {story.content.slice(0, 2).map((p, i) => <p key={i}>{p}</p>)}
             <img src={story.coverImg} alt="Story cover" className="w-full rounded-xl object-cover max-h-[320px]" />
             {story.content.slice(2).map((p, i) => <p key={i}>{p}</p>)}
@@ -302,7 +303,7 @@ const PatientStoryDetails = () => {
                     <span key={t} className={`px-2 py-0.5 rounded-full text-xs border ${tagCls(t)}`}>{t}</span>
                   ))}
                 </div>
-                <button onClick={() => navigate(`/patient/stories/${r.id}`)} className="text-xs font-semibold text-brand-main hover:underline text-left mt-auto">
+                <button onClick={() => navigate(`/patient/stories/${r.id}`)} className="text-xs font-semibold cursor-pointer text-brand-main hover:underline text-left mt-auto">
                   Read Story →
                 </button>
               </div>
@@ -312,10 +313,10 @@ const PatientStoryDetails = () => {
 
         {/* ── Footer Buttons ── */}
         <div className="flex justify-end gap-3 py-2">
-          <button onClick={() => navigate('/patient/stories')} className="px-6 py-2.5 rounded-full border border-gray-300 text-sm font-semibold text-black-main-text bg-white hover:bg-gray-50 transition">
+          <button onClick={() => navigate('/patient/stories')} className="px-6 py-2.5 cursor-pointer rounded-full border border-gray-300 text-sm font-semibold text-black-main-text bg-white hover:bg-gray-50 transition">
             Back to Stories
           </button>
-          <button onClick={() => navigate('/patient/write-story')} className="flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-brand-main text-white text-sm font-semibold hover:bg-[#2730d4] transition">
+          <button onClick={() => navigate('/patient/write-story')} className="flex items-center cursor-pointer gap-1.5 px-6 py-2.5 rounded-full bg-brand-main text-white text-sm font-semibold hover:bg-[#2730d4] transition">
             <HiOutlinePencilAlt /> Write Story
           </button>
         </div>

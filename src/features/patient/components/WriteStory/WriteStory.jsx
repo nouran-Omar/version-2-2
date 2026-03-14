@@ -5,13 +5,24 @@ import Toast from '../../../../components/Toast/Toast';
 
 const CATEGORIES = ['Lifestyle', 'Health', 'Challenges', 'Recovery'];
 
-/* Chip colours matching design: Lifestyle = orange, Health = blue, rest = outline */
 const chipStyle = (cat, selected) => {
   if (selected) {
-    if (cat === 'Lifestyle') return 'bg-[#FFA940] text-white border-[#FFA940]';
-    return 'bg-brand-main text-white border-brand-main';
+    switch (cat) {
+      case 'Lifestyle':
+        return 'bg-[#FFA940] text-white border-[#FFA940] shadow-sm';
+      case 'Health':
+        return 'bg-[#2B7FFF] text-white border-[#2B7FFF] shadow-sm';
+      case 'Challenges':
+        return 'bg-[#8B5CF6] text-white border-[#8B5CF6] shadow-sm'; // بنفسجي
+      case 'Recovery':
+        return 'bg-[#10B981] text-white border-[#10B981] shadow-sm'; // أخضر
+      default:
+        return 'bg-brand-main text-white border-brand-main';
+    }
   }
-  return 'bg-white text-black-main-text border-gray-300 hover:border-brand-main hover:text-brand-main';
+
+  // الستايل في حالة عدم الاختيار (Default)
+  return 'bg-white text-slate-600 border-gray-200 hover:border-brand-main hover:text-brand-main transition-all duration-200';
 };
 
 const WriteStory = () => {
@@ -130,19 +141,18 @@ const WriteStory = () => {
         onClose={() => setToast((t) => ({ ...t, visible: false }))}
       />
 
-      <div className="w-full  bg-white p-5 flex rounded-full flex-col gap-7">
+      <div className="w-full  bg-white p-[24px] flex rounded-full flex-col gap-7">
 
         {/* ── Header ── */}
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-1 mb-1">
             <HiOutlinePencilAlt className="text-black-main-text text-xl" />
-            <h1 className="text-xl font-bold text-black-main-text">Write Story</h1>
+            <h1 className="text-2xl font-bold text-black-main-text">Write Story</h1>
           </div>
-          <p className="text-sm text-[#757575]">Share your personal health journey to inspire others.</p>
+          <p className="text-lg text-[#757575]">Share your personal health journey to inspire others.</p>
         </div>
 
-        {/* ── Divider ── */}
-        <hr className="border-gray-100" />
+        
 
         {/* ── Story Title ── */}
         <div className="flex flex-col gap-2">
@@ -154,7 +164,7 @@ const WriteStory = () => {
             value={title}
             onChange={(e) => { setTitle(e.target.value); setErrors((er) => ({ ...er, title: '' })); }}
             placeholder="Give your story a compelling title..."
-            className={`w-full px-4 py-3 rounded-xl border  text-sm outline-none transition
+            className={`w-full px-4 py-3 rounded-xl border  text-[16px] outline-none transition
               ${errors.title ? 'border-[#E7000B]' : 'border-[#E5E7EB]  focus:border-brand-main'}`}
           />
           {errors.title && <p className="text-xs text-[#E7000B]">{errors.title}</p>}
@@ -170,7 +180,7 @@ const WriteStory = () => {
                 <button
                   key={cat}
                   onClick={() => toggleCat(cat)}
-                  className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition
+                  className={`flex items-center cursor-pointer gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition
                     ${chipStyle(cat, sel)}`}
                 >
                   {cat}
@@ -242,13 +252,13 @@ const WriteStory = () => {
         <div className="flex justify-end gap-3 pt-2">
           <button
             onClick={() => navigate('/patient/stories')}
-            className="px-7 py-2.5 rounded-full border border-gray-300 text-sm font-semibold text-black-main-text bg-white hover:bg-gray-50 transition"
+            className="px-7 py-2.5  cursor-pointer rounded-full border border-gray-300 text-sm font-semibold text-black-main-text bg-white hover:bg-gray-50 transition"
           >
             Cancel
           </button>
           <button
             onClick={handlePublish}
-            className="px-7 py-2.5 rounded-full bg-brand-main text-white text-sm font-semibold hover:bg-[#2730d4] transition shadow-sm"
+            className="px-7 py-2.5 rounded-full cursor-pointer bg-brand-main text-white text-sm font-semibold hover:bg-[#2730d4] transition shadow-sm"
           >
             Publish Story
           </button>
