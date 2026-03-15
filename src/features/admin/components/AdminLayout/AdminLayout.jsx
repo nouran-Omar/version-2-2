@@ -2,35 +2,33 @@ import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar';
 import AdminHeader from '../AdminHeader/AdminHeader';
-import ConfirmModal from '../ConfirmModal/ConfirmModal'; // تأكد من صحة المسار لديك
+import ConfirmModal from '../ConfirmModal/ConfirmModal';
 import { HiBars3, HiXMark } from 'react-icons/hi2';
 
 const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-  
   const navigate = useNavigate();
 
-  // تنفيذ عملية تسجيل الخروج
   const handleConfirmLogout = () => {
     setIsLogoutModalOpen(false);
-    // localStorage.removeItem('token'); // مثال لمسح بيانات الدخول
+    localStorage.clear(); // مسح البيانات للتأكد من الخروج
     navigate('/login'); 
   };
 
   return (
-    <div className="min-h-screen bg-[#F6F7F8] font-roboto p-4 lg:p-8 flex gap-4 lg:gap-8 relative box-border items-stretch">
+    // استخدام نفس الخلفية والـ Padding والـ Gap مثل الـ Patient
+    <div className="min-h-screen bg-[#F8F9FB] font-roboto p-5 flex gap-5 relative box-border items-stretch">
 
       {/* ── Mobile Overlay ── */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/40 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden transition-opacity"
           onClick={() => setSidebarOpen(false)}
-          aria-hidden="true"
         />
       )}
 
-      {/* ── Sidebar Column ── */}
+      {/* ── LEFT COLUMN: Admin Sidebar ── */}
       <div className={`
         fixed lg:relative top-0 left-0 z-50 transition-transform duration-300 ease-in-out shrink-0
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
@@ -38,19 +36,18 @@ const AdminLayout = () => {
       `}>
         <aside
           aria-label="Admin navigation"
-          className="w-[260px] bg-white shadow-sm rounded-[24px] overflow-hidden border border-gray-100/60 flex flex-col 
-                     lg:sticky lg:top-8 lg:h-[calc(100vh-64px)]" 
+          className="w-[280px] bg-white shadow-[0px_10px_30px_rgba(0,0,0,0.03)] rounded-[32px] border border-gray-100 flex flex-col 
+                     lg:sticky lg:top-5 lg:h-[calc(100vh-40px)]
+                     overflow-hidden"
         >
-          {/* Close button — mobile only */}
+          {/* Close button — Mobile only */}
           <button
-            className="lg:hidden absolute top-3 right-3 z-50 p-1.5 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+            className="lg:hidden absolute top-5 right-5 z-50 p-2 rounded-xl bg-gray-50 text-gray-600 hover:bg-red-50 hover:text-red-500 transition-all"
             onClick={() => setSidebarOpen(false)}
-            aria-label="Close sidebar"
           >
             <HiXMark className="w-5 h-5" />
           </button>
 
-          {/* تمرير الـ props للـ Sidebar للتحكم في الـ Logout */}
           <Sidebar 
             onClose={() => setSidebarOpen(false)} 
             onLogout={() => setIsLogoutModalOpen(true)} 
@@ -58,36 +55,35 @@ const AdminLayout = () => {
         </aside>
       </div>
 
-      {/* ── Right Column ── */}
-      <div className="flex-1 flex flex-col gap-4 lg:gap-8 min-w-0">
+      {/* ── RIGHT COLUMN: Header + Content ── */}
+      <div className="flex-1 flex flex-col gap-5 min-w-0">
 
-        {/* Sticky Header */}
-        <header className="sticky top-4 lg:top-8 h-[60px] md:h-[66px] bg-white shadow-sm rounded-[20px] px-4 md:px-6 flex items-center border border-gray-100/60 z-40 shrink-0">
-          {/* Hamburger — mobile only */}
+        {/* 1. Admin Header */}
+        <header className="h-[80px] bg-white shadow-sm rounded-[24px] px-8 flex items-center border border-gray-100 z-40 shrink-0 transition-all">
           <button
-            className="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 mr-3 shrink-0 transition-colors"
+            className="lg:hidden p-2.5 rounded-xl bg-gray-50 text-gray-600 mr-4 hover:bg-gray-100"
             onClick={() => setSidebarOpen(true)}
-            aria-label="Open sidebar"
           >
             <HiBars3 className="w-6 h-6" />
           </button>
           
           <div className="flex-1 min-w-0">
-            {/* تمرير الـ Logout للهيدر أيضاً لو أردتِ إضافة زر خروج هناك */}
             <AdminHeader onLogout={() => setIsLogoutModalOpen(true)} />
           </div>
         </header>
 
-        {/* Page Content */}
+        {/* 2. Admin Page Content */}
         <main
           aria-label="Admin page content"
-          className="bg-white shadow-sm rounded-[24px] border border-gray-100/60 lg: min-h-[calc(100vh-160px)]"
+          className="bg-white shadow-sm rounded-[32px] border border-gray-100 flex-1 relative overflow-hidden flex flex-col lg:min-h-[calc(100vh-145px)]"
         >
-          <Outlet />
+          <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
+             <Outlet />
+          </div>
         </main>
       </div>
 
-      {/* ── Logout Confirmation Modal ── */}
+      {/* ── Logout Modal ── */}
       <ConfirmModal
         isOpen={isLogoutModalOpen}
         title="Admin Log Out?"

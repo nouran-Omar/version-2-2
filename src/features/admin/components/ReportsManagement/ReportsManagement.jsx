@@ -42,8 +42,8 @@ function DeleteContentModal({ report, onConfirm, onCancel }) {
           Are you sure you want to permanently delete this content? This will remove it from the platform and notify the author.
         </p>
         <div className="flex gap-3">
-          <button onClick={onCancel} className="flex-1 py-2.5 text-[13px] font-semibold text-gray-600 bg-[#F6F7F8] rounded-[10px] hover:bg-gray-200 transition-colors">Cancel</button>
-          <button onClick={onConfirm} className="flex-1 py-2.5 text-[13px] font-semibold text-white bg-red-500 rounded-[10px] hover:bg-red-600 transition-colors">Delete</button>
+          <button onClick={onCancel} className="flex-1 cursor-pointer py-2.5 text-[13px] font-semibold text-gray-600 bg-[#F6F7F8] rounded-[10px] hover:bg-gray-200 transition-colors">Cancel</button>
+          <button onClick={onConfirm} className="flex-1 cursor-pointer py-2.5 text-[13px] font-semibold text-white bg-red-500 rounded-[10px] hover:bg-red-600 transition-colors">Delete</button>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@ export default function ReportsManagement() {
   const handleViewContent   = (report) => { if (report.storyId) navigate(`/admin/stories/${report.storyId}`); };
 
   return (
-    <section className="flex flex-col gap-6 p-5 " aria-label="Reports Management">
+    <section className="flex flex-col gap-6 p-6 " aria-label="Reports Management">
       <Toast visible={toast.visible} title={toast.title} message={toast.message} type="success" onClose={() => setToast(t => ({ ...t, visible: false }))} />
       <DeleteContentModal report={deleteTarget} onConfirm={handleDeleteConfirm} onCancel={() => setDeleteTarget(null)} />
 
@@ -84,29 +84,29 @@ export default function ReportsManagement() {
     <div className="flex flex-col gap-1.5">
   {/* العنوان والأيقونة في سطر واحد */}
   <div className="flex items-center gap-2.5 text-black-main-text">
-    <HiOutlineFlag className="text-[22px]  shrink-0" aria-hidden="true" />
-    <h1 className="text-[18px] sm:text-[20px] font-bold leading-tight">
+    <HiOutlineFlag className="text-[24px]  shrink-0" aria-hidden="true" />
+    <h1 className="text-[14px] sm:text-[20px] font-bold leading-tight">
       Reports Management
     </h1>
   </div>
   
   {/* الوصف يبدأ تحت العنوان مباشرة (تمت إزاحة النص بمقدار حجم الأيقونة + Gap) */}
-  <p className="text-[13px] text-gray-text-dim2  leading-relaxed">
+  <p className="text-[18px] text-gray-text-dim2  leading-relaxed">
     Review and manage reported content from the community.
   </p>
 </div>
       {/* ── Stat Cards ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 px-8 py-6 lg:grid-cols-4 gap-3">
         {[
           { label: 'Total Reports',  value: stats.total,     icon: <HiOutlineFlag />,   bg: 'from-blue-500 to-blue-600' },
           { label: 'Pending Review', value: stats.pending,   icon: <HiOutlineClock />,  bg: 'from-orange-500 to-orange-600' },
           { label: 'Reviewed',       value: stats.reviewed,  icon: <FiCheckCircle />,   bg: 'from-green-500 to-green-600' },
           { label: 'Dismissed',      value: stats.dismissed, icon: <HiOutlineXCircle />,bg: 'from-gray-500 to-gray-600 ' },
         ].map(({ label, value, icon, bg }) => (
-          <div key={label} className={`bg-gradient-to-br ${bg} rounded-[16px] p-4 text-white flex flex-col gap-2`}>
-            <div className="text-xl opacity-80">{icon}</div>
-            <p className="text-[11px] font-semibold opacity-80 uppercase tracking-wide">{label}</p>
-            <p className="text-[24px] font-bold leading-none">{value}</p>
+          <div key={label} className={`bg-gradient-to-br ${bg} rounded-[16px] p-8 text-white flex flex-col gap-2`}>
+            <div className="text-2xl opacity-80">{icon}</div>
+            <p className="text-[14px] font-semibold opacity-80 uppercase tracking-wide">{label}</p>
+            <p className="text-[30px] font-bold leading-none">{value}</p>
           </div>
         ))}
       </div>
@@ -184,7 +184,7 @@ function ReportCard({ report, onMarkReviewed, onDismiss, onReopen, onDelete, onV
         <div className="flex-1 flex flex-col gap-1 min-w-0">
           {/* Name + time */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[15px] font-semibold text-black-main-text leading-6">
+            <span className="text-[16px] font-semibold text-black-main-text leading-6">
               Reported by {report.reportedBy}
             </span>
             <span className="text-[12px] text-gray-500 font-normal">{report.reporterTime}</span>
@@ -206,25 +206,25 @@ function ReportCard({ report, onMarkReviewed, onDismiss, onReopen, onDelete, onV
       </div>
 
       {/* ── Story ref ── */}
-      <p className="text-[12px] text-gray-600">
+      <p className="text-[14px] text-gray-600">
         In story: <em className="not-italic font-medium text-gray-700">"{report.storyTitle}"</em>
       </p>
 
       {/* ── Content Box (red-tinted, Figma exact) ── */}
       <div className="bg-[#FEF2F2] border border-[#FFC9C9] rounded-xl px-4 py-3 flex flex-col gap-1.5">
-        <p className="flex items-center gap-1.5 text-[12px] font-semibold text-red-700">
+        <p className="flex items-center gap-1.5 text-[14px] font-semibold text-red-700">
           <HiExclamationTriangle className='text-red-600' size={14} />
           Content by {report.contentAuthor}:
         </p>
-        <p className="text-[12px] text-gray-700 leading-relaxed italic">
+        <p className="text-[14px] text-gray-700 leading-relaxed italic">
           "{report.contentText}"
         </p>
       </div>
 
       {/* ── Report Reason Box ── */}
       <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl px-4 py-3 flex flex-col gap-1">
-        <p className="text-[12px] font-semibold text-black-main-text ">Report Reason:</p>
-        <p className="text-[12px] text-gray-700 leading-relaxed">{report.reportReason}</p>
+        <p className="text-[14px] font-semibold text-black-main-text ">Report Reason:</p>
+        <p className="text-[14px] text-gray-700 leading-relaxed">{report.reportReason}</p>
       </div>
 
       {/* ── Action Buttons (Figma pill-style) ── */}
@@ -232,7 +232,7 @@ function ReportCard({ report, onMarkReviewed, onDismiss, onReopen, onDelete, onV
         {/* View — always shown */}
         <button
           onClick={onView}
-          className="flex items-center gap-1.5 px-4 py-2 text-[12px] font-semibold text-white bg-[#155DFC] rounded-lg hover:bg-[#0913C3] transition-colors"
+          className="flex cursor-pointer items-center gap-1.5 px-4 py-2 text-[14px] font-semibold text-white bg-[#155DFC] rounded-lg hover:bg-[#0913C3] transition-colors"
         >
           <HiOutlineEye size={14} /> View Content
         </button>
@@ -242,19 +242,19 @@ function ReportCard({ report, onMarkReviewed, onDismiss, onReopen, onDelete, onV
           <>
             <button
               onClick={onDelete}
-              className="flex items-center gap-1.5 px-4 py-2 text-[12px] font-semibold text-white bg-[#E7000B] rounded-lg hover:bg-[#C10007] transition-colors"
+              className="flex cursor-pointer items-center gap-1.5 px-4 py-2 text-[14px] font-semibold text-white bg-[#E7000B] rounded-lg hover:bg-[#C10007] transition-colors"
             >
               <HiOutlineTrash size={14} /> Delete Content
             </button>
             <button
               onClick={onMarkReviewed}
-              className="flex items-center gap-1.5 px-4 py-2 text-[12px] font-semibold text-white bg-[#00A63E] rounded-lg hover:bg-[#008236] transition-colors"
+              className="flex cursor-pointer items-center gap-1.5 px-4 py-2 text-[14px] font-semibold text-white bg-[#00A63E] rounded-lg hover:bg-[#008236] transition-colors"
             >
               <HiOutlineCheckCircle size={14} /> Mark Reviewed
             </button>
             <button
               onClick={onDismiss}
-              className="flex items-center gap-1.5 px-4 py-2 text-[12px] font-semibold text-white bg-gray-600 rounded-lg hover:bg-[#E5E7EB] transition-colors"
+              className="flex cursor-pointer items-center gap-1.5 px-4 py-2 text-[14px] font-semibold text-white bg-gray-600 rounded-lg hover:bg-gray-700 transition-colors"
             >
               <HiOutlineXCircle size={14} /> Dismiss
             </button>
@@ -266,19 +266,19 @@ function ReportCard({ report, onMarkReviewed, onDismiss, onReopen, onDelete, onV
           <>
             <button
               onClick={onDelete}
-              className="flex items-center gap-1.5 px-4 py-2 text-[12px] font-semibold text-white bg-[#E7000B] rounded-lg hover:bg-[#C10007] transition-colors"
+              className="flex cursor-pointer items-center gap-1.5 px-4 py-2 text-[14px] font-semibold text-white bg-[#E7000B] rounded-lg hover:bg-[#C10007] transition-colors"
             >
               <HiOutlineTrash size={14} /> Delete Content
             </button>
             <button
               onClick={onDismiss}
-              className="flex items-center gap-1.5 px-4 py-2 text-[12px] font-semibold text-[#4A5565] bg-[#F3F4F6] rounded-lg hover:bg-[#E5E7EB] transition-colors"
+              className="flex cursor-pointer items-center gap-1.5 px-4 py-2 text-[14px] font-semibold text-[#4A5565] bg-[#F3F4F6] rounded-lg hover:bg-[#E5E7EB] transition-colors"
             >
               <HiOutlineXCircle size={14} /> Dismiss
             </button>
             <button
               onClick={onReopen}
-              className="flex items-center gap-1.5 px-4 py-2 text-[12px] font-semibold text-[#CA3500] bg-[#FFEDD4] rounded-lg hover:bg-orange-200 transition-colors"
+              className="flex cursor-pointer items-center gap-1.5 px-4 py-2 text-[12px] font-semibold text-[#CA3500] bg-[#FFEDD4] rounded-lg hover:bg-orange-200 transition-colors"
             >
               <HiArrowPath size={14} /> Reopen
             </button>
@@ -289,7 +289,7 @@ function ReportCard({ report, onMarkReviewed, onDismiss, onReopen, onDelete, onV
         {isDismissed && (
           <button
             onClick={onReopen}
-            className="flex items-center gap-1.5 px-4 py-2 text-[12px] font-semibold text-[#CA3500] bg-[#FFEDD4] rounded-lg hover:bg-orange-200 transition-colors"
+            className="flex cursor-pointer items-center gap-1.5 px-4 py-2 text-[12px] font-semibold text-[#CA3500] bg-[#FFEDD4] rounded-lg hover:bg-orange-200 transition-colors"
           >
             <HiArrowPath size={14} /> Re-open
           </button>

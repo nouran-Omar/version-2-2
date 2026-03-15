@@ -10,20 +10,22 @@ import Toast from '../../../../components/Toast/Toast';
 
 /* ── Dropdown options ─────────────────────────────── */
 const HEART_RATE_OPTIONS = [
-  { label: 'Below Normal  (< 60 bpm)', value: '<60' },
-  { label: 'Normal  (60 – 100 bpm)',   value: '60-100' },
-  { label: 'Elevated  (> 100 bpm)',    value: '>100' },
-];
+  { label: 'Low (< 60 bpm)', value: '<60' },
+  { label: 'Normal (60–100 bpm)',   value: '60-100' },
+  { label: 'Slightly High (101–120 bpm)',    value: '>100' },
+  { label: 'High (> 120 bpm)', value: '>120' },];
 const BP_OPTIONS = [
-  { label: 'Low  (< 90/60 mmHg)',         value: 'low' },
-  { label: 'Normal  (90/60 – 120/80)',     value: 'normal' },
-  { label: 'Elevated  (120/80 – 130/80)',  value: 'elevated' },
-  { label: 'High  (> 130/80 mmHg)',        value: 'high' },
+  { label: 'Low (< 90/60 mmHg)',         value: 'low' },
+  { label: 'Normal (90–120 / 60–80 mmHg)',     value: 'normal' },
+  { label: 'Pre-Hypertension (120–139 / 80–89 mmHg)',  value: 'elevated' },
+  { label: 'High – Stage 1 (140–159 / 90–99 mmHg)',        value: 'high' },
+
+  { label: 'High – Stage 2 (≥ 160 / ≥ 100 mmHg)', value: 'very_high' },
 ];
 const BLOOD_COUNT_OPTIONS = [
-  { label: 'Low  (< 12 g/dL)',      value: 'low' },
-  { label: 'Normal  (12 – 17 g/dL)', value: 'normal' },
-  { label: 'High  (> 17 g/dL)',      value: 'high' },
+  { label: 'Low (< 30%)',      value: 'low' },
+  { label: 'Normal (30%–45%)', value: 'normal' },
+  { label: 'High  (> 45%)',      value: 'high' },
 ];
 
 /* ── SelectField ──────────────────────────────────── */
@@ -40,7 +42,7 @@ function SelectField({ label, icon, value, onChange, options, placeholder, requi
       <button
         type="button"
         onClick={() => setOpen(v => !v)}
-        className="flex items-center justify-between bg-[#f9fafb] border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#155DFC] transition-colors w-full"
+        className="flex cursor-pointer items-center justify-between bg-[#f9fafb] border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#155DFC] transition-colors w-full"
       >
         <div className="flex items-center gap-2.5">
           <span className="text-gray-400 text-[14px]">{icon}</span>
@@ -50,7 +52,7 @@ function SelectField({ label, icon, value, onChange, options, placeholder, requi
         </div>
         <LuChevronDown
           size={16}
-          className={`text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`}
+          className={` cursor-pointer text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`}
         />
       </button>
 
@@ -89,7 +91,7 @@ function NumberField({ label, icon, value, onChange, placeholder, unit, required
           value={value}
           onChange={e => onChange(e.target.value)}
           placeholder={placeholder}
-          className="bg-transparent outline-none w-full text-sm text-black-main-text placeholder-gray-400"
+          className="cursor-pointer bg-transparent outline-none w-full text-sm text-black-main-text placeholder-gray-400"
         />
         {unit && <span className="text-gray-400 text-xs shrink-0">{unit}</span>}
       </div>
@@ -282,7 +284,7 @@ export default function PatientUpdateHealth() {
           <div className="flex justify-center mt-10">
             <button
               onClick={handleSave}
-              className="bg-brand-main hover:bg-blue-700 text-white px-12 py-3 rounded-full font-bold flex items-center gap-2 transition-colors text-sm shadow-md shadow-blue-200 mt-4"
+              className="cursor-pointer bg-brand-main hover:bg-blue-700 text-white px-12 py-3 rounded-full font-bold flex items-center gap-2 transition-colors text-sm shadow-md shadow-blue-200 mt-4"
             >
               Save  Changes
             </button>

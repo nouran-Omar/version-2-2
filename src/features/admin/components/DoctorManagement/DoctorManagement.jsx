@@ -129,7 +129,7 @@ export default function DoctorManagement() {
   };
 
   return (
-    <section className="flex flex-col gap-6 p-5 " aria-label="Doctor Management">
+    <section className="flex flex-col gap-6 p-6 " aria-label="Doctor Management">
 
       {/* ── Global Toast ── */}
       <Toast
@@ -145,11 +145,11 @@ export default function DoctorManagement() {
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2 mb-2">
             <MdOutlineManageAccounts className="text-[22px] text-black-main-text" aria-hidden="true" />
-            <h1 className="text-[18px] sm:text-[20px] font-bold text-black-main-text leading-none">
+            <h1 className="text-[24px] sm:text-[20px] font-bold text-black-main-text leading-none">
               Doctor Management
             </h1>
           </div>
-          <p className="text-[12px] text-gray-text-dim2 ">View, edit, and manage all platform doctors.</p>
+          <p className="text-[18px] text-gray-text-dim2 ">View, edit, and manage all platform doctors.</p>
         </div>
       </div>
 
@@ -164,7 +164,7 @@ export default function DoctorManagement() {
             aria-label="Search doctors"
             value={searchQuery}
             onChange={handleSearch}
-            className=" pl-9 pr-4 py-2.5 text-[13px] bg-[#F6F7F8] border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#155dfc]/30 focus:border-[#155dfc] transition-colors"
+            className=" pl-9 pr-4 py-2.5 text-[16px] bg-[#F6F7F8] border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#155dfc]/30 focus:border-[#155dfc] transition-colors"
           />
         </div>
 
@@ -172,15 +172,15 @@ export default function DoctorManagement() {
         <div className="flex items-center gap-3 shrink-0">
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-semibold text-gray-600 bg-white border border-gray-200 rounded-full hover:bg-gray-50 transition-colors"
+            className="flex cursor-pointer items-center gap-2 px-4 py-2.5 text-[16px] font-semibold text-gray-600 bg-white border border-gray-200 rounded-full hover:bg-gray-50 transition-colors"
           >
-            <FiUpload className="text-[14px]" /> Export
+            <FiUpload className="text-[16px]" /> Export
           </button>
           <button
             onClick={() => navigate('/admin/AddDoctorBtn')}
-            className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-semibold text-white bg-[#333CF5] rounded-full hover:bg-[#0913C3] transition-colors"
+            className="flex cursor-pointer items-center gap-2 px-4 py-2.5 text-[16px] font-semibold text-white bg-[#333CF5] rounded-full hover:bg-[#0913C3] transition-colors"
           >
-            <FiPlus className="text-[14px]" /> Add Doctor
+            <FiPlus className="text-[16px]" /> Add Doctor
           </button>
         </div>
       </div>

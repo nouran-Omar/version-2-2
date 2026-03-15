@@ -44,7 +44,7 @@ export default function DataTable({
           {/* Action: Delete */}
           <button 
             onClick={onBulkDelete} 
-            className="px-4 py-2 text-[12px] font-bold text-white bg-red-600 rounded-lg hover:bg-red-700 transition-all active:scale-95 shadow-sm shadow-red-200"
+            className="px-4 py-2 cursor-pointer text-[12px] font-bold text-white bg-red-600 rounded-lg hover:bg-red-700 transition-all active:scale-95 shadow-sm shadow-red-200"
           >
             Delete Selected
           </button>
@@ -52,7 +52,7 @@ export default function DataTable({
           {/* Action: Cancel */}
           <button 
             onClick={onClearSelection} 
-            className="px-4 py-2 text-[12px] font-bold text-neutral-500 bg-zinc-100 border border-gray-200 rounded-lg hover:bg-gray-200 transition-all active:scale-95"
+            className="px-4 py-2 cursor-pointer text-[12px] font-bold text-neutral-500 bg-zinc-100 border border-gray-200 rounded-lg hover:bg-gray-200 transition-all active:scale-95"
           >
             Cancel
           </button>
@@ -60,10 +60,10 @@ export default function DataTable({
       )}
 
       {/* Table Container */}
-      <div className="overflow-x-auto rounded-xl border border-gray-200/70 bg-white">
+      <div className="overflow-x-auto rounded-xl border border-gray-200/70 bg-white my-3">
         <table className="w-full min-w-[560px] border-collapse">
           <thead>
-            <tr className="bg-[#333CF5] text-white text-left">
+            <tr className="bg-[#333CF5] text-white text-center">
               <th className="w-10 px-4 py-4">
                 <input 
                   type="checkbox" 
@@ -72,11 +72,11 @@ export default function DataTable({
                   className="w-4 h-4 rounded accent-white cursor-pointer border-2 border-white/30" 
                 />
               </th>
-              <th className="px-4 py-4 text-[13px] font-semibold whitespace-nowrap">Full Name</th>
-              <th className="px-4 py-4 text-[13px] font-semibold whitespace-nowrap">Email</th>
-              <th className="px-4 py-4 text-[13px] font-semibold whitespace-nowrap">Price</th>
-              <th className="px-4 py-4 text-[13px] font-semibold whitespace-nowrap">Joined Date</th>
-              <th className="px-4 py-4 text-[13px] font-semibold text-center whitespace-nowrap">Actions</th>
+              <th className="px-4 py-4 text-[14px] font-normal whitespace-nowrap">Full Name</th>
+              <th className="px-4 py-4 text-[14px] font-normal whitespace-nowrap">Email</th>
+              <th className="px-4 py-4 text-[14px] font-normal whitespace-nowrap">Price</th>
+              <th className="px-4 py-4 text-[14px] font-normal whitespace-nowrap">Joined Date</th>
+              <th className="px-4 py-4 text-[14px] font-normal text-center whitespace-nowrap">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -85,7 +85,7 @@ export default function DataTable({
               return (
                 <tr 
                   key={item.id} 
-                  className={`border-b border-gray-100 transition-colors ${
+                  className={`border-b border-gray-100 transition-colors text-center ${
                     isSelected ? 'bg-[#EFF6FF]' : idx % 2 === 0 ? 'bg-white' : 'bg-[#F9FAFB]'
                   } hover:bg-[#EFF6FF]/60`}
                 >
@@ -104,23 +104,23 @@ export default function DataTable({
                         alt={item.fullName} 
                         className="w-9 h-9 rounded-full object-cover shrink-0 border border-gray-100" 
                       />
-                      <span className="text-[14px] font-semibold text-black-main-text truncate max-w-[150px]">
+                      <span className="text-[16px] font-semibold text-black-main-text truncate max-w-[150px]">
                         {item.fullName}
                       </span>
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <span className="text-[13px] text-gray-text-dim2 truncate block max-w-[200px]">
+                    <span className="text-[16px] text-gray-text-dim2 truncate block max-w-[200px]">
                       {item.email}
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className="text-[13px] font-bold text-black-main-text">
+                    <span className="text-[16px] font-bold text-black-main-text">
                       ${item.price}
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className="text-[13px] text-gray-text-dim2 whitespace-nowrap">
+                    <span className="text-[16px] text-gray-text-dim2 whitespace-nowrap">
                       {item.joinedDate}
                     </span>
                   </td>
@@ -128,14 +128,14 @@ export default function DataTable({
                     <div className="flex items-center justify-center gap-3">
                       <button 
                         onClick={() => onEdit(item)} 
-                        className="w-8 h-8 flex items-center justify-center rounded-lg text-black-main-text hover:bg-[#EEF2FF] transition-all" 
+                        className="w-8 h-8 cursor-pointer flex items-center justify-center rounded-lg text-black-main-text hover:bg-[#EEF2FF] transition-all" 
                         title="Edit"
                       >
                         <FiEdit3 size={15} />
                       </button>
                       <button 
                         onClick={() => onDeleteIndividual(item)} 
-                        className="w-8 h-8 flex items-center justify-center rounded-lg text-[#DC3545] hover:bg-red-50 transition-all" 
+                        className="w-8 h-8 cursor-pointer flex items-center justify-center rounded-lg text-[#DC3545] hover:bg-red-50 transition-all" 
                         title="Delete"
                       >
                         <FiTrash2 size={15} />
@@ -155,7 +155,7 @@ export default function DataTable({
           <button 
             disabled={currentPage === 1} 
             onClick={() => setCurrentPage(p => Math.max(p - 1, 1))} 
-            className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className=" w-10 h-10 flex cursor-pointer items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             <FaAngleLeft size={14} />
           </button>
@@ -163,7 +163,7 @@ export default function DataTable({
             <button 
               key={i} 
               onClick={() => setCurrentPage(i + 1)} 
-              className={`w-8 h-8 flex items-center justify-center rounded-full text-[13px] font-bold transition-all ${
+              className={`w-10 h-10 flex   cursor-pointer items-center justify-center rounded-full text-[16px] font-bold transition-all ${
                 currentPage === i + 1 ? 'bg-[#333CF5] text-white shadow-md shadow-blue-200' : 'border border-gray-200 text-gray-600 hover:bg-gray-50'
               }`}
             >
@@ -173,7 +173,7 @@ export default function DataTable({
           <button 
             disabled={currentPage === totalPages} 
             onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))} 
-            className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="w-10 h-10 flex cursor-pointer items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             <FaAngleRight size={14} />
           </button>

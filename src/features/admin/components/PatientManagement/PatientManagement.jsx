@@ -144,7 +144,7 @@ export default function PatientManagement() {
   };
 
   return (
-    <section className="relative flex flex-col gap-6 p-5 min-h-screen" aria-label="Patient Management">
+    <section className="relative flex flex-col gap-6 p-6 min-h-screen" aria-label="Patient Management">
 
       <Toast
         visible={toast.visible}
@@ -158,11 +158,11 @@ export default function PatientManagement() {
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2 mb-2">
           <MdManageAccounts className="text-[22px] text-black-main-text" aria-hidden="true" />
-          <h1 className="text-[18px] sm:text-[20px] font-bold text-black-main-text leading-none">
+          <h1 className="text-[24px] sm:text-[20px] font-bold text-black-main-text leading-none">
             Patient Management
           </h1>
         </div>
-        <p className="text-[12px] text-[#757575]">View, edit, and manage all registered patients.</p>
+        <p className="text-[16px] text-[#757575]">View, edit, and manage all registered patients.</p>
       </div>
 
       {/* ── Search + Actions ── */}
@@ -175,15 +175,15 @@ export default function PatientManagement() {
             aria-label="Search patients"
             value={searchQuery}
             onChange={handleSearch}
-            className=" pl-9 pr-4 py-2.5 text-[13px] bg-[#F6F7F8] border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#333CF5]/30 focus:border-[#333CF5] transition-colors"
+            className=" pl-9 pr-4 py-2.5 text-[16px] bg-[#F6F7F8] border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#333CF5]/30 focus:border-[#333CF5] transition-colors"
           />
         </div>
         <div className="flex items-center gap-3 shrink-0">
           <button onClick={handleExport} className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-semibold text-gray-600 bg-white border border-gray-200 rounded-full hover:bg-gray-50 transition-colors">
-            <FiUpload className="text-[14px]" /> Export
+            <FiUpload className="text-[16px]" /> Export
           </button>
           <button onClick={() => navigate("/admin/AddPatientBtn")} className="flex items-center gap-2 px-4 py-2.5 text-[13px] font-semibold text-white bg-[#333CF5] rounded-full hover:bg-[#0913C3] transition-colors">
-            <FiPlus className="text-[14px]" /> Add Patient
+            <FiPlus className="text-[16px]" /> Add Patient
           </button>
         </div>
       </div>

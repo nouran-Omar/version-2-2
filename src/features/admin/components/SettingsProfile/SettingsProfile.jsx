@@ -74,7 +74,7 @@ export default function SettingsProfile() {
 
   /* ─────────── render ─────────── */
   return (
-    <section className="flex flex-col gap-6 p-5 " aria-label="Settings & Profile">
+    <section className="flex flex-col gap-6 p-6 " aria-label="Settings & Profile">
 
       {/* Toast */}
       <Toast
@@ -86,19 +86,19 @@ export default function SettingsProfile() {
       />
 
       {/* ── Page heading ─────────────────────────── */}
-   <header className="flex flex-col gap-1 pb-4 border-b border-gray-100">
+   <header className="flex flex-col gap-1 pb-4 ">
   {/* السطر الأول: الأيقونة والعنوان */}
-  <div className="flex items-center gap-2 mb-2">
+  <div className="flex items-center gap-2">
     <div className="w-9 h-9 flex items-center justify-center rounded-[10px] bg-gray-50 text-black-main-text text-[22px] shrink-0">
       <HiOutlineCog6Tooth />
     </div>
-    <h1 className="text-[18px] sm:text-[20px] font-bold text-black-main-text leading-tight">
+    <h1 className="text-[24px] sm:text-[20px] font-bold text-black-main-text leading-tight">
       Settings & Profile
     </h1>
   </div>
 
   {/* السطر الثاني: الوصف (مع إزاحة ليكون تحت نص العنوان بالضبط) */}
-  <p className="text-[13px] text-gray-text-dim2  leading-relaxed">
+  <p className="text-[18px] text-gray-text-dim2  ml-2">
     Manage your personal details and account preferences.
   </p>
 </header>
@@ -110,7 +110,7 @@ export default function SettingsProfile() {
           style={{ background: 'linear-gradient(to right, #EFF6FF, #EEF2FF)' }}
         >
           <LuUser size={18} className="text-[#155DFC]" />
-          <span className="text-[#101828] text-[14px] font-bold">Personal Information</span>
+          <span className="text-[#101828] text-[18px] font-bold">Personal Information</span>
         </div>
 
         <div className="p-5 lg:p-8">
@@ -118,7 +118,7 @@ export default function SettingsProfile() {
 
             {/* Profile Photo */}
             <div className="flex flex-col items-center gap-2 shrink-0">
-              <p className="text-[12px] font-semibold text-[#364153] mb-1 self-start lg:self-center">Profile Photo</p>
+              <p className="text-[14px] font-semibold text-[#364153] mb-1 self-start lg:self-center">Profile Photo</p>
               <div
                 className="w-28 h-28 rounded-2xl overflow-hidden cursor-pointer border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors relative group"
                 onClick={() => fileRef.current.click()}
@@ -129,11 +129,11 @@ export default function SettingsProfile() {
                   alt="Profile"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="text-white text-[11px] font-semibold">Change</span>
+                  <span className="text-white text-[14px] font-semibold">Change</span>
                 </div>
               </div>
               <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handlePhotoChange} />
-              <span className="text-[10px] text-gray-400 text-center leading-relaxed">
+              <span className="text-[12px] text-gray-400 text-center leading-relaxed">
                 JPG, PNG or GIF<br />Max size 5MB
               </span>
             </div>
@@ -159,7 +159,7 @@ export default function SettingsProfile() {
           <div className="flex justify-end mt-6">
             <button
               onClick={handleSaveProfile}
-              className="bg-brand-main hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold flex items-center gap-2 transition-colors text-[13px]"
+              className="bg-brand-main hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold flex items-center gap-2 transition-colors text-[14px]"
             >
               <LuCheck size={15} /> Save Changes
             </button>
@@ -174,7 +174,7 @@ export default function SettingsProfile() {
           style={{ background: 'linear-gradient(to right, #FFF7ED, #FEF2F2)' }}
         >
           <HiOutlineCog6Tooth size={18} className="text-[#F54900]" />
-          <span className="text-[#101828] text-[14px] font-bold">Account Settings</span>
+          <span className="text-[#101828] text-[18px] font-bold">Account Settings</span>
         </div>
 
         <div className="divide-y divide-gray-50">
@@ -185,7 +185,7 @@ export default function SettingsProfile() {
             action={
               <button
                 onClick={() => { setPwError(''); setPwModal(true); }}
-                className="text-[#155DFC] font-bold text-[13px] hover:underline"
+                className="text-[#155DFC] font-bold text-[14px] hover:underline"
               >
                 Change
               </button>
@@ -297,7 +297,7 @@ export default function SettingsProfile() {
 function InputField({ label, icon, value, onChange, required }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="text-[12px] font-semibold text-[#364153]">
+      <label className="text-[14px] font-normal text-[#364153]">
         {label}{required && <span className="text-red-500 ml-0.5">*</span>}
       </label>
       <div className="flex items-center bg-[#f9fafb] border border-gray-200 rounded-xl px-3.5 py-2.5 gap-2.5 focus-within:border-[#155DFC] transition-colors">
@@ -306,7 +306,7 @@ function InputField({ label, icon, value, onChange, required }) {
           type="text"
           value={value}
           onChange={e => onChange(e.target.value)}
-          className="bg-transparent outline-none w-full text-[13px] text-black-main-text"
+          className="bg-transparent outline-none w-full text-[14px] text-black-main-text"
         />
       </div>
     </div>
@@ -316,7 +316,7 @@ function InputField({ label, icon, value, onChange, required }) {
 function PasswordField({ label, placeholder, value, show, onToggle, onChange }) {
   return (
     <div className="mb-4">
-      <label className="text-[12px] font-semibold text-[#364153] mb-1.5 block">{label}</label>
+      <label className="text-[14px] font-semibold text-[#364153] mb-1.5 block">{label}</label>
       <div className="flex items-center bg-white border border-gray-200 rounded-xl px-3.5 py-2.5 gap-2.5 focus-within:border-[#155DFC] transition-colors">
         <LuLock size={14} className="text-gray-400 shrink-0" />
         <input
@@ -324,7 +324,7 @@ function PasswordField({ label, placeholder, value, show, onToggle, onChange }) 
           placeholder={placeholder}
           value={value}
           onChange={e => onChange(e.target.value)}
-          className="outline-none w-full text-[13px] text-black-main-text bg-transparent"
+          className="outline-none w-full text-[14px] text-black-main-text bg-transparent"
         />
         <button type="button" onClick={onToggle} className="text-gray-400 hover:text-gray-600 transition-colors shrink-0">
           {show ? <LuEyeOff size={14} /> : <LuEye size={14} />}
@@ -349,8 +349,8 @@ function SettingRow({ icon, title, desc, action }) {
       <div className="flex items-center gap-3">
         <span className="text-gray-400 text-lg shrink-0">{icon}</span>
         <div>
-          <h4 className="font-bold text-[13px] text-black-main-text">{title}</h4>
-          <p className="text-gray-400 text-[11px] mt-0.5">{desc}</p>
+          <h4 className="font-bold text-[16px] text-black-main-text">{title}</h4>
+          <p className="text-gray-400 text-[14px] mt-0.5">{desc}</p>
         </div>
       </div>
       {action}

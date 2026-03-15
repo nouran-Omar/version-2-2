@@ -109,12 +109,14 @@ const PrescriptionDetail = () => {
           {/* ── Medications ─────────────────────────────── */}
           <section>
          <div 
-  className="flex items-center gap-2 text-black-main-text font-bold text-[14px] px-4 py-3 rounded-xl mb-5"
+  className="flex items-center gap-2 text-black-main-text font-bold text-[14px] px-4 py-4 rounded-xl mb-5"
   style={{ background: 'linear-gradient(90deg, #FAF5FF 0%, #F3E8FF 100%)' }}
 >
 
-              <TbCapsule className="text-[18px] text[#9810FA]" />
-              Prescribed Medications
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <path d="M8.75082 17.0832L17.0841 8.74984C17.4735 8.36823 17.7834 7.91322 17.9959 7.41111C18.2083 6.90899 18.3191 6.36975 18.3219 5.82454C18.3246 5.27934 18.2193 4.739 18.0119 4.23477C17.8046 3.73054 17.4993 3.27242 17.1138 2.8869C16.7282 2.50137 16.2701 2.1961 15.7659 1.98873C15.2617 1.78136 14.7213 1.67601 14.1761 1.67876C13.6309 1.68152 13.0917 1.79232 12.5895 2.00478C12.0874 2.21723 11.6324 2.52711 11.2508 2.91651L2.91748 11.2498C2.52809 11.6314 2.21821 12.0865 2.00575 12.5886C1.7933 13.0907 1.68249 13.6299 1.67974 14.1751C1.67699 14.7203 1.78234 15.2607 1.98971 15.7649C2.19708 16.2691 2.50235 16.7273 2.88787 17.1128C3.27339 17.4983 3.73151 17.8036 4.23575 18.0109C4.73998 18.2183 5.28032 18.3237 5.82552 18.3209C6.37072 18.3182 6.90997 18.2074 7.41208 17.9949C7.91419 17.7824 8.36921 17.4726 8.75082 17.0832Z" stroke="#9810FA" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7.07812 7.0835L12.9115 12.9168" stroke="#9810FA" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+</svg> Prescribed Medications
             </div>
             <div className="flex flex-col gap-4">
               {data.medications.map((med, i) => (

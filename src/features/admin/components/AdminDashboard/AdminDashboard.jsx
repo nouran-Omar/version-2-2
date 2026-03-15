@@ -35,11 +35,11 @@ const StatCard = ({ icon, label, value, sub, gradient }) => (
 
     {/* النصوص تحت الأيقونة مباشرة */}
     <div className="flex flex-col gap-1 min-w-0">
-      <span className="text-[22px] sm:text-[24px] font-bold text-[#101828] leading-tight">
+      <span className="text-[30px] sm:text-[24px] font-bold text-[#101828] leading-tight">
         {(value ?? 0).toLocaleString()}
       </span>
-      <span className="text-[13px] font-semibold text-[#101828]">{label}</span>
-      <span className="text-[11px] text-[#6A7282]">{sub}</span>
+      <span className="text-[14px] font-semibold text-[#101828]">{label}</span>
+      <span className="text-[12px] text-[#6A7282]">{sub}</span>
     </div>
 
   </div>
@@ -96,16 +96,16 @@ export default function AdminDashboard() {
     <section className="flex flex-col gap-8" aria-label="Admin Dashboard">
 
       {/* ══ Welcome Card ════════════════════════════════════════ */}
-      <div className="relative overflow-hidden rounded-[20px] p-6 sm:p-8 bg-gradient-to-br from-[#155dfc] via-brand-main to-[#9810fa] shadow-[0_20px_40px_rgba(21,93,252,0.25)]">
+      <div className="relative overflow-hidden rounded-[20px] p-6 sm:p-8 bg-gradient-to-br from-[#155dfc] via-brand-main to-[#9810fa] ">
         {/* Background circles */}
         <div aria-hidden="true" className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/10 pointer-events-none" />
         <div aria-hidden="true" className="absolute -bottom-16 -right-4 w-64 h-64 rounded-full bg-white/5 pointer-events-none" />
 
         <div className="relative z-10">
-          <h1 className="text-[22px] sm:text-[26px] font-bold text-white leading-tight">
+          <h1 className="text-[24px] sm:text-[26px] font-bold text-white leading-tight">
             Welcome Back 👋
           </h1>
-          <p className="text-[13px] text-white/75 mt-1 mb-5 max-w-md">
+          <p className="text-[18px] text-white/75 mt-1 mb-5 ">
             Manage doctors and patients across the PulseX platform.
           </p>
 
@@ -113,14 +113,14 @@ export default function AdminDashboard() {
           <div className="flex flex-wrap gap-3 mb-6">
             <button
               onClick={() => navigate('/admin/AddDoctorBtn')}
-              className="flex items-center gap-2 px-4 py-2 text-[13px] font-semibold bg-white text-[#333CF5] rounded-full hover:bg-blue-50 transition-colors shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 text-[16px] font-semibold bg-white text-[#333CF5] rounded-full hover:bg-blue-50 transition-colors shadow-sm"
             >
               <MdPersonAddAlt className="text-lg" />
               Add Doctor
             </button>
             <button
               onClick={() => navigate('/admin/AddPatientBtn')}
-              className="flex items-center gap-2 px-4 py-2 text-[13px] font-semibold bg-[#0913C3] text-white border border-white/30 rounded-full hover:bg-white/25 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-[16px] font-semibold bg-[#0913C3] text-white border border-white/30 rounded-full hover:bg-white/25 transition-colors"
             >
               <MdPersonAddAlt className="text-lg" />
               Add Patient
@@ -162,14 +162,15 @@ export default function AdminDashboard() {
       </div>
 
       {/* ══ Recent Doctors + Recent Patients ════════════════════ */}
-      <div className="grid grid-cols-1 p-5   lg:grid-cols-2 gap-8">
+     <div className="grid grid-cols-1 p-5 lg:grid-cols-2 gap-8">
 
-        {/* ── Recent Doctors ── */}
-        <div className="bg-white  rounded-[16px] p-5 min-h-[280px] flex flex-col shadow-xl">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[14px] font-bold text-black-main-text">Recent Doctors</h2>
+  {/* ── Recent Doctors ── */}
+  {/* أضفنا شادو مخصص ينتشر 15 بكسل في كل الاتجاهات */}
+       <div className="bg-white rounded-[16px] p-5 min-h-[280px] flex flex-col shadow-[0_0_20px_rgba(0,0,0,0.08)]"> 
+     <div className="flex items-center justify-between mb-4">
+            <h2 className="text-[20px] font-bold text-black-main-text">Recent Doctors</h2>
             <button
-              className="text-[12px] font-semibold text-[#333CF5] hover:underline bg-white  border-none cursor-pointer"
+              className="text-[14px] font-semibold text-[#333CF5] hover:underline bg-white  border-none cursor-pointer"
               onClick={() => navigate('/admin/doctor-management')}
             >
               View All
@@ -183,8 +184,8 @@ export default function AdminDashboard() {
               <div className="w-12 h-12 rounded-full bg-[#EFF6FF] flex items-center justify-center text-[#8EC5FF] text-2xl">
                 <LuUserX />
               </div>
-              <h3 className="text-[13px] font-semibold text-black-main-text">No Doctors Added Yet</h3>
-              <p className="text-[12px] text-gray-500 max-w-[220px]">
+              <h3 className="text-[16px] font-semibold text-black-main-text">No Doctors Added Yet</h3>
+              <p className="text-[14px] text-gray-500 max-w-[220px]">
                 Start building your medical team by adding doctors to the PulseX platform.
               </p>
               <button
@@ -205,12 +206,12 @@ export default function AdminDashboard() {
                       className="w-10 h-10 rounded-full object-cover shrink-0 border border-gray-100"
                     />
                     <div className="min-w-0">
-                      <p className="text-[13px] font-semibold text-black-main-text truncate">{doc.name}</p>
-                      <p className="text-[11px] text-gray-text-dim2 truncate">{doc.email}</p>
+                      <p className="text-[16px] font-semibold text-black-main-text truncate">{doc.name}</p>
+                      <p className="text-[14px] text-gray-text-dim2 truncate">{doc.email}</p>
                     </div>
                   </div>
                   <button
-                    className="shrink-0 px-3 py-1.5 text-[11px] font-semibold text-[#333CF5] rounded-[8px] hover:transition-colors border-none cursor-pointer"
+                    className="shrink-0 px-3 py-1.5 text-[14px] font-semibold text-[#333CF5] rounded-[8px] hover:transition-colors border-none cursor-pointer"
                     onClick={() => navigate(`/admin/edit-doctor/${doc.id}`)}
                   >
                     Edit
@@ -222,11 +223,10 @@ export default function AdminDashboard() {
         </div>
 
         {/* ── Recent Patients ── */}
-        <div className="bg-white  rounded-[16px] p-5 min-h-[280px] flex flex-col shadow-xl">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[14px] font-bold text-black-main-text">Recent Patients</h2>
+   <div className="bg-white rounded-[16px] p-5 min-h-[280px] flex flex-col shadow-[0_0_25px_rgba(0,0,0,0.12)]"><div className="flex items-center justify-between mb-4">
+            <h2 className="text-[20px] font-bold text-black-main-text">Recent Patients</h2>
             <button
-              className="text-[12px] font-semibold text-[#333CF5] hover:underline bg-white border-none cursor-pointer"
+              className="text-[14px] font-semibold text-[#333CF5] hover:underline bg-white border-none cursor-pointer"
               onClick={() => navigate('/admin/patient-management')}
             >
               View All
@@ -262,12 +262,12 @@ export default function AdminDashboard() {
                       className="w-10 h-10 rounded-full object-cover shrink-0 border border-gray-100"
                     />
                     <div className="min-w-0">
-                      <p className="text-[13px] font-semibold text-black-main-text truncate">{p.name}</p>
-                      <p className="text-[11px] text-gray-text-dim2 truncate">{p.email}</p>
+                      <p className="text-[16px] font-semibold text-black-main-text truncate">{p.name}</p>
+                      <p className="text-[14px] text-gray-text-dim2 truncate">{p.email}</p>
                     </div>
                   </div>
                   <button
-                    className="shrink-0 px-3 py-1.5 text-[11px] font-semibold text-[#333CF5] rounded-[8px] hover: border-none cursor-pointer"
+                    className="shrink-0 px-3 py-1.5 text-[14px] font-semibold text-[#333CF5] rounded-[8px] hover: border-none cursor-pointer"
                     onClick={() => navigate(`/admin/edit-patient/${p.id}`)}
                   >
                     Edit
