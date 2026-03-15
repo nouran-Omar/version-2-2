@@ -153,7 +153,7 @@ const PatientDashboard = () => {
   const v = patient.vitals;
 
   return (
-    <section className="rounded-full flex flex-col font-roboto gap-6 p-[24px] md:p-[24px] bg-[#FAFBFF] min-h-screen">
+    <section className="rounded-fullflex flex-col font-roboto gap-6 p-[24px] md:p-[24px] bg-[#FAFBFF] min-h-screen">
 
       {/* Welcome Header */}
       <div className="mb-2">

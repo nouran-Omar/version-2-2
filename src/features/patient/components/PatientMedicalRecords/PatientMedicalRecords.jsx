@@ -222,7 +222,7 @@ return (
   // ── Render ────────────────────────────────────────────────────────────────────
   return (
     <section
-      className="flex flex-col gap-6 p-5 min-h-screen bg-[#FFFFFFE5] "
+      className="flex flex-col gap-6 p-[18px] min-h-screen bg-[#FFFFFFE5] "
       style={{ background: BRAND.bg, fontFamily: 'Roboto, sans-serif' }}
     >
 
@@ -360,84 +360,72 @@ return (
 
 
         {/* Table */}
-        <div className="overflow-x-auto rounded-3xl shadow-[0px_7px_21px_0px_rgba(37,44,97,0.20)] shadow-[0px_3px_8px_0px_rgba(136,144,194,0.25)] outline outline-[0.60px] outline-offset-[-0.60px] outline-zinc-300" 
-      
-        >
-          <table className="w-full text-[13px]">
+        <div className="overflow-x-auto rounded-[20px] border border-gray-200" style={{ boxShadow: '0px 1px 3px rgba(0,0,0,0.06)' }}>
+          <table className="w-full text-[14px] min-w-[700px]">
             <thead>
-              <tr className="border-b" style={{ borderColor: 'rgba(113,113,122,0.4)' }}>
-                <th className="px-6 py-3 text-left w-12">
+              <tr className="border-b border-gray-200 bg-white">
+                <th className="pl-6 pr-2 py-5 text-left w-14">
                   <input
                     type="checkbox"
                     checked={selected.length === documents.length && documents.length > 0}
                     onChange={toggleAll}
-                    className="rounded border-blue-600 accent-blue-600 cursor-pointer"
+                    className="w-[18px] h-[18px] rounded-[5px] border-2 border-gray-300 accent-[#333CF5] cursor-pointer"
                   />
                 </th>
-                {['File name', 'Type', 'Size', 'Uploaded Date', 'Record Type', <LuTrash2 className="text-red-600 text-base" />].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left text-[12px] font-medium" style={{ color: BRAND.dark }}>
-                    {h === '' ? (
-                      // Trash icon header (bulk indicator)
-                      <span className="flex justify-end">
-                        {selected.length > 0 && <LuTrash2 className="text-red-600 text-base" />}
-                      </span>
-                    ) : h}
-                  </th>
-                ))}
+                <th className="px-4 py-5 text-left text-[13px] font-semibold text-gray-500 tracking-wide">File name</th>
+                <th className="px-4 py-5 text-left text-[13px] font-semibold text-gray-500 tracking-wide">Type</th>
+                <th className="px-4 py-5 text-left text-[13px] font-semibold text-gray-500 tracking-wide">Size</th>
+                <th className="px-4 py-5 text-left text-[13px] font-semibold text-gray-500 tracking-wide">Uploaded Date</th>
+                <th className="px-4 py-5 text-left text-[13px] font-semibold text-gray-500 tracking-wide">Record Type</th>
+                <th className="pr-6 pl-2 py-5 text-center w-14">
+                  <LuTrash2 className="text-red-500 text-[16px] mx-auto" />
+                </th>
               </tr>
             </thead>
             <tbody>
               {documents.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="text-center py-12 text-[13px] text-neutral-400">
+                  <td colSpan={7} className="text-center py-16 text-[14px] text-neutral-400">
                     No documents yet. Upload your first file above.
                   </td>
                 </tr>
               )}
-              {documents.map((doc) => {
-                const typeStyle = TYPE_COLORS[doc.type] || { bg: '#FFFFFFE5', color: '#555' };
+              {documents.map((doc, idx) => {
                 const isChecked = selected.includes(doc.id);
+                const isLast = idx === documents.length - 1;
                 return (
                   <tr
                     key={doc.id}
-                    className="border-b transition-colors hover:bg-gray-50"
-                    style={{
-                      borderColor: 'rgba(113,113,122,0.4)',
-                      background: isChecked ? '#EEF0FF' : undefined,
-                    }}
+                    className={`transition-colors hover:bg-gray-50/60 ${!isLast ? 'border-b border-gray-100' : ''}`}
+                    style={{ background: isChecked ? '#EEF0FF' : undefined }}
                   >
-                    <td className="px-6 py-4">
+                    <td className="pl-6 pr-2 py-5">
                       <input
                         type="checkbox"
                         checked={isChecked}
                         onChange={() => toggleSelect(doc.id)}
-                        className="rounded accent-blue-600 cursor-pointer"
+                        className="w-[18px] h-[18px] rounded-[5px] border-2 border-gray-300 accent-[#333CF5] cursor-pointer"
                       />
                     </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-center gap-2">
-                        <LuFileText className="shrink-0" style={{ color: BRAND.dark }} />
-                        <span className="font-medium" style={{ color: BRAND.dark }}>{doc.name}</span>
+                    <td className="px-4 py-5">
+                      <div className="flex items-center gap-2.5">
+                        <LuFileText className="text-[16px] shrink-0" style={{ color: BRAND.main }} />
+                        <span className="font-semibold text-[14px]" style={{ color: BRAND.dark }}>{doc.name}</span>
                       </div>
                     </td>
-                    <td className="px-4 py-4">
-                      <span
-                        className="px-2.5 py-1 rounded-full text-[11px] font-bold"
-                        style={{ background: typeStyle.bg, color: typeStyle.color }}
-                      >
-                        {doc.type}
-                      </span>
+                    <td className="px-4 py-5">
+                      <span className="font-bold text-[13px]" style={{ color: BRAND.dark }}>{doc.type}</span>
                     </td>
-                    <td className="px-4 py-4" style={{ color: '#757575B2' }}>{doc.size}</td>
-                    <td className="px-4 py-4" style={{ color: '#757575B2' }}>{doc.date}</td>
-                    <td className="px-4 py-4" style={{ color: '#757575B2' }}>{doc.category}</td>
-                    <td className="px-4 py-4">
+                    <td className="px-4 py-5 text-[13px] text-gray-400 font-medium">{doc.size}</td>
+                    <td className="px-4 py-5 text-[13px] text-gray-400 font-medium">{doc.date}</td>
+                    <td className="px-4 py-5 text-[13px] text-gray-500 font-medium">{doc.category}</td>
+                    <td className="pr-6 pl-2 py-5 text-center">
                       <button
-                        className="p-1.5 text-red-600 rounded-lg hover:bg-red-50 transition-colors text-gray-400 hover:text-red-600"
+                        className="p-2 rounded-lg text-red-500 hover:bg-red-50 transition-colors"
                         onClick={() => openConfirm([doc.id], doc.name)}
                         title="Delete"
                       >
-                        <LuTrash2 />
+                        <LuTrash2 className="text-[16px]" />
                       </button>
                     </td>
                   </tr>
@@ -454,7 +442,10 @@ return (
         {/* QR Code CTA */}
         <div
           className="rounded-[24px] p-8 flex flex-col items-center text-center gap-4"
-     
+          style={{
+            background: 'linear-gradient(135deg, #EEF2FF 0%, #DBEAFE 60%, #EFF6FF 100%)',
+            boxShadow: '0px 4px 20px 0px rgba(51,60,245,0.10)',
+          }}
         >
       {/* الجزء الخاص بالـ QR Code Message */}
 <div className="flex flex-col items-center text-center gap-3">
@@ -464,7 +455,8 @@ return (
     <img 
       src={Qrcodepatiant} 
       alt="QR Icon" 
-      className="w-12 h-12 object-contain" // هنا الحجم الصح بدل text-5xl
+      className="w-12 h-12 object-contain"
+      style={{ animation: 'float-qr 3s ease-in-out infinite' }}
     />
     All your medical files are ready!
   </h3>

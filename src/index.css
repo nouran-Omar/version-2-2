@@ -31,6 +31,9 @@ body {
   /* أنميشن الطفو للأيقونات والكروت */
   --animate-float-slow: float-slow 6s ease-in-out infinite;
 
+  /* أنميشن طفو الـ QR Icon ناعم وخفيف */
+  --animate-float-qr: float-qr 3s ease-in-out infinite;
+
   @keyframes fade-left {
     from {
       opacity: 0;
@@ -72,6 +75,16 @@ body {
     }
     50% {
       transform: translateY(-20px);
+    }
+  }
+
+  @keyframes float-qr {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
     }
   }
 
