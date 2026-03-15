@@ -1,239 +1,232 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { HiOutlineBanknotes, HiOutlineCreditCard, HiCheckCircle } from 'react-icons/hi2';
+import { HiCheckCircle } from 'react-icons/hi2';
 import { HiOutlineUser, HiOutlineCalendar, HiOutlineClock } from 'react-icons/hi';
-import { MdSecurity, MdPayment } from 'react-icons/md';
+import { MdPayment } from 'react-icons/md';
+
+// الأيقونات التي أرفقتها
+const MastercardLogo = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="18" viewBox="0 0 32 18" fill="none">
+    <rect width="32" height="18" rx="4" fill="#FFF4EE" />
+    <path d="M20.2744 3.75C23.7196 3.75021 26.5124 6.0678 26.5127 8.92676C26.5127 11.7859 23.7198 14.1043 20.2744 14.1045C18.7295 14.1045 17.3162 13.6371 16.2266 12.8652C15.1371 13.6367 13.7251 14.1044 12.1807 14.1045C8.73503 14.1045 5.94141 11.7861 5.94141 8.92676C5.94172 6.06767 8.73522 3.75 12.1807 3.75C13.7249 3.75008 15.1372 4.21699 16.2266 4.98828C17.3161 4.21661 18.7297 3.75 20.2744 3.75Z" fill="#ED0006" />
+    <path d="M20.2734 3.75C23.7189 3.75002 26.5124 6.06768 26.5127 8.92676C26.5127 11.7861 23.7191 14.1045 20.2734 14.1045C18.7287 14.1045 17.3162 13.6369 16.2266 12.8652C17.5673 11.9156 18.4189 10.5042 18.4189 8.92676C18.4188 7.34937 17.5675 5.93778 16.2266 4.98828C17.3161 4.21677 18.7289 3.75 20.2734 3.75Z" fill="#F9A000" />
+    <path d="M16.2266 4.98779C17.5679 5.93739 18.4189 7.34942 18.4189 8.92725C18.4189 10.5049 17.5677 11.9161 16.2266 12.8657C14.8859 11.9161 14.0352 10.5046 14.0352 8.92725C14.0352 7.34974 14.8856 5.93739 16.2266 4.98779Z" fill="#FF5E00" />
+  </svg>
+);
+
+const LockIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M12.6667 7.3335H3.33333C2.59695 7.3335 2 7.93045 2 8.66683V13.3335C2 14.0699 2.59695 14.6668 3.33333 14.6668H12.6667C13.403 14.6668 14 14.0699 14 13.3335V8.66683C14 7.93045 13.403 7.3335 12.6667 7.3335Z" stroke="#3B5BFE" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M4.66797 7.3335V4.66683C4.66797 3.78277 5.01916 2.93493 5.64428 2.30981C6.2694 1.68469 7.11725 1.3335 8.0013 1.3335C8.88536 1.3335 9.7332 1.68469 10.3583 2.30981C10.9834 2.93493 11.3346 3.78277 11.3346 4.66683V7.3335" stroke="#3B5BFE" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 const PatientPayment = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const [method, setMethod] = useState('credit');
+  const [success, setSuccess] = useState(false);
 
-  /* data passed from Booking page */
   const bookingData = location.state || {
-    doctorName: 'Dr. Walid Ali', doctorTitle: 'Cardiologist',
-    date: 'Oct 15, 2025', time: '05:30 PM', price: 200
+    doctorName: 'Dr. Sarah Johnson',
+    doctorTitle: 'Cardiologist',
+    date: 'December 8, 2025',
+    time: '10:30 AM',
+    price: 150
   };
 
-  const [method,    setMethod]    = useState('cash');
-  const [success,   setSuccess]   = useState(false);
-  const [cardData,  setCardData]  = useState({ name: '', number: '', expiry: '', cvv: '' });
-const handlePay = (e) => {
-    e.preventDefault();
-    if (method === 'credit') {
-      if (!cardData.name || cardData.number.replace(/\s/g, '').length < 16 || !cardData.expiry || !cardData.cvv) {
-        alert('Please fill in all card details!');
-        return;
-      }
-    }
-    setSuccess(true);
-  };
-
-  /* ── Success Modal ── */
   if (success) {
-    const isCash = method === 'cash';
     return (
-      <div className="fixed inset-0 flex items-center justify-center z-[100] p-4 animate-in fade-in duration-300">
-        {/* الخلفية المظلمة (Overlay) */}
-        <div className="absolute inset-0 bg-black/60 " onClick={() => setSuccess(false)} />
-        
-        {/* جسم المودال */}
-        <div className="relative bg-white rounded-[28px] shadow-2xl p-8 max-w-sm w-full flex flex-col items-center text-center animate-in zoom-in-95 duration-300">
-          
-          {/* دائرة الأيقونة باللون الأخضر للنجاح أو الأزرق حسب التصميم */}
-          <div className="w-20 h-20 rounded-full bg-[#ECFDF5] flex items-center justify-center mb-6">
-            <div className="w-14 h-14 rounded-full bg-[#10B981] flex items-center justify-center shadow-lg shadow-[#10B98140]">
-              <HiCheckCircle className="text-white text-4xl" />
-            </div>
+      <div className="fixed inset-0 flex items-center justify-center z-[100] bg-black/40 backdrop-blur-sm p-4">
+        <div className="bg-white rounded-[32px] p-10 max-w-sm w-full text-center shadow-2xl">
+          <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
+            <HiCheckCircle className="text-emerald-500 text-5xl" />
           </div>
-
-          <h2 className="text-[22px] font-bold text-black-main-text mb-3">
-            {isCash ? 'Booking Confirmed' : 'Payment Successful'}
-          </h2>
-          
-          <p className="text-[14px] text-gray-500 leading-relaxed mb-8 px-2">
-            {isCash
-              ? 'Your appointment has been successfully booked. You can pay at the clinic.'
-              : 'Your payment has been processed successfully. Thank you for your purchase.'}
-          </p>
-
-          <div className="flex flex-col gap-3 w-full">
-            {/* زرار الرسائل - اللون الأساسي */}
-          
-            
-            {/* زرار المواعيد - شفاف مع بوردر */}
-            <button
-              onClick={() => navigate('/patient/appointments')}
-              className="w-full py-3.5 bg-brand-main rounded-full border border-gray-200 text-white font-bold text-[15px] hover:bg-[darken(#333CF5, 5%)] transition-all cursor-pointer"
-            >
-              Done
-            </button>
-          </div>
+          <h2 className="text-2xl font-bold text-slate-800 mb-2">Success!</h2>
+          <p className="text-slate-500 mb-8">Your payment has been processed successfully.</p>
+          <button onClick={() => navigate('/patient/appointments')} className="w-full py-4 bg-[#3B5BFE] text-white rounded-2xl font-bold hover:bg-blue-700 transition-all">Done</button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen  sm:p-6 lg:p-8">
-
-      {/* ── Title ── */}
-      <div className="flex items-center gap-2 mb-6">
-        <MdPayment className="text-xl text-black-main-text" />
-        <h1 className="text-xl font-bold text-black-main-text">Select Payment Method</h1>
-      </div>
-
-      <div className="flex flex-col lg:flex-row gap-6">
-
-        {/* ── LEFT: Payment Methods ── */}
-        <div className="flex-1 flex flex-col gap-4">
-
-          {/* Cash */}
-          <div
-            onClick={() => setMethod('cash')}
-            className={`flex items-center gap-4 p-4 rounded-2xl border-2 cursor-pointer transition
-              ${method === 'cash' ? 'border-brand-main bg-[#EEF0FF]' : 'border-gray-200 bg-white hover:border-gray-300'}`}
-          >
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${method === 'cash' ? 'bg-brand-main/10' : 'bg-gray-100'}`}>
-              <HiOutlineBanknotes className={`text-xl ${method === 'cash' ? 'text-brand-main' : 'text-gray-500'}`} />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-sm font-semibold text-black-main-text">Cash at Clinic</h3>
-              <p className="text-xs text-gray-400 mt-0.5">Pay directly at the clinic during your visit</p>
-            </div>
-            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition
-              ${method === 'cash' ? 'border-brand-main' : 'border-gray-300'}`}>
-              {method === 'cash' && <div className="w-2.5 h-2.5 rounded-full bg-brand-main" />}
-            </div>
+    <div className="min-h-screen rounded-full p-6 md:p-12 font-roboto">
+      <div className="max-w-6xl mx-auto">
+        
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-10">
+          <div className="">
+       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+  <g clip-path="url(#clip0_1770_12705)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M33.5672 32.8282C33.3977 32.8369 33.2384 32.9115 33.1231 33.036C33.0079 33.1606 32.946 33.3253 32.9505 33.4949C32.9505 34.3116 33.3005 35.4116 33.3839 36.4282C33.4324 36.7908 33.3805 37.1598 33.2339 37.4949C33.0839 37.2782 32.4672 37.4949 32.2505 37.4116L27.8505 37.1782C25.6283 37.0767 23.402 37.1101 21.1839 37.2782C17.8976 37.5905 14.6355 38.1195 11.4189 38.8616C11.3463 38.8717 11.2765 38.8963 11.2135 38.9338C11.1505 38.9713 11.0957 39.021 11.0522 39.08C11.0088 39.139 10.9775 39.2061 10.9603 39.2774C10.9432 39.3486 10.9404 39.4226 10.9522 39.4949C10.9592 39.5805 10.9862 39.6632 11.0309 39.7365C11.0756 39.8098 11.1369 39.8716 11.2098 39.9169C11.2827 39.9623 11.3652 39.99 11.4507 39.9977C11.5362 40.0055 11.6223 39.9931 11.7022 39.9616C13.8522 39.7116 16.0189 39.5449 18.1689 39.4282C19.8355 39.3449 21.4022 39.3282 23.0189 39.2949C24.6355 39.2616 26.2189 39.2116 27.8339 39.2949H32.2672C32.7589 39.3682 33.2589 39.3682 33.7505 39.2949C34.0284 39.2293 34.2754 39.0705 34.4505 38.8449C34.8379 38.297 35.0207 37.6305 34.9672 36.9616C34.9672 35.8116 34.3339 34.5449 34.2839 33.6282C34.3092 33.5255 34.3091 33.4181 34.2835 33.3153C34.2579 33.2126 34.2076 33.1177 34.1369 33.0389C34.0663 32.96 33.9775 32.8996 33.8782 32.8629C33.7789 32.8262 33.6721 32.8143 33.5672 32.8282ZM38.1172 8.58158C38.2339 8.33158 38.3839 8.09824 38.4839 7.84824C38.9961 6.66674 39.2354 5.38497 39.1839 4.09824C39.1405 3.3973 38.9433 2.71452 38.6062 2.09838C38.2692 1.48225 37.8007 0.947885 37.2339 0.533242C36.5757 0.108655 35.789 -0.0706012 35.0119 0.0269236C34.2347 0.124448 33.5167 0.492525 32.9839 1.06658C32.3672 1.63991 31.8339 2.29658 31.4005 3.01658C30.0632 5.35424 29.0431 7.8596 28.3672 10.4666C27.7476 12.6042 27.2193 14.7673 26.7839 16.9499L24.1505 18.1499C23.8862 18.2719 23.63 18.4111 23.3839 18.5666C23.2091 18.6977 23.0619 18.862 22.9505 19.0499C22.7675 19.3938 22.6702 19.777 22.6672 20.1666C22.7005 20.8166 22.8172 21.4616 23.0172 22.0816L23.5839 23.7482L24.2005 25.4149C24.2005 25.5316 24.3839 25.9149 24.4839 26.0649C24.5932 26.2376 24.7465 26.3781 24.9282 26.4718C25.1098 26.5655 25.3131 26.6092 25.5172 26.5982C25.795 26.5427 26.0672 26.4705 26.3339 26.3816L28.1672 25.5316C28.6839 25.2316 29.5172 24.9316 30.1672 24.5482C30.5376 24.3457 30.8703 24.0807 31.1505 23.7649C31.2906 23.5898 31.3877 23.3843 31.4339 23.1649C31.4505 22.7796 31.4226 22.3937 31.3505 22.0149L31.0839 19.8149C31.9339 18.6316 32.7505 17.4149 33.6005 16.1982C34.4505 14.9816 35.2672 13.7316 35.9839 12.4816C36.4505 11.7316 36.9505 10.8149 37.4505 10.0149C37.7055 10.6499 37.7689 11.3466 37.6339 12.0149C37.4783 12.6805 37.2505 13.3194 36.9505 13.9316C36.4839 14.9482 35.9339 16.0316 35.3839 17.1482C35.2942 17.2513 35.2402 17.3805 35.2298 17.5167C35.2194 17.6529 35.2532 17.7888 35.3262 17.9043C35.3992 18.0198 35.5074 18.1086 35.6349 18.1576C35.7624 18.2067 35.9023 18.2133 36.0339 18.1766C36.1214 18.1512 36.2025 18.1073 36.2716 18.0478C36.3406 17.9882 36.396 17.9145 36.4339 17.8316C37.2483 16.8716 38.0039 15.866 38.7005 14.8149C39.2192 14.0345 39.5501 13.1446 39.6672 12.2149C39.7208 11.5292 39.6079 10.8407 39.338 10.2081C39.0681 9.57543 38.6493 9.01742 38.1172 8.58158ZM29.6505 22.7299L29.2672 22.9299C28.5672 23.2299 27.7172 23.4466 27.1672 23.6966L25.9505 24.1799L25.4505 22.9132L24.8005 21.4299C24.6491 21.1061 24.521 20.772 24.4172 20.4299C24.4172 20.2132 24.2672 19.9966 24.3339 19.8299L24.8672 19.4132L27.4839 17.7466C27.655 17.9755 27.855 18.1755 28.0839 18.3466C28.3205 18.5044 28.5761 18.621 28.8505 18.6966C29.145 18.7877 29.445 18.8544 29.7505 18.8966C29.7251 19.0006 29.7251 19.1092 29.7505 19.2132V22.0132C29.7172 22.2132 29.5672 22.5799 29.6505 22.7299ZM34.4672 11.5299C33.7839 12.8132 33.0505 14.0799 32.3172 15.3299L30.6505 17.9299C30.3836 17.5991 30.094 17.2872 29.7839 16.9966C29.6394 16.8885 29.4892 16.7884 29.3339 16.6966C29.1794 16.6132 29.0183 16.5466 28.8505 16.4966C28.5505 16.4966 28.2672 16.4132 28.0005 16.3799C28.4005 14.9132 28.8172 13.4299 29.3172 11.9966C29.6672 10.9966 30.1339 10.0299 30.5672 9.04658V9.16324C30.7639 9.34102 30.975 9.49658 31.2005 9.62991C31.4628 9.7788 31.7405 9.88991 32.0339 9.96324C32.6206 10.2038 33.2289 10.3879 33.8505 10.5132C33.9272 10.5571 34.0122 10.5844 34.1001 10.5934C34.188 10.6024 34.2768 10.5929 34.3608 10.5656C34.4448 10.5382 34.5221 10.4936 34.5878 10.4346C34.6536 10.3756 34.7062 10.3035 34.7424 10.2229C34.7786 10.1423 34.7976 10.0551 34.798 9.96672C34.7985 9.87839 34.7805 9.79093 34.7452 9.70998C34.7098 9.62902 34.6579 9.55635 34.5929 9.49663C34.5278 9.43692 34.4509 9.39148 34.3672 9.36324C33.8839 9.01324 33.5005 8.59658 33.0339 8.22991C32.725 7.98894 32.4022 7.76634 32.0672 7.56324C31.834 7.45506 31.5947 7.36046 31.3505 7.27991C31.3939 7.16324 31.4439 7.04658 31.5005 6.92991C31.9928 5.95546 32.5483 5.01713 33.1672 4.11491C33.5428 3.55935 33.9761 3.0538 34.4672 2.59824C34.6633 2.35736 34.9393 2.19467 35.245 2.13964C35.5507 2.08461 35.866 2.14087 36.1339 2.29824C36.4368 2.53182 36.6848 2.82897 36.8604 3.16876C37.0361 3.50855 37.1351 3.88271 37.1505 4.26491C37.2128 5.24191 37.0592 6.22065 36.7005 7.13158C36.0672 8.65158 35.3205 10.1216 34.4672 11.5299ZM14.2022 26.3966C14.0592 25.9854 13.8147 25.617 13.4913 25.3256C13.1678 25.0343 12.776 24.8293 12.3522 24.7299C11.8008 24.6334 11.2369 24.6334 10.6855 24.7299L10.5855 24.0966C10.5855 23.5966 10.4022 23.1299 10.3022 22.6299C10.7722 22.6299 11.2389 22.7032 11.6855 22.8466C11.7552 22.8891 11.8332 22.916 11.9143 22.9255C11.9953 22.9351 12.0774 22.927 12.1551 22.9019C12.2327 22.8768 12.304 22.8352 12.3641 22.7799C12.4242 22.7247 12.4716 22.6572 12.5031 22.5819C12.5347 22.5067 12.5496 22.4255 12.5469 22.3439C12.5442 22.2624 12.5239 22.1824 12.4874 22.1094C12.4509 22.0364 12.3991 21.9722 12.3355 21.921C12.2719 21.8699 12.198 21.8332 12.1189 21.8132C11.4569 21.5423 10.7507 21.3954 10.0355 21.3799C10.0355 20.9799 9.8522 20.5799 9.78553 20.1799C9.78553 20.034 9.72758 19.8941 9.62444 19.791C9.52129 19.6879 9.3814 19.6299 9.23553 19.6299C9.08966 19.6299 8.94977 19.6879 8.84662 19.791C8.74348 19.8941 8.68553 20.034 8.68553 20.1799V21.3299C8.15863 21.3832 7.64219 21.5123 7.1522 21.7132C6.81257 21.8385 6.5016 22.0309 6.2378 22.2787C5.97399 22.5266 5.76272 22.8251 5.61657 23.1562C5.47041 23.4874 5.39234 23.8446 5.38701 24.2066C5.38168 24.5686 5.44919 24.9279 5.58553 25.2632C5.70218 25.6581 5.9158 26.0174 6.20691 26.3085C6.49803 26.5996 6.85737 26.8133 7.2522 26.9299C7.79335 27.0857 8.36129 27.1254 8.91886 27.0466C8.91886 27.2799 9.0022 27.4966 9.0522 27.7299C9.2022 28.4632 9.43553 29.1632 9.63553 29.8799C8.63735 30.0893 7.5972 29.9356 6.7022 29.4466C6.63773 29.3858 6.56123 29.3392 6.47762 29.3098C6.39402 29.2804 6.30519 29.2689 6.21686 29.276C6.12853 29.2831 6.04267 29.3087 5.96484 29.351C5.88701 29.3934 5.81894 29.4516 5.76502 29.522C5.7111 29.5923 5.67255 29.6731 5.65184 29.7593C5.63113 29.8455 5.62873 29.935 5.64481 30.0222C5.66088 30.1093 5.69506 30.1921 5.74513 30.2652C5.79521 30.3383 5.86008 30.4001 5.93553 30.4466C7.12044 31.302 8.58529 31.6772 10.0355 31.4966C10.0355 31.6132 10.0355 31.7132 10.1189 31.8299C10.129 31.9157 10.1563 31.9985 10.1993 32.0735C10.2422 32.1484 10.2998 32.2139 10.3686 32.2661C10.4375 32.3182 10.5162 32.356 10.5999 32.377C10.6837 32.398 10.7709 32.4019 10.8562 32.3884C10.9415 32.375 11.0232 32.3444 11.0964 32.2986C11.1696 32.2528 11.2329 32.1927 11.2823 32.1218C11.3317 32.051 11.3663 31.9709 11.3841 31.8864C11.4018 31.8019 11.4023 31.7146 11.3855 31.6299V31.3299C11.7522 31.2432 12.1078 31.1266 12.4522 30.9799C12.8806 30.8093 13.2689 30.5516 13.5926 30.2233C13.9163 29.8949 14.1683 29.503 14.3328 29.0722C14.4973 28.6414 14.5706 28.1812 14.5481 27.7207C14.5256 27.2601 14.4078 26.8093 14.2022 26.3966ZM7.4022 24.7299C7.01886 23.7799 7.61886 23.2132 8.41886 22.9466C8.49087 22.9387 8.56352 22.9387 8.63553 22.9466V25.1632C8.11886 25.2132 7.61886 25.2966 7.4022 24.7132V24.7299ZM11.2189 29.5632C11.2189 28.8966 11.1189 28.2466 11.0522 27.5799V26.8799C11.5855 26.7966 12.1189 26.6966 12.3522 27.2299C12.8022 28.2966 12.1689 29.0966 11.2189 29.5466V29.5632Z" fill="#333CF5"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M34.1999 26.8631C34.1595 26.5592 34.0983 26.2585 34.0165 25.9631C33.8332 25.2464 33.5499 24.6131 33.3665 23.9131C33.38 23.8317 33.3757 23.7485 33.3539 23.669C33.3321 23.5895 33.2934 23.5157 33.2403 23.4526C33.1872 23.3896 33.1211 23.3388 33.0465 23.3038C32.9719 23.2687 32.8906 23.2503 32.8082 23.2497C32.7256 23.2497 32.644 23.2678 32.5691 23.3026C32.4942 23.3375 32.4279 23.3883 32.3747 23.4515C32.3215 23.5147 32.2828 23.5887 32.2612 23.6685C32.2396 23.7482 32.2358 23.8317 32.2499 23.9131C32.1066 24.6552 32.023 25.4076 31.9999 26.1631C32.0032 26.4753 32.031 26.7864 32.0832 27.0964C32.131 27.4131 32.2032 27.7242 32.2999 28.0297C32.4665 28.6131 32.6999 29.1797 32.9165 29.6964H32.7332C29.3999 30.7797 25.9832 31.7131 22.5665 32.5464C19.1499 33.3797 15.6832 34.0631 12.2165 34.6464C10.7015 34.9297 8.88486 35.5131 7.11819 35.8464C6.27628 36.0345 5.41356 36.113 4.55153 36.0797C4.26819 35.0797 3.91819 33.2297 3.88486 33.0631C3.35153 30.8797 2.86819 28.6631 2.46819 26.3964C2.06819 24.1297 1.81819 22.4964 1.58486 20.4631C3.08153 19.8964 4.60375 19.4131 6.15153 19.0131C7.71819 18.5964 9.30153 18.2631 10.9015 17.9297L15.6849 16.9131C18.9349 16.1964 22.1349 15.3631 25.2682 14.4464C25.3437 14.4311 25.4155 14.401 25.4794 14.358C25.5433 14.3149 25.598 14.2597 25.6406 14.1955C25.6832 14.1312 25.7127 14.0593 25.7274 13.9836C25.7421 13.908 25.7418 13.8302 25.7265 13.7547C25.7112 13.6792 25.6812 13.6075 25.6381 13.5436C25.5951 13.4797 25.5398 13.4249 25.4756 13.3823C25.4114 13.3397 25.3394 13.3102 25.2638 13.2955C25.1882 13.2808 25.1104 13.2811 25.0349 13.2964C22.1515 13.8131 19.2015 14.1297 16.2682 14.6131C14.3182 14.9631 12.3682 15.3464 10.4349 15.8464C7.19826 16.6414 4.04927 17.7581 1.03486 19.1797C0.930715 19.1471 0.819209 19.1461 0.714535 19.177C0.609861 19.208 0.51675 19.2693 0.447054 19.3533C0.377358 19.4373 0.334227 19.5401 0.323152 19.6487C0.312077 19.7573 0.333557 19.8667 0.384859 19.9631C0.501526 22.2297 0.718193 24.5131 1.00153 26.7797C1.28486 29.0464 1.63486 31.3131 2.03486 33.5464C2.03486 33.7464 2.40153 36.2131 2.68486 37.1297C2.74575 37.3748 2.8703 37.5994 3.0459 37.7809C3.2215 37.9623 3.44193 38.0942 3.68486 38.1631C4.65153 38.3131 5.63486 38.3131 6.60153 38.1631C8.65153 37.8964 10.8349 37.1464 12.6015 36.8297C16.1015 36.0964 19.5682 35.2631 23.0015 34.2964C26.4297 33.3285 29.8155 32.2164 33.1499 30.9631C33.234 30.9276 33.3099 30.8754 33.373 30.8094C33.436 30.7435 33.4849 30.6653 33.5165 30.5797C33.6213 30.6035 33.7303 30.6009 33.8339 30.5722C33.9374 30.5435 34.0322 30.4896 34.1098 30.4153C34.1874 30.341 34.2454 30.2486 34.2786 30.1464C34.3117 30.0443 34.319 29.9354 34.2999 29.8297V27.6464C34.2499 27.4631 34.2332 27.1464 34.1999 26.8631Z" fill="#333CF5"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M16.1491 29.9631C16.0286 30.0501 15.947 30.1809 15.9221 30.3274C15.8972 30.474 15.9308 30.6244 16.0157 30.7464C16.0558 30.8074 16.1079 30.8595 16.1688 30.8995C16.2298 30.9395 16.2983 30.9666 16.3702 30.9791C16.442 30.9916 16.5157 30.9893 16.5866 30.9722C16.6575 30.9551 16.7241 30.9236 16.7824 30.8797C17.4857 30.4664 18.1157 29.9431 18.6491 29.3297L18.9491 28.9464C19.2107 29.2214 19.5224 29.4414 19.8657 29.5964C20.5307 29.8776 21.2622 29.9627 21.9739 29.8416C22.6856 29.7205 23.3479 29.3983 23.8824 28.9131C23.9965 28.8055 24.0666 28.6594 24.0791 28.5031C24.0917 28.3468 24.0459 28.1914 23.9505 28.067C23.8551 27.9426 23.7169 27.8579 23.5627 27.8295C23.4085 27.8011 23.2492 27.8308 23.1157 27.9131C22.7642 28.1618 22.3502 28.3075 21.9204 28.334C21.4906 28.3605 21.0619 28.2667 20.6824 28.0631C20.4994 27.9501 20.3473 27.7936 20.2397 27.6074C20.1321 27.4213 20.0723 27.2113 20.0657 26.9964C20.1657 26.7464 20.2657 26.4797 20.3491 26.1964C20.4157 25.9497 20.4657 25.6997 20.4991 25.4464V24.6297C20.48 24.4111 20.4466 24.194 20.3991 23.9797C20.3379 23.844 20.2482 23.7232 20.136 23.6253C20.0238 23.5275 19.8918 23.4551 19.7491 23.4131C19.5098 23.3172 19.2428 23.3174 19.0036 23.4137C18.7645 23.5099 18.5718 23.6948 18.4657 23.9297C18.3324 24.1842 18.2324 24.4508 18.1657 24.7297C18.0902 25.0531 18.0346 25.3808 17.9991 25.7131C17.9491 26.1631 17.9491 26.6131 17.9991 27.0631C17.8467 27.5461 17.6398 28.0102 17.3824 28.4464C17.0523 29.0127 16.6362 29.5244 16.1491 29.9631Z" fill="#333CF5"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_1770_12705">
+      <rect width="40" height="40" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>
           </div>
-
-          {/* Credit / Debit */}
-          <div
-            onClick={() => setMethod('credit')}
-            className={`flex items-center gap-4 p-4 rounded-2xl border-2 cursor-pointer transition
-              ${method === 'credit' ? 'border-brand-main bg-[#EEF0FF]' : 'border-gray-200 bg-white hover:border-gray-300'}`}
-          >
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${method === 'credit' ? 'bg-brand-main/10' : 'bg-gray-100'}`}>
-              <HiOutlineCreditCard className={`text-xl ${method === 'credit' ? 'text-brand-main' : 'text-gray-500'}`} />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-sm font-semibold text-black-main-text">Credit / Debit Card</h3>
-              <p className="text-xs text-gray-400 mt-0.5">Pay securely with your credit or debit card</p>
-            </div>
-            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition
-              ${method === 'credit' ? 'border-brand-main' : 'border-gray-300'}`}>
-              {method === 'credit' && <div className="w-2.5 h-2.5 rounded-full bg-brand-main" />}
-            </div>
-          </div>
-
-          {/* Card Form — only for credit */}
-          {method === 'credit' && (
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex flex-col gap-4">
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-black-main-text">Card Holder Name</label>
-                <input
-                  type="text" placeholder="John Doe"
-                  value={cardData.name}
-                  onChange={(e) => setCardData({ ...cardData, name: e.target.value })}
-                  className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-brand-main transition"
-                />
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-black-main-text">Card Number</label>
-                <input
-                  type="text" placeholder="1234 5678 9012 3456" maxLength="19"
-                  value={cardData.number}
-                  onChange={(e) => {
-                    const v = e.target.value.replace(/\D/g, '').slice(0, 16);
-                    const formatted = v.match(/.{1,4}/g)?.join(' ') || v;
-                    setCardData({ ...cardData, number: formatted });
-                  }}
-                  className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-brand-main transition tracking-widest"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-black-main-text">Expiry Date</label>
-                  <input
-                    type="text" placeholder="MM/YY" maxLength="5"
-                    value={cardData.expiry}
-                    onChange={(e) => setCardData({ ...cardData, expiry: e.target.value })}
-                    className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-brand-main transition"
-                  />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-black-main-text">CVV</label>
-                  <input
-                    type="password" placeholder="123" maxLength="3"
-                    value={cardData.cvv}
-                    onChange={(e) => setCardData({ ...cardData, cvv: e.target.value })}
-                    className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-brand-main transition"
-                  />
-                </div>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-gray-400">
-                <MdSecurity className="text-green-500 shrink-0" />
-                Your payment information is encrypted and secure
-              </div>
-            </div>
-          )}
+          <h1 className="text-2xl font-bold text-[#0F172A]">Select Payment Method</h1>
         </div>
 
-        {/* ── RIGHT: Booking Summary ── */}
-        <div className="w-full lg:w-72 shrink-0">
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-            <h2 className="text-sm font-bold text-black-main-text mb-4">Booking Summary</h2>
-
-            <div className="flex flex-col gap-4">
-            <SummaryRow 
-  iconClass="bg-[#3B5BFE1A]  text-[#3B5BFE]" // الكلاسات دي هتروح للأيقونة بس
-  icon={<HiOutlineUser />} 
-  label="Doctor"
->
-  <p className="text-sm font-semibold text-black-main-text">{bookingData.doctorName}</p>
-  <p className="text-xs text-[#757575]">{bookingData.doctorTitle}</p>
-</SummaryRow>
-              <div className="h-px " />
-              <SummaryRow icon={<HiOutlineCalendar className='text-[#757575]' />} label="Date">
-                <p className="text-sm font-semibold text-black-main-text">{bookingData.date}</p>
-              </SummaryRow>
-              <div className="h-px " />
-              <SummaryRow icon={<HiOutlineClock className='text-[#757575]' />} label="Time">
-                <p className="text-sm font-semibold text-black-main-text">{bookingData.time}</p>
-              </SummaryRow>
-              <div className="h-px" />
-              <SummaryRow icon={<HiOutlineCreditCard className='text-[#757575]'/>} label="Payment Method">
-                <p className="text-sm font-semibold text-black-main-text">{method === 'cash' ? 'Cash at Clinic' : 'Credit Card'}</p>
-              </SummaryRow>
-              <div className="h-px " />
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-black-main-text">Total Amount</span>
-                <span className="text-lg font-bold text-black-main-text">${bookingData.price}.00</span>
-              </div>
-            </div>
-
-            <button
-              onClick={handlePay}
-              className="w-full mt-5 py-3 rounded-xl bg-brand-main text-white font-semibold text-sm hover:bg-[#2730d4] transition"
+        {/* Main Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* LEFT COLUMN (8 units) */}
+          <div className="lg:col-span-7 space-y-6">
+            
+            {/* Cash Option */}
+            <div 
+              onClick={() => setMethod('cash')}
+              className={`bg-white p-6 rounded-[24px] border-2 cursor-pointer flex items-center justify-between transition-all ${method === 'cash' ? 'border-[#3B5BFE]' : 'border-transparent'}`}
             >
-              Pay Now
-            </button>
-          </div>
-        </div>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center border border-slate-100">
+                  <span className="text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+<g opacity="0.6">
+<path d="M20 5H4C2.89543 5 2 5.89543 2 7V17C2 18.1046 2.89543 19 4 19H20C21.1046 19 22 18.1046 22 17V7C22 5.89543 21.1046 5 20 5Z" stroke="#333CF5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2 10H22" stroke="#333CF5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg></span>
+                </div>
+                <div>
+                  <p className="font-bold text-[#0F172A]">Cash at Clinic</p>
+                  <p className="text-sm text-slate-400">Pay directly at the clinic during your visit</p>
+                </div>
+              </div>
+              <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${method === 'cash' ? 'border-[#3B5BFE]' : 'border-slate-200'}`}>
+                {method === 'cash' && <div className="w-3 h-3 bg-[#3B5BFE] rounded-full" />}
+              </div>
+            </div>
 
+            {/* Credit Card Option */}
+            <div 
+              onClick={() => setMethod('credit')}
+              className={`bg-white p-6 rounded-[24px] border-2 cursor-pointer flex items-center justify-between transition-all ${method === 'credit' ? 'border-[#3B5BFE]' : 'border-transparent'}`}
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center border border-slate-100">
+                  <span className="text-xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <g opacity="0.6">
+    <path d="M19 7V4C19 3.73478 18.8946 3.48043 18.7071 3.29289C18.5196 3.10536 18.2652 3 18 3H5C4.46957 3 3.96086 3.21071 3.58579 3.58579C3.21071 3.96086 3 4.46957 3 5C3 5.53043 3.21071 6.03914 3.58579 6.41421C3.96086 6.78929 4.46957 7 5 7H20C20.2652 7 20.5196 7.10536 20.7071 7.29289C20.8946 7.48043 21 7.73478 21 8V12M21 12H18C17.4696 12 16.9609 12.2107 16.5858 12.5858C16.2107 12.9609 16 13.4696 16 14C16 14.5304 16.2107 15.0391 16.5858 15.4142C16.9609 15.7893 17.4696 16 18 16H21C21.2652 16 21.5196 15.8946 21.7071 15.7071C21.8946 15.5196 22 15.2652 22 15V13C22 12.7348 21.8946 12.4804 21.7071 12.2929C21.5196 12.1054 21.2652 12 21 12Z" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M3 5V19C3 19.5304 3.21071 20.0391 3.58579 20.4142C3.96086 20.7893 4.46957 21 5 21H20C20.2652 21 20.5196 20.8946 20.7071 20.7071C20.8946 20.5196 21 20.2652 21 20V16" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg></span>
+                </div>
+                <div>
+                  <p className="font-bold text-[#0F172A]">Credit / Debit Card</p>
+                  <p className="text-sm text-slate-400">Pay securely with your credit or debit card</p>
+                </div>
+              </div>
+              <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${method === 'credit' ? 'border-[#3B5BFE]' : 'border-slate-200'}`}>
+                {method === 'credit' && <div className="w-3 h-3 bg-[#3B5BFE] rounded-full" />}
+              </div>
+            </div>
+
+            {/* Card Form */}
+            {method === 'credit' && (
+              <div className="bg-white rounded-[32px] p-8 shadow-sm border border-slate-100 space-y-6 animate-in fade-in duration-500">
+                <div className="flex items-center gap-2 mb-2">
+                  <MastercardLogo />
+                  <span className="font-bold text-slate-800 text-sm">Card Details</span>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-500 mb-2">Card Holder Name</label>
+                    <input type="text" placeholder="John Doe" className="w-full p-4 rounded-xl border border-slate-100 bg-white outline-none focus:border-[#3B5BFE] transition-all text-slate-700" />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-slate-500 mb-2">Card Number</label>
+                    <input type="text" placeholder="1234 5678 9012 3456" className="w-full p-4 rounded-xl border border-slate-100 bg-white outline-none focus:border-[#3B5BFE] transition-all text-slate-700 tracking-wider" />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-slate-500 mb-2">Expiry Date</label>
+                      <input type="text" placeholder="MM/YY" className="w-full p-4 rounded-xl border border-slate-100 bg-white outline-none focus:border-[#3B5BFE] transition-all" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-slate-500 mb-2">CVV</label>
+                      <input type="text" placeholder="123" className="w-full p-4 rounded-xl border border-slate-100 bg-white outline-none focus:border-[#3B5BFE] transition-all" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 p-4 bg-slate-50 rounded-xl">
+                  <LockIcon />
+                  <p className="text-xs text-slate-500 font-medium">Your payment information is encrypted and secure</p>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* RIGHT COLUMN (4 units) - Summary Card */}
+          <div className="lg:col-span-5">
+            <div className="bg-white rounded-[32px] p-8 shadow-sm border border-slate-100">
+              <h2 className="text-lg font-bold text-[#0F172A] mb-8">Booking Summary</h2>
+
+              <div className="space-y-6">
+                <SummaryRow icon={<HiOutlineUser className="text-blue-500" />} label="Doctor" iconBg="bg-blue-50">
+                  <p className="font-bold text-slate-800 text-sm">{bookingData.doctorName}</p>
+                  <p className="text-xs text-slate-400">{bookingData.doctorTitle}</p>
+                </SummaryRow>
+
+                <div className="h-px bg-slate-100" />
+
+                <SummaryRow icon={<HiOutlineCalendar className="text-slate-500" />} label="Date">
+                  <p className="font-bold text-slate-800 text-sm">{bookingData.date}</p>
+                </SummaryRow>
+
+                <SummaryRow icon={<HiOutlineClock className="text-slate-500" />} label="Time">
+                  <p className="font-bold text-slate-800 text-sm">{bookingData.time}</p>
+                </SummaryRow>
+
+                <SummaryRow icon={<span className="text-slate-500"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+<g opacity="0.6">
+<path d="M16.668 4.1665H3.33464C2.41416 4.1665 1.66797 4.9127 1.66797 5.83317V14.1665C1.66797 15.087 2.41416 15.8332 3.33464 15.8332H16.668C17.5884 15.8332 18.3346 15.087 18.3346 14.1665V5.83317C18.3346 4.9127 17.5884 4.1665 16.668 4.1665Z" stroke="#010218" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1.66797 8.3335H18.3346" stroke="#010218" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg></span>} label="Payment Method">
+                  <p className="font-bold text-slate-800 text-sm">{method === 'credit' ? 'Credit / Debit Card' : 'Cash at Clinic'}</p>
+                </SummaryRow>
+
+                <div className="h-px bg-slate-100" />
+
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-500 font-medium">Total Amount</span>
+                  <span className="text-xl font-bold text-[#0F172A]">${bookingData.price}.00</span>
+                </div>
+
+                <button 
+                  onClick={() => setSuccess(true)}
+                  className="w-full py-4 cursor-pointer bg-[#3B5BFE] text-white rounded-2xl font-bold text-base hover:bg-blue-700 transition-all shadow-lg shadow-blue-100 active:scale-[0.98]"
+                >
+                  Pay Now
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   );
 };
 
-const SummaryRow = ({ icon, label, children, iconClass }) => (
-  <div className="flex items-start gap-3">
-    {/* ضيفنا الـ iconClass هنا جوه كلاسات الأيقونة */}
-    <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 mt-0.5 text-[#3B5BFE] ${iconClass || ''}`}>
+// Summary Row Helper
+const SummaryRow = ({ icon, label, children, iconBg = "bg-slate-50" }) => (
+  <div className="flex items-start gap-4">
+    <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${iconBg}`}>
       {icon}
     </div>
-    <div>
-      <p className="text-xs text-[#757575]">{label}</p>
+    <div className="flex-1">
+      <p className="text-xs text-slate-400 mb-1">{label}</p>
       {children}
     </div>
   </div>

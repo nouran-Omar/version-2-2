@@ -48,11 +48,7 @@ const PatientAppointments = () => {
         onConfirm={handleConfirmCancel}
         onCancel={() => setCancelTarget(null)}
       />
-      <SuccessPopup
-        isOpen={showSuccess}
-        title="Appointment Cancelled"
-        desc="Your appointment has been successfully cancelled."
-      />
+     
 
       {/* Header */}
  <header className="flex flex-col  pb-4 mb-6">
