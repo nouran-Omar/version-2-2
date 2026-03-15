@@ -171,7 +171,7 @@ export default function StoriesManagement() {
       </div>
 
 {/* ── Table Area ── */}
-<div className="overflow-x-auto border border-gray-200/70 rounded-[20px] bg-white">
+<div className="overflow-x-auto   bg-white">
   <table className="w-full min-w-[700px] border-collapse">
     <thead>
       <tr className="bg-[#333CF5] text-white">
@@ -189,7 +189,7 @@ export default function StoriesManagement() {
         <tr
           key={story.id}
           onClick={() => handleRowClick(story)}
-          className={`border-b border-gray-100 transition-colors cursor-pointer ${idx % 2 === 0 ? 'bg-white' : 'bg-[#F9FAFB]'} hover:bg-[#EFF6FF]/60`}
+          className={`transition-colors cursor-pointer ${idx % 2 === 0 ? 'bg-white' : 'bg-[#F9FAFB]'} hover:bg-[#EFF6FF]/60`}
         >
           {/* 1. القصة: محاذاة لليسار مع صورة مطولة */}
           <td className="px-6 py-8 text-left">
@@ -244,21 +244,37 @@ export default function StoriesManagement() {
           {/* 5. الأزرار: في النص */}
           <td className="px-4 py-8 text-center" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-center gap-3">
-              <button onClick={(e) => { e.stopPropagation(); navigate(`/admin/stories/${story.id}`); }} className="w-10 h-10 cursor-pointer flex items-center justify-center rounded-xl bg-gray-50 text-[#333CF5] hover:bg-[#333CF5] hover:text-white transition-all shadow-sm">
-                <HiOutlineEye size={20} />
-              </button>
+              
               <button
                 onClick={(e) => handleToggleHide(e, story)}
                 title={story.status === 'Hidden' ? 'Unhide Story' : 'Hide Story'}
-                className={`w-10 h-10 cursor-pointer flex items-center justify-center rounded-xl transition-all shadow-sm
+                className={`w-10 h-10 cursor-pointer flex items-center justify-center  transition-all 
                   ${story.status === 'Hidden'
-                    ? 'bg-yellow-100 text-yellow-600 hover:bg-yellow-500 hover:text-white'
-                    : 'bg-gray-100 text-gray-500 hover:bg-gray-400 hover:text-white'
+                    ? ' text-[#3335cf]   hover:text-[#2628a0] '
+                    : ' text-gray-500 hover:text-gray-500'
                   }`}
               >
-                {story.status === 'Hidden' ? <HiOutlineEyeSlash size={20} /> : <HiOutlineEyeSlash size={20} />}
+                {story.status === 'Hidden' ? <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16" fill="none">
+  <g clip-path="url(#clip0_4004_7074)">
+    <path d="M8.99922 1C6.47422 1 4.45234 2.15 2.98047 3.51875C1.51797 4.875 0.539844 6.5 0.0773437 7.61562C-0.0257813 7.8625 -0.0257813 8.1375 0.0773437 8.38437C0.539844 9.5 1.51797 11.125 2.98047 12.4812C4.45234 13.85 6.47422 15 8.99922 15C11.5242 15 13.5461 13.85 15.018 12.4812C16.4805 11.1219 17.4586 9.5 17.9242 8.38437C18.0273 8.1375 18.0273 7.8625 17.9242 7.61562C17.4586 6.5 16.4805 4.875 15.018 3.51875C13.5461 2.15 11.5242 1 8.99922 1ZM4.49922 8C4.49922 6.80653 4.97332 5.66193 5.81724 4.81802C6.66115 3.97411 7.80574 3.5 8.99922 3.5C10.1927 3.5 11.3373 3.97411 12.1812 4.81802C13.0251 5.66193 13.4992 6.80653 13.4992 8C13.4992 9.19347 13.0251 10.3381 12.1812 11.182C11.3373 12.0259 10.1927 12.5 8.99922 12.5C7.80574 12.5 6.66115 12.0259 5.81724 11.182C4.97332 10.3381 4.49922 9.19347 4.49922 8ZM8.99922 6C8.99922 7.10313 8.10234 8 6.99922 8C6.77734 8 6.56484 7.9625 6.36484 7.89687C6.19297 7.84062 5.99297 7.94688 5.99922 8.12813C6.00859 8.34375 6.03984 8.55937 6.09922 8.775C6.52734 10.375 8.17422 11.325 9.77422 10.8969C11.3742 10.4688 12.3242 8.82188 11.8961 7.22188C11.5492 5.925 10.4023 5.05312 9.12734 5C8.94609 4.99375 8.83984 5.19062 8.89609 5.36562C8.96172 5.56562 8.99922 5.77812 8.99922 6Z" fill="#8B8C8D"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_4004_7074">
+      <path d="M0 0H18V16H0V0Z" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>: <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16" fill="none">
+  <g clip-path="url(#clip0_4004_7369)">
+    <path d="M8.99922 1C6.47422 1 4.45234 2.15 2.98047 3.51875C1.51797 4.875 0.539844 6.5 0.0773437 7.61562C-0.0257813 7.8625 -0.0257813 8.1375 0.0773437 8.38437C0.539844 9.5 1.51797 11.125 2.98047 12.4812C4.45234 13.85 6.47422 15 8.99922 15C11.5242 15 13.5461 13.85 15.018 12.4812C16.4805 11.1219 17.4586 9.5 17.9242 8.38437C18.0273 8.1375 18.0273 7.8625 17.9242 7.61562C17.4586 6.5 16.4805 4.875 15.018 3.51875C13.5461 2.15 11.5242 1 8.99922 1ZM4.49922 8C4.49922 6.80653 4.97332 5.66193 5.81724 4.81802C6.66115 3.97411 7.80574 3.5 8.99922 3.5C10.1927 3.5 11.3373 3.97411 12.1812 4.81802C13.0251 5.66193 13.4992 6.80653 13.4992 8C13.4992 9.19347 13.0251 10.3381 12.1812 11.182C11.3373 12.0259 10.1927 12.5 8.99922 12.5C7.80574 12.5 6.66115 12.0259 5.81724 11.182C4.97332 10.3381 4.49922 9.19347 4.49922 8ZM8.99922 6C8.99922 7.10313 8.10234 8 6.99922 8C6.77734 8 6.56484 7.9625 6.36484 7.89687C6.19297 7.84062 5.99297 7.94688 5.99922 8.12813C6.00859 8.34375 6.03984 8.55937 6.09922 8.775C6.52734 10.375 8.17422 11.325 9.77422 10.8969C11.3742 10.4688 12.3242 8.82188 11.8961 7.22188C11.5492 5.925 10.4023 5.05312 9.12734 5C8.94609 4.99375 8.83984 5.19062 8.89609 5.36562C8.96172 5.56562 8.99922 5.77812 8.99922 6Z" fill="#333CF5"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_4004_7369">
+      <path d="M0 0H18V16H0V0Z" fill="white"/>
+    </clipPath>
+  </defs>
+</svg> }
               </button>
-              <button onClick={(e) => handleDeleteClick(e, story)} className="w-10 h-10 cursor-pointer flex items-center justify-center rounded-xl bg-red-50 text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-sm">
+              <button onClick={(e) => handleDeleteClick(e, story)} className="w-10 h-10 cursor-pointer flex items-center justify-center rounded-xl text-red-500  hover:text-red-600 transition-all ">
                 <HiOutlineTrash size={20} />
               </button>
             </div>
@@ -284,7 +300,7 @@ export default function StoriesManagement() {
                 <button key={n} onClick={() => handlePageChange(n)} className={`w-10 h-10 cursor-pointer flex items-center justify-center rounded-full text-[12px] font-semibold transition-colors ${page === n ? 'bg-[#155dfc] text-white' : 'border border-gray-200 text-gray-600 hover:bg-gray-50'}`}>{n}</button>
               )
             )}
-            <button disabled={page === totalPages || totalPages === 0} onClick={() => handlePageChange(page + 1)} className="w-10 h-10  flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"><HiChevronRight size={14} /></button>
+            <button disabled={page === totalPages || totalPages === 0} onClick={() => handlePageChange(page + 1)} className="w-10 h-10 cursor-pointer flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"><HiChevronRight size={14} /></button>
           </div>
         </div>
       </div>
