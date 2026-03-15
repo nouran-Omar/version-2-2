@@ -1,23 +1,28 @@
-import React, { useState, useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { jsPDF } from 'jspdf';
 import { LuQrCode, LuCalendarDays } from 'react-icons/lu';
-import { HiOutlineCheckCircle, HiOutlineLightBulb } from 'react-icons/hi2';
-import { RiNumbersLine } from 'react-icons/ri';
-import {RiCheckFill } from 'react-icons/ri';
+import { HiOutlineLightBulb } from 'react-icons/hi2';
+import { RiNumbersLine, RiCheckFill } from 'react-icons/ri';
+import usePatientData from '../../hooks/usePatientData';
 
 const PatientQRCode = () => {
   const qrRef = useRef(null);
+  const { patient } = usePatientData();
 
-  const [userData] = useState({
-    name: 'Nouran Omar',
-    generatedDate: '19/10/2024',
-    totalFiles: 8,
-    medicalImages: [
-      'https://images.unsplash.com/photo-1530026405186-ed1f1305b3c2?w=500',
-      'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=500',
-    ],
-  });
+  const userData = useMemo(() => {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    return {
+      name: patient?.name ?? 'Patient',
+      id: patient?.id ?? '',
+      generatedDate: `${dd}/${mm}/${yyyy}`,
+      totalFiles: patient?.totalFiles ?? 8,
+      medicalImages: [],
+    };
+  }, [patient]);
 
   const downloadPDF = async () => {
     const doc = new jsPDF();
@@ -112,7 +117,7 @@ const PatientQRCode = () => {
         <div className="bg-white w-[350px]  rounded-[22px] border border-gray-100 shadow-sm p-6 flex flex-col items-center gap-5">
           <div ref={qrRef} className="p-4 bg-gray-50 rounded-[16px] border border-gray-100">
             <QRCodeSVG
-              value={`https://pulsex-app.com/records/${userData.name}`}
+              value={userData.id ? `https://pulsex-app.com/records/${userData.id}` : 'https://pulsex-app.com/records'}
               size={200}
               bgColor="#ffffff"
               fgColor="#010218"
